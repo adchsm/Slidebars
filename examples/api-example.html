@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Slidebars API Example</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		
+		<!-- Slidebars CSS -->
+		<link rel="stylesheet" href="slidebars/slidebars.min.css">
+		
+		<!-- Example Styles -->
+		<style type="text/css">
+			html {
+				font-family: sans-serif;
+			}
+			
+			#sb-site {
+				padding: 14px;
+			}
+			
+			.sb-slidebar {
+				padding: 14px;
+				color: #fff;
+			}
+		</style>
+	</head>
+	
+	<body>	
+		<div id="sb-site">
+			<!-- Your main site content here. -->
+			
+			<!-- Classes Examples -->
+			<h1>Slidebars API Example</h1>
+			<ul>
+				<li class="toggle-left">Toggle left Slidebar</li>
+				<li class="toggle-right">Toggle right Slidebar</li>
+				<li class="open-left">Open left Slidebar</li>
+				<li class="open-right">Open right Slidebar</li>
+				<li class="close">Close either Slidebar</li>
+			</ul>
+		</div>
+		
+		<div class="sb-slidebar sb-left">
+			<!-- Your left Slidebar content. -->
+			
+			<h2>API Control</h2>
+			<ul>
+				<li class="toggle-left">Toggle left Slidebar</li>
+				<li class="toggle-right">Toggle right Slidebar</li>
+				<li class="open-left">Open left Slidebar</li>
+				<li class="open-right">Open right Slidebar</li>
+				<li class="close">Close either Slidebar</li>
+			</ul>
+		</div>
+		
+		<div class="sb-slidebar sb-right">
+			<!-- Your right Slidebar content. -->
+			
+			<h2>API Control</h2>
+			<ul>
+				<li class="toggle-left">Toggle left Slidebar</li>
+				<li class="toggle-right">Toggle right Slidebar</li>
+				<li class="open-left">Open left Slidebar</li>
+				<li class="open-right">Open right Slidebar</li>
+				<li class="close">Close either Slidebar</li>
+			</ul>
+		</div>
+				
+		<!-- jQuery -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		
+		<!-- Slidebars -->
+		<script src="slidebars/slidebars.min.js"></script>
+		<script>
+			(function($) {
+				$(document).ready(function() {
+					var mySlidebars = new $.slidebars();
+					
+					$('.toggle-left').on('click', function() {
+						mySlidebars.toggle('left');
+					});
+					
+					$('.toggle-right').on('click', function() {
+						mySlidebars.toggle('right');
+					});
+					
+					$('.open-left').on('click', function() {
+						mySlidebars.open('left');
+					});
+					
+					$('.open-right').on('click', function() {
+						mySlidebars.open('right');
+					});
+					
+					$('.close').on('click', function() {
+						mySlidebars.close();
+					});
+				});
+			}) (jQuery);
+		</script>
+	</body>
+</html>

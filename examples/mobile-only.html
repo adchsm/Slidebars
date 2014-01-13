@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Slidebars Mobile Only Example</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		
+		<!-- Slidebars CSS -->
+		<link rel="stylesheet" href="slidebars/slidebars.min.css">
+		
+		<!-- Example Styles -->
+		<style type="text/css">		
+			html {
+				font-family: sans-serif;
+			}
+			
+			#sb-site {
+				padding: 14px;
+			}
+			
+			.sb-slidebar {
+				padding: 14px;
+				color: #fff;
+			}
+				
+			@media (min-width: 481px) {
+				/* Hide Slidebar control classes for screens over 480px. */
+				.sb-toggle-left, .sb-toggle-right, .sb-open-left, .sb-open-right, .sb-close {
+					display: none;
+				}
+			}
+		</style>
+	</head>
+	
+	<body>	
+		<div id="sb-site">
+			<!-- Your main site content here. -->
+			
+			<!-- Classes Examples -->
+			<h1>Slidebars Mobile Only Example</h1>
+			<p>The classes below will only show to operate on screens smaller than 480px. Try it now, resize your window.</p>
+			
+			<h2>Control Classes</h2>
+			<ul>
+				<li class="sb-toggle-left">Toggle left Slidebar</li>
+				<li class="sb-toggle-right">Toggle right Slidebar</li>
+				<li class="sb-open-left">Open left Slidebar</li>
+				<li class="sb-open-right">Open right Slidebar</li>
+				<li class="sb-close">Close either Slidebar</li>
+			</ul>
+		</div>
+		
+		<div class="sb-slidebar sb-left">
+			<!-- Your left Slidebar content. -->
+			
+			<!-- Classes Examples -->
+			<h2>Control Classes</h1>
+			<ul>
+				<li class="sb-toggle-left">Toggle left Slidebar</li>
+				<li class="sb-toggle-right">Toggle right Slidebar</li>
+				<li class="sb-open-left">Open left Slidebar</li>
+				<li class="sb-open-right">Open right Slidebar</li>
+				<li class="sb-close">Close either Slidebar</li>
+			</ul>
+		</div>
+		
+		<div class="sb-slidebar sb-right">
+			<!-- Your right Slidebar content. -->
+			
+			<!-- Classes Examples -->
+			<h2>Control Classes</h1>
+			<ul>
+				<li class="sb-toggle-left">Toggle left Slidebar</li>
+				<li class="sb-toggle-right">Toggle right Slidebar</li>
+				<li class="sb-open-left">Open left Slidebar</li>
+				<li class="sb-open-right">Open right Slidebar</li>
+				<li class="sb-close">Close either Slidebar</li>
+			</ul>
+		</div>
+				
+		<!-- jQuery -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		
+		<!-- Slidebars -->
+		<script src="slidebars/slidebars.min.js"></script>
+		<script>
+			(function($) {
+				$(document).ready(function() {
+				
+					function runSlidebars() {
+						var mySlidebars = new $.slidebars(); // Start Slidebars
+						var width = $(window).width(); // Get width of the screen
+						
+						if (width > 480 && mySlidebars.init) { // Check width and if Slidebars has been initialised
+							$('.sb-close').trigger("click"); // Triggering a click event will close a Slidebar if open.
+						}
+					}
+					
+					runSlidebars(); // Initially call the function.
+					$(window).resize(runSlidebars); // Call the function again when teh screen is resized.
+					
+				});
+			}) (jQuery);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Slidebars Control Classes Example</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		
+		<!-- Slidebars CSS -->
+		<link rel="stylesheet" href="slidebars/slidebars.min.css">
+		
+		<!-- Example Styles -->
+		<style type="text/css">
+			html {
+				font-family: sans-serif;
+			}
+			
+			#sb-site {
+				padding: 14px;
+			}
+			
+			.sb-slidebar {
+				padding: 14px;
+				color: #fff;
+			}
+		</style>
+	</head>
+	
+	<body>	
+		<div id="sb-site">
+			<!-- Your main site content here. -->
+			
+			<!-- Classes Examples -->
+			<h1>Slidebars Control Classes Example</h1>
+			<ul>
+				<li class="sb-toggle-left">Toggle left Slidebar</li>
+				<li class="sb-toggle-right">Toggle right Slidebar</li>
+				<li class="sb-open-left">Open left Slidebar</li>
+				<li class="sb-open-right">Open right Slidebar</li>
+				<li class="sb-close">Close either Slidebar</li>
+			</ul>
+		</div>
+		
+		<div class="sb-slidebar sb-left">
+			<!-- Your left Slidebar content. -->
+			
+			<!-- Classes Examples -->
+			<h2>Control Classes</h2>
+			<ul>
+				<li class="sb-toggle-left">Toggle left Slidebar</li>
+				<li class="sb-toggle-right">Toggle right Slidebar</li>
+				<li class="sb-open-left">Open left Slidebar</li>
+				<li class="sb-open-right">Open right Slidebar</li>
+				<li class="sb-close">Close either Slidebar</li>
+			</ul>
+		</div>
+		
+		<div class="sb-slidebar sb-right">
+			<!-- Your right Slidebar content. -->
+			
+			<!-- Classes Examples -->
+			<h2>Control Classes</h2>
+			<ul>
+				<li class="sb-toggle-left">Toggle left Slidebar</li>
+				<li class="sb-toggle-right">Toggle right Slidebar</li>
+				<li class="sb-open-left">Open left Slidebar</li>
+				<li class="sb-open-right">Open right Slidebar</li>
+				<li class="sb-close">Close either Slidebar</li>
+			</ul>
+		</div>
+				
+		<!-- jQuery -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		
+		<!-- Slidebars -->
+		<script src="slidebars/slidebars.min.js"></script>
+		<script>
+			(function($) {
+				$(document).ready(function() {
+					$.slidebars();
+				});
+			}) (jQuery);
+		</script>
+	</body>
+</html>
