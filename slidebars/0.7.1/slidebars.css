@@ -1,6 +1,6 @@
 /* -----------------------------------
  * Slidebars
- * Version 0.7
+ * Version 0.7.1
  * http://plugins.adchsm.me/slidebars/
  *
  * Written by Adam Smith
@@ -51,7 +51,7 @@ body {
 	min-height: 100%; /* Initially set here but accurate height is set by slidebars.js */
 	position: relative;
 	z-index: 1; /* Site sits above Slidebars */
-	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0); /* Fixes some translation issues. */
+	/*box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0); Fixes some translation issues. */
 	background-color: #ffffff; /* Default background colour, overwrite this with your own css. */
 }
 
@@ -70,6 +70,11 @@ body {
 	background-color: #222222; /* Default Slidebars background colour, overwrite this with your own css. */
 }
 
+html.sb-android .sb-slidebar { /* Unfix Slidebars for Android Browser < 3 */
+	height: auto;
+	position: absolute;
+}
+
 .sb-left {
 	left: 0;
 }
@@ -78,7 +83,11 @@ body {
 	right: 0;
 }
 
-.sb-visible {
+html.sb-active-left .sb-left {
+	visibility: visible;
+}
+
+html.sb-active-right .sb-right {
 	visibility: visible;
 }
 
@@ -111,7 +120,7 @@ body {
  * 004 - Animation
  */
 
-.sb-slide {
+html.sb-anim-type-translate .sb-slide, html.sb-anim-type-side .sb-slide {
 	-webkit-transition: -webkit-transform 400ms ease;
 	   -moz-transition: -moz-transform 400ms ease;
 	     -o-transition: -o-transform 400ms ease;

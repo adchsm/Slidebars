@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Slidebars Control Classes Example</title>
+		<title>Slidebars Options</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
 		<!-- Slidebars CSS -->
@@ -29,7 +29,8 @@
 			<!-- Your main site content here. -->
 			
 			<!-- Classes Examples -->
-			<h1>Slidebars Control Classes</h1>
+			<h1>Slidebars Options</h1>
+			<p>In this example, the option 'siteClose' is passed as false when calling the $.slidebars function. This prevents you from closing a Slidebar by clicking on the site.</p>
 			<ul>
 				<li class="sb-toggle-left">Toggle left Slidebar</li>
 				<li class="sb-toggle-right">Toggle right Slidebar</li>
@@ -75,7 +76,9 @@
 		<script>
 			(function($) {
 				$(document).ready(function() {
-					$.slidebars();
+					$.slidebars({
+						siteClose: false // true or false - Enable closing of a Slidebar by clicking on the site.
+					});
 				});
 			}) (jQuery);
 		</script>
