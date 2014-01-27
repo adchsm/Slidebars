@@ -30,7 +30,8 @@
 		// 001 - Default Settings
 
 		var settings = $.extend({
-			siteClose: true // true or false - Enable closing of Slidebars by clicking on #sb-site.
+			siteClose: true, // true or false - Enable closing of Slidebars by clicking on #sb-site.
+			siteID: '#sb-site' // id of the site content - #sb-site by default
 		}, options);
 
 		// -----------------------
@@ -65,11 +66,11 @@
 		this.init = true; // User check, returns true if Slidebars has been initiated.
 
 		// Site Container
-		if (!$('#sb-site').length) { // Check if user has wrapped their content with an id of sb-site.
+		if (!$(settings.siteID).length) { // Check if user has wrapped their content with an id of sb-site.
 			// .sb-site doesn't exist, create it.
 			$('body').children().wrapAll('<div id="sb-site" />');
 		}
-		var $site = $('#sb-site'); // Cache the selector.
+		var $site = $(settings.siteID); // Cache the selector.
 		if (!$site.parent().is('body')) $site.appendTo('body'); // Check its location and move if necessary.
 		$site.addClass('sb-slide'); // Add animation class.
 
