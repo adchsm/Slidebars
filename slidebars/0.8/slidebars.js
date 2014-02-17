@@ -90,8 +90,8 @@
 		function setMinHeights() {
 			var minHeight = $('html').css('height'); // Get minimum height of the page.
 			$site.css('minHeight', minHeight); // Set minimum height to the site.
-			if ($left.hasClass('sb-static')) $left.css('minHeight', minHeight);  // Set minimum height to the left Slidebar.
-			if ($right.hasClass('sb-static')) $right.css('minHeight', minHeight);  // Set minimum height to the right Slidebar.
+			if ($left && $left.hasClass('sb-static')) $left.css('minHeight', minHeight);  // Set minimum height to the left Slidebar.
+			if ($right && $right.hasClass('sb-static')) $right.css('minHeight', minHeight);  // Set minimum height to the right Slidebar.
 		}
 		setMinHeights(); // Set them
 		
