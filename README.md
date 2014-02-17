@@ -8,6 +8,10 @@ See the [Slidebars website](http://plugins.adchsm.me/slidebars) for more informa
 Whats New
 ---------
 
+Version 0.8.1 - February 17, 2014
+
+* Fixed an error which caused Slidebars to fail when only using one Slidebar. Thanks to Damien Jarry (wibimaster) for the fix.
+
 Version 0.8 - February 17, 2014
 
 * Added Slidebars Theme! An optional theme which you are free to use and abuse. It features a top navigation bar, list menus in Slidebars with unlimited level of drop downs, widgets and other useful CSS snippets. You can find the [theme usage here] (http://plugins.adchsm.me/slidebars/theme.php).
