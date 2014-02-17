@@ -21,13 +21,6 @@
 				padding: 14px;
 				color: #fff;
 			}
-				
-			@media (min-width: 481px) {
-				/* Hide Slidebar control classes for screens over 480px. */
-				.sb-toggle-left, .sb-toggle-right, .sb-open-left, .sb-open-right, .sb-close {
-					display: none;
-				}
-			}
 		</style>
 	</head>
 	
@@ -37,7 +30,7 @@
 			
 			<!-- Classes Examples -->
 			<h1>Slidebars Mobile Only Example</h1>
-			<p>The classes below will only show to operate on screens smaller than 480px. Try it now, resize your window.</p>
+			<p>There is text below to control the Slidebars that will only show on screens smaller than 480px. Try it now, resize your window.</p>
 			
 			<h2>Control Classes</h2>
 			<ul>
@@ -85,19 +78,10 @@
 		<script>
 			(function($) {
 				$(document).ready(function() {
-				
-					function runSlidebars() {
-						var mySlidebars = new $.slidebars(); // Start Slidebars
-						var width = $(window).width(); // Get width of the screen
-						
-						if (width > 480 && mySlidebars.init) { // Check width and if Slidebars has been initialised
-							$('.sb-close').trigger("click"); // Triggering a click event will close a Slidebar if open.
-						}
-					}
-					
-					runSlidebars(); // Initially call the function.
-					$(window).resize(runSlidebars); // Call the function again when teh screen is resized.
-					
+					$.slidebars({
+						disableOver: 480,
+						hideControlClasses: true
+					});
 				});
 			}) (jQuery);
 		</script>

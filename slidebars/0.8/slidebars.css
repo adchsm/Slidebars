@@ -1,13 +1,13 @@
 /* -----------------------------------
  * Slidebars
- * Version 0.7.1
+ * Version 0.8
  * http://plugins.adchsm.me/slidebars/
  *
  * Written by Adam Smith
  * http://www.adchsm.me/
  *
  * Released under MIT License
- * http://opensource.org/licenses/MIT
+ * http://plugins.adchsm.me/slidebars/license.txt
  *
  * -------------------
  * Slidebars CSS Index
@@ -31,15 +31,15 @@ html, body, #sb-site, .sb-slidebar {
 
 html, body {
 	width: 100%;
-	overflow-x: hidden;
+	overflow-x: hidden; /* Stops horizontal scrolling. */
 }
 
 html {
-	height: 100%;
+	min-height: 100%;
 }
 
 body {
-	min-height: 100%;
+	height: 100%;
 }
 
 /* ----------
@@ -51,7 +51,6 @@ body {
 	min-height: 100%; /* Initially set here but accurate height is set by slidebars.js */
 	position: relative;
 	z-index: 1; /* Site sits above Slidebars */
-	/*box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0); Fixes some translation issues. */
 	background-color: #ffffff; /* Default background colour, overwrite this with your own css. */
 }
 
@@ -60,7 +59,6 @@ body {
  */
 
 .sb-slidebar {
-	width: 35%; /* Slidebar width for older browsers that don't support media queries. */
 	height: 100%;
 	overflow-y: auto; /* Enable vertical scrolling on Slidebars when needed. */
 	position: fixed;
@@ -70,43 +68,54 @@ body {
 	background-color: #222222; /* Default Slidebars background colour, overwrite this with your own css. */
 }
 
-html.sb-android .sb-slidebar { /* Unfix Slidebars for Android Browser < 3 */
-	height: auto;
+.sb-static { /* Makes Slidebars scroll naturally with the site, and unfixes them for Android Browser 2.X. */
 	position: absolute;
 }
 
 .sb-left {
-	left: 0;
+	left: 0; /* Sets Slidebar to the left. */
 }
 
 .sb-right {
-	right: 0;
+	right: 0; /* Sets Slidebar to the right. */
 }
 
-html.sb-active-left .sb-left {
-	visibility: visible;
-}
-
+html.sb-active-left .sb-left,
 html.sb-active-right .sb-right {
-	visibility: visible;
+	visibility: visible; /* Makes Slidebars visibile when open. */
 }
 
-/* Media queries to set Slidebar widths. */
+/* Slidebar Widths */
+
+.sb-slidebar {
+	width: 30%; /* Browsers that don't support media queries. */
+}
+
+.sb-width-custom {
+	/* To set a custom width, add this class to your Slidebar and pass a px or % value as a data attribute 'data-sb-width'. */
+}
+
 @media (max-width: 480px) {
 	.sb-slidebar {
 		width: 70%; /* Slidebar width on extra small screens. */
 	}
 }
 
-@media (min-width: 481px) and (max-width: 991px) {
+@media (min-width: 481px) {
 	.sb-slidebar {
-		width: 50%; /* Slidebar width on small screens. */
+		width: 55%; /* Slidebar width on small screens. */
+	}
+}
+
+@media (min-width: 768px) {
+	.sb-slidebar {
+		width: 40%; /* Slidebar width on small screens. */
 	}
 }
 
 @media (min-width: 992px) {
 	.sb-slidebar {
-		width: 35%; /* Slidebar width on medium screens. */
+		width: 30%; /* Slidebar width on medium screens. */
 	}
 }
 

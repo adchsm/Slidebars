@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Slidebars Options</title>
+		<title>Slidebars Custom Slidebar Width Example</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
 		<!-- Slidebars CSS -->
@@ -29,8 +29,9 @@
 			<!-- Your main site content here. -->
 			
 			<!-- Classes Examples -->
-			<h1>Slidebars Options</h1>
-			<p>In this example, the option 'siteClose' is passed as false when calling the $.slidebars function. This prevents you from closing a Slidebar by clicking on the site.</p>
+			<h1>Slidebars Custom Slidebar Width Example</h1>
+			<p>In this example, both Slidebars have custom widths. You can set these by adding the class '.sb-width-custom' to your Slidebar, and pass the width as a data attribute 'data-sb-width'. This can be a px or % value.</p>
+			<p>The left Slidebar has a width of 50%, and the right Slidebar has a width of 100px, no matter what the screen size.</p> 
 			<ul>
 				<li class="sb-toggle-left">Toggle left Slidebar</li>
 				<li class="sb-toggle-right">Toggle right Slidebar</li>
@@ -40,32 +41,12 @@
 			</ul>
 		</div>
 		
-		<div class="sb-slidebar sb-left">
+		<div class="sb-slidebar sb-left sb-width-custom" data-sb-width="50%">
 			<!-- Your left Slidebar content. -->
-			
-			<!-- Classes Examples -->
-			<h2>Control Classes</h2>
-			<ul>
-				<li class="sb-toggle-left">Toggle left Slidebar</li>
-				<li class="sb-toggle-right">Toggle right Slidebar</li>
-				<li class="sb-open-left">Open left Slidebar</li>
-				<li class="sb-open-right">Open right Slidebar</li>
-				<li class="sb-close">Close either Slidebar</li>
-			</ul>
 		</div>
 		
-		<div class="sb-slidebar sb-right">
+		<div class="sb-slidebar sb-right sb-width-custom" data-sb-width="100px">
 			<!-- Your right Slidebar content. -->
-			
-			<!-- Classes Examples -->
-			<h2>Control Classes</h2>
-			<ul>
-				<li class="sb-toggle-left">Toggle left Slidebar</li>
-				<li class="sb-toggle-right">Toggle right Slidebar</li>
-				<li class="sb-open-left">Open left Slidebar</li>
-				<li class="sb-open-right">Open right Slidebar</li>
-				<li class="sb-close">Close either Slidebar</li>
-			</ul>
 		</div>
 				
 		<!-- jQuery -->
@@ -76,9 +57,7 @@
 		<script>
 			(function($) {
 				$(document).ready(function() {
-					$.slidebars({
-						siteClose: false // true or false - Enable closing of a Slidebar by clicking on the site.
-					});
+					$.slidebars();
 				});
 			}) (jQuery);
 		</script>
