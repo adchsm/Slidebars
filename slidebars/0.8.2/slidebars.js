@@ -1,6 +1,6 @@
 // -----------------------------------
 // Slidebars
-// Version 0.8.1
+// Version 0.8.2
 // http://plugins.adchsm.me/slidebars/
 //
 // Written by Adam Smith
@@ -88,12 +88,15 @@
 		
 		// Set Minimum Heights
 		function setMinHeights() {
+			$site.css('minHeight', ''); // Remove any min-height set.
+			if ($left) $left.css('minHeight', ''); // Remove any min-height set.
+			if ($right) $right.css('minHeight', ''); // Remove any min-height set.
 			var minHeight = $('html').css('height'); // Get minimum height of the page.
 			$site.css('minHeight', minHeight); // Set minimum height to the site.
 			if ($left && $left.hasClass('sb-static')) $left.css('minHeight', minHeight);  // Set minimum height to the left Slidebar.
 			if ($right && $right.hasClass('sb-static')) $right.css('minHeight', minHeight);  // Set minimum height to the right Slidebar.
 		}
-		setMinHeights(); // Set them
+		setMinHeights(); // Set them.
 		
 		// Control Classes
 		var $controls = $('.sb-toggle-left, .sb-toggle-right, .sb-open-left, .sb-open-right, .sb-close');
@@ -121,8 +124,8 @@
 		$slide = $('.sb-slide'); // Cache all elements to animate.
 
 		// Set Animation Type
-		if (supportTransition && supportTransform) { // Browser supports CSS Transitions
-			animation = 'translate'; // Translate for browser that support transform and tranisions.
+		if (supportTransition && supportTransform) { // Browser supports css transitions and transforms.
+			animation = 'translate'; // Translate for browsers that support it.
 			if (android && android < 4.4) animation = 'side'; // Android supports both, but can't translate any fixed positions, so use left instead.
 		} else {
 			animation = 'jQuery'; // Browsers that don't support css transitions and transitions.
@@ -228,57 +231,64 @@
 		// ----------------
 		// 009 - User Input
 		
-		function input(event) { // Stop default behaviour and event bubbling.
-			event.preventDefault();
-			event.stopPropagation();
+		function eventHandler(event, selector) {
+			event.stopPropagation(); // Stop event bubbling.
+			event.preventDefault(); // Prevent default behaviour
+			if (event.type === 'touchend') selector.off('click'); // If event type was touch turn off clicks to prevent phantom clicks.
 		}
 		
-		// Slidebar Toggle Left
-		$('.sb-toggle-left').on('touchend click', function(event) {			
-			input(event);
-			toggle('left'); // Toggle left Slidebar.
+		// Toggle Left Slidebar
+		$('.sb-toggle-left').on('touchend click', function(event) {
+			eventHandler(event, $(this)); // Handle the event.
+			if ($left && leftActive !== true) { // If using left Slidebar and its closed.
+				open('left'); // Its closed, open it.
+			} else {
+				close(); // Its open, close it.
+			}
 		});
 		
-		// Slidebar Toggle Right
+		// Toggle Right Slidebar
 		$('.sb-toggle-right').on('touchend click', function(event) {
-			input(event);
-			toggle('right'); // Toggle right Slidebar.
+			eventHandler(event, $(this)); // Handle the event.
+			if ($right && rightActive !== true) { // If using right Slidebar and its closed.
+				open('right'); // Its closed, open it.
+			} else {
+				close(); // Its open, close it.
+			}
 		});
 		
-		// Slidebar Left Open
+		// Open Left Slidebar
 		$('.sb-open-left').on('touchend click', function(event) {
-			input(event);
-			if (!leftActive) open('left'); // Slidebar is closed, open it.
+			eventHandler(event, $(this)); // Handle the event.
+			if ($left && leftActive !== true) open('left'); // If using left Slidebar and its closed.
 		});
 		
-		// Slidebar Right Open
+		// Open Right Slidebar
 		$('.sb-open-right').on('touchend click', function(event) {
-			input(event);
-			if (!rightActive) open('right'); // Slidebar is closed, open it.
+			eventHandler(event, $(this)); // Handle the event.
+			if ($right && rightActive !== true) open('right'); // If using right Slidebar and its closed.
 		});
 		
-		// Slidebar Close
+		// Close a Slidebar
 		$('.sb-close').on('touchend click', function(event) {
-			input(event);
-			if (leftActive || rightActive) close(); // A Slidebar is open, close it.
+			eventHandler(event, $(this)); // Handle the event.
+			if (leftActive || rightActive) close(); // If left or right Slidebar is open, close it.
 		});
 		
-		// Slidebar Close via Link
+		// Close Slidebar via Link
 		$('.sb-slidebar a').not('.sb-disable-close').on('click', function(event) {
-			if (leftActive || rightActive) { // Only proceed is a Slidebar is active.
-				input(event);
-				close( $(this).attr('href') ); // Call closing method and pass link.
+			eventHandler(event, $(this)); // Handle the event.
+			if (leftActive || rightActive) close( $(this).attr('href') ); // If left or right Slidebar is open, close it and pass link.
+		});
+		
+		// Close Slidebar via Site
+		$site.on('touchend click', function(event) {
+			if (settings.siteClose && (leftActive || rightActive)) { // If settings permit closing by site and left or right Slidebar is open.
+				eventHandler(event, $(this)); // Handle the event.
+				close(); // Close it.
 			}
 		});
 		
-		// Slidebar Close via Site
-		$site.on('touchend click', function(event) {
-			if (leftActive || rightActive) { // Only proceed if the left or the right Slidebar is active.
-				input(event); // If active, stop the click bubbling.
-				close(); // Close the Slidebar.
-			}
-		});
-
 	}; // End slidebars function.
 
 }) (jQuery);

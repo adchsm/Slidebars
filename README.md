@@ -8,6 +8,10 @@ See the [Slidebars website](http://plugins.adchsm.me/slidebars) for more informa
 Whats New
 ---------
 
+Version 0.8.2 - Released February 24, 2014
+
+* Event handling has been re-written in this update for better Android support. Also fixed an error where unnecessary space was added below the site content on a window resize. Thanks to francis-ceril, ecclescake and dmmikkel.
+
 Version 0.8.1 - February 17, 2014
 
 * Fixed an error which caused Slidebars to fail when only using one Slidebar. Thanks to Damien Jarry (wibimaster) for the fix.

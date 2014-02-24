@@ -1,0 +1,16 @@
+html {
+	font-family: sans-serif;
+}
+
+#sb-site {
+	padding: 14px;
+}
+
+.sb-slidebar {
+	padding: 14px;
+	color: #fff;
+}
+
+.sb-toggle-left, .sb-toggle-right, .sb-open-left, .sb-open-right, .sb-close {
+	cursor: pointer;
+}
