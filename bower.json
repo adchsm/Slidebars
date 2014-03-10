@@ -1,7 +1,7 @@
 {
 	"name": "Slidebars",
-	"version": "0.9",
+	"version": "0.9.1",
 	"dependencies": {
-		"jQuery": "1.8+"
+		"jQuery": "1.8 or higher"
 	},
 }
