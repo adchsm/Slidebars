@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Slidebars Mobile Only Example</title>
+		<title>Slidebars Widths Example</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
 		<!-- Slidebars CSS -->
@@ -13,9 +13,8 @@
 	
 	<body>	
 		<div id="sb-site">
-			<h1>Slidebars Mobile Only Example</h1>
-			<p>There is text below to control the Slidebars, only visible on screens smaller than 480px. Should the screen width expand past 480px (or your set width) when a Slidebar is open, the Slidebar will be closed. Try it now, resize your window.</p>
-			<h2>Control Classes</h2>
+			<h1>Slidebars Widths Example</h1>
+			<p>You can set different widths to your Slidebars by adding modifier classes '.sb-width-thin' or '.sb-width-wide'. The left Slidebar has class '.sb-width-thin' which is 15% narrower than the standard width. The right Slidebar has class '.sb-width-wide' which is 15% wider than the standard. Unlike custom widths, these adapt to the screen size.</p>
 			<ul>
 				<li class="sb-toggle-left">Toggle left Slidebar</li>
 				<li class="sb-toggle-right">Toggle right Slidebar</li>
@@ -38,11 +37,11 @@
 			</ul>
 		</div>
 		
-		<div class="sb-slidebar sb-left">
+		<div class="sb-slidebar sb-left sb-width-thin">
 			<!-- Your left Slidebar content. -->
 		</div>
 		
-		<div class="sb-slidebar sb-right">
+		<div class="sb-slidebar sb-right sb-width-wide">
 			<!-- Your right Slidebar content. -->
 		</div>
 				
@@ -54,10 +53,7 @@
 		<script>
 			(function($) {
 				$(document).ready(function() {
-					$.slidebars({
-						disableOver: 480,
-						hideControlClasses: true
-					});
+					$.slidebars();
 				});
 			}) (jQuery);
 		</script>

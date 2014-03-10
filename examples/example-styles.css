@@ -2,6 +2,10 @@ html {
 	font-family: sans-serif;
 }
 
+body {
+	background-color: #222222;
+}
+
 #sb-site {
 	padding: 14px;
 }
