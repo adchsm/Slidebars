@@ -3,5 +3,5 @@
 	"version": "0.9.1",
 	"dependencies": {
 		"jQuery": "1.8 or higher"
-	},
+	}
 }
