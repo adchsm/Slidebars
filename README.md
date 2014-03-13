@@ -23,7 +23,7 @@ Version 0.9 - Released March 10, 2014
 * [Helper class](http://plugins.adchsm.me/slidebars/usage.php#helper-classes) `html.sb-android` has been depreciated, see below.
 * New [helper class](http://plugins.adchsm.me/slidebars/usage.php#helper-classes) `html.sb-static` has been added, use this to un-fix your fixed elements for use on Android &lt; 3 and iOS &lt; 5.
 
-Version 0.9.1 & 0.9.2
+Version 0.9.1, 0.9.2, 0.9.3
 
 * Fixes for jQuery Plugin Registry and Bower support.
 
