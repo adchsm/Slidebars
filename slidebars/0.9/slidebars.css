@@ -63,6 +63,7 @@ body {
 .sb-slidebar {
 	height: 100%;
 	overflow-y: auto; /* Enable vertical scrolling on Slidebars when needed. */
+	-webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS devices */
 	position: fixed;
 	top: 0;
 	z-index: 0; /* Slidebars sit behind sb-site. */
