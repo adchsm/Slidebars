@@ -1,4 +1,3 @@
-
 // -----------------------------------
 // Slidebars
 // Version 0.9
@@ -69,14 +68,14 @@
 		// Site Container
 		if (!$('#sb-site').length) $('body').children().wrapAll('<div id="sb-site" />'); // Check if content is wrapped with sb-site, wrap if it isn't.
 		var $site = $('#sb-site'); // Cache the selector.
-		if (!$site.parent().is('body')) $site.appendTo('body'); // Check its location and move if necessary.
+		tryAppendToBody($site); // Check its location and move if necessary.
 
 		// Left Slidebar	
 		if ($('.sb-left').length) { // Check if the left Slidebar exists.
 			var $left = $('.sb-left'), // Cache the selector.
 			leftActive = false; // Used to check whether the left Slidebar is open or closed.
 			$left.addClass('sb-slidebar'); // Make sure the Slidebar has the base class.
-			if (!$left.parent().is('body')) $left.appendTo('body'); // Check its location and move if necessary.
+			tryAppendToBody($left); // Check its location and move if necessary.
 		}
 
 		// Right Slidebar
@@ -84,7 +83,7 @@
 			var $right = $('.sb-right'), // Cache the selector.
 			rightActive = false; // Used to check whether the right Slidebar is open or closed.
 			$right.addClass('sb-slidebar'); // Make sure the Slidebar has the base class.
-			if (!$right.parent().is('body')) $right.appendTo('body'); // Check its location and move if necessary.
+			tryAppendToBody($right); // Check its location and move if necessary.
 		}
 				
 		var init = false,
@@ -190,6 +189,23 @@
 
 		// ----------------
 		// 006 - Operations
+
+		// Returns true if successfully appended element to body
+		function tryAppendToBody(element) {
+	            var parent = element.parent();
+	            if (!parent.is('body')) {
+	            	// If elem in asp.net form tag, do nothing.
+	                if (parent.is('form') && parent.children().find('#__VIEWSTATE') != 0) {
+	                    return false;
+	                }
+	
+	                //otherwise, append elem to body
+	                element.appendTo('body');
+	                return true;
+	            }
+	
+	            return false;
+	        }
 
 		// Open a Slidebar
 		function open(side) {
