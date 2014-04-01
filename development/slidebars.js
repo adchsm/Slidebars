@@ -107,7 +107,7 @@
 		function css() {
 			// Set minimum height.
 			$site.css('minHeight', ''); // Reset minimum height.
-			$site.css('minHeight', $('body').height() + 'px'); // Set minimum height of the site to the minimum height of the body.
+			$site.css('minHeight', $('html').height() + 'px'); // Set minimum height of the site to the minimum height of the body.
 			
 			// Set off-canvas margins for Slidebars with push and overlay animations.
 			if ($left && ($left.hasClass('sb-style-push') || $left.hasClass('sb-style-overlay'))) $left.css('marginLeft', '-' + $left.css('width'));
