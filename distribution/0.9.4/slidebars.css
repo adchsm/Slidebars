@@ -1,6 +1,6 @@
 /* -----------------------------------
  * Slidebars
- * Version 0.9
+ * Version 0.9.4
  * http://plugins.adchsm.me/slidebars/
  *
  * Written by Adam Smith
@@ -50,7 +50,6 @@ body {
 
 #sb-site {
 	width: 100%;
-	height: 100%; /* Initially set here but accurate height is set by slidebars.js */
 	position: relative;
 	z-index: 1; /* Site sits above Slidebars */
 	background-color: #ffffff; /* Default background colour, overwrite this with your own css. */

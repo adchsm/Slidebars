@@ -8,6 +8,14 @@ See the [Slidebars website](http://plugins.adchsm.me/slidebars/) for more inform
 Whats New
 ---------
 
+Version 0.9.4
+
+* Fixes issue with site locking and scrolling difficulty.
+
+Version 0.9.1, 0.9.2, 0.9.3
+
+* Fixes for jQuery Plugin Registry and Bower support.
+
 Version 0.9 - Released March 10, 2014
 
 * New push animation style, add [modifier class](http://plugins.adchsm.me/slidebars/usage.php#slidebars) `.sb-style-push` to a Slidebar.
@@ -22,10 +30,6 @@ Version 0.9 - Released March 10, 2014
 * Fixed a bug where control classes couldn't be hidden using CSS.
 * [Helper class](http://plugins.adchsm.me/slidebars/usage.php#helper-classes) `html.sb-android` has been depreciated, see below.
 * New [helper class](http://plugins.adchsm.me/slidebars/usage.php#helper-classes) `html.sb-static` has been added, use this to un-fix your fixed elements for use on Android &lt; 3 and iOS &lt; 5.
-
-Version 0.9.1, 0.9.2, 0.9.3
-
-* Fixes for jQuery Plugin Registry and Bower support.
 
 Version History
 ---------------

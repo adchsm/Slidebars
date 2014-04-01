@@ -1,7 +1,7 @@
 
 // -----------------------------------
 // Slidebars
-// Version 0.9
+// Version 0.9.4
 // http://plugins.adchsm.me/slidebars/
 //
 // Written by Adam Smith
