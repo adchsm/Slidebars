@@ -8,7 +8,7 @@ See the [Slidebars website](http://plugins.adchsm.me/slidebars/) for more inform
 Whats New
 ---------
 
-Version 0.9.4
+Version 0.9.4 - Released April 1, 2014
 
 * Fixes issue with site locking and scrolling difficulty.
 
