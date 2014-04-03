@@ -263,7 +263,7 @@
 		this.init = function() { // Returns true or false whether Slidebars are running or not.
 			return init;
 		};
-		this.active = function(side) { // Returns true or false whether Slidebar is open or closed.
+		this.state = function(side) { // Returns true or false whether Slidebar is open or closed.
 			if (side === 'left' && $left) return leftActive;
 			if (side === 'right' && $right) return rightActive;
 		};

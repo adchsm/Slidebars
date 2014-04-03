@@ -72,6 +72,7 @@ html.sb-lock.sb-active:not(.sb-static) {
 	z-index: 0; /* Slidebars sit behind sb-site. */
 	visibility: hidden; /* Initially hide the Slidebars. */
 	background-color: #222222; /* Default Slidebars background colour, overwrite this with your own css. */
+	-webkit-transform: translate(0px); /* Fixes issues with translated and z-indexed elements on iOS Safari. */
 }
 
 .sb-left {
