@@ -1,7 +1,7 @@
 
 // -----------------------------------
 // Slidebars
-// Version 0.10 Development
+// Development Version
 // http://plugins.adchsm.me/slidebars/
 //
 // Written by Adam Smith
@@ -33,7 +33,8 @@
 			siteClose: true, // true or false - Enable closing of Slidebars by clicking on #sb-site.
 			siteLock: false, // true or false - Prevent scrolling of site when a Slidebar is open.
 			disableOver: false, // integer or false - Hide Slidebars over a specific width.
-			hideControlClasses: false // true or false - Hide controls at same width as disableOver.
+			hideControlClasses: false, // true or false - Hide controls at same width as disableOver.
+			slidebarLinks: 'standard' // 'close' or 'standard' - Links clicked in Slidebars close Slidebars.
 		}, options);
 
 		// -----------------------
@@ -309,8 +310,10 @@
 		
 		// Close Slidebar via Link
 		$('.sb-slidebar a').not('.sb-disable-close').on('click', function(event) {
-			eventHandler(event, $(this)); // Handle the event.
-			close( $(this).attr('href') ); // Close the Slidebar and pass link.
+			if (settings.slidebarLinks == 'close' || settings.slidebarLinks == 'standard' && $(this).hasClass('sb-enable-close')) {
+				eventHandler(event, $(this)); // Handle the event.
+				close( $(this).attr('href') ); // Close the Slidebar and pass link.
+			}
 		});
 		
 		// Close Slidebar via Site
