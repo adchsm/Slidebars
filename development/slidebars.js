@@ -1,7 +1,6 @@
-
 // -----------------------------------
 // Slidebars
-// Development Version
+// Development version, do not use this in your site, use the latest in the distribution folder.
 // http://plugins.adchsm.me/slidebars/
 //
 // Written by Adam Smith
