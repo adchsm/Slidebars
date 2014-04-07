@@ -110,13 +110,13 @@
 			$site.css('minHeight', ''); // Reset minimum height.
 			$site.css('minHeight', $('html').height() + 'px'); // Set minimum height of the site to the minimum height of the body.
 			
-			// Set off-canvas margins for Slidebars with push and overlay animations.
-			if ($left && ($left.hasClass('sb-style-push') || $left.hasClass('sb-style-overlay'))) $left.css('marginLeft', '-' + $left.css('width'));
-			if ($right && ($right.hasClass('sb-style-push') || $right.hasClass('sb-style-overlay'))) $right.css('marginRight', '-' + $right.css('width'));
-			
 			// Custom Slidebar Widths
 			if ($left && $left.hasClass('sb-width-custom')) $left.css('width', $left.attr('data-sb-width')); // Set user custom width.
 			if ($right && $right.hasClass('sb-width-custom')) $right.css('width', $right.attr('data-sb-width')); // Set user custom width.
+			
+			// Set off-canvas margins for Slidebars with push and overlay animations.
+			if ($left && ($left.hasClass('sb-style-push') || $left.hasClass('sb-style-overlay'))) $left.css('marginLeft', '-' + $left.css('width'));
+			if ($right && ($right.hasClass('sb-style-push') || $right.hasClass('sb-style-overlay'))) $right.css('marginRight', '-' + $right.css('width'));
 			
 			// Site lock.
 			if (settings.siteLock) $('html').addClass('sb-lock');
