@@ -70,9 +70,10 @@ html.sb-lock.sb-active:not(.sb-static) {
 	position: fixed;
 	top: 0;
 	z-index: 0; /* Slidebars sit behind sb-site. */
-	visibility: hidden; /* Initially hide the Slidebars. */
+	display: none; /* Initially hide the Slidebars. Changed from visibility to display to allow -webkit-overflow-scrolling. */
 	background-color: #222222; /* Default Slidebars background colour, overwrite this with your own css. */
-	-webkit-transform: translate(0px); /* Fixes issues with translated and z-indexed elements on iOS Safari. */
+	-webkit-transform: translate(0px); /* Fixes issues with translated and z-indexed elements on iOS 7. */
+	-webkit-overflow-scrolling: touch; /* Adds smooth native scrolling for iOS & Android devices. */
 }
 
 .sb-left {
@@ -89,7 +90,7 @@ html.sb-static .sb-slidebar,
 }
 
 .sb-slidebar.sb-active {
-	visibility: visible; /* Makes Slidebars visibile when open. */
+	display: block; /* Makes Slidebars visibile when open. Changed from visibility to display to allow -webkit-overflow-scrolling. */
 }
 
 .sb-slidebar.sb-style-overlay {

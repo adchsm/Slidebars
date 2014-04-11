@@ -82,7 +82,7 @@
 			rightActive = false; // Used to check whether the right Slidebar is open or closed.
 		}
 				
-		var init = false,
+		var init = false, // Initialisation variable.
 		windowWidth = $(window).width(), // Get width of window.
 		$controls = $('.sb-toggle-left, .sb-toggle-right, .sb-open-left, .sb-open-right, .sb-close'), // Cache the control classes.
 		$slide = $('.sb-slide'); // Cache users elements to animate.
@@ -98,6 +98,7 @@
 				init = false; // false stop Slidebars from opening.
 				$('html').removeClass('sb-init'); // Remove helper class.
 				if (settings.hideControlClasses) $controls.addClass('sb-hide'); // Hide controls
+				$site.css('minHeight', ''); // Remove minimum height.
 				if (leftActive || rightActive) close(); // Close Slidebars if open.
 			}
 		}
@@ -107,7 +108,7 @@
 		function css() {
 			// Set minimum height.
 			$site.css('minHeight', ''); // Reset minimum height.
-			$site.css('minHeight', $('html').height() + 'px'); // Set minimum height of the site to the minimum height of the body.
+			$site.css('minHeight', $('html').height() + 'px'); // Set minimum height of the site to the minimum height of the html.
 			
 			// Custom Slidebar Widths
 			if ($left && $left.hasClass('sb-width-custom')) $left.css('width', $left.attr('data-sb-width')); // Set user custom width.
@@ -124,10 +125,9 @@
 		// Resize Functions
 		$(window).resize(function() {
 			var resizedWindowWidth = $(window).width(); // Get resized window width.
-			if (init && windowWidth !== resizedWindowWidth) { // Slidebars is running and window was actually resized.
+			if (windowWidth !== resizedWindowWidth) { // Slidebars is running and window was actually resized.
 				windowWidth = resizedWindowWidth; // Set the new window width.
 				initialise(); // Call initalise to see if Slidebars should still be running.
-				css(); // Reset minimum heights and negative margins.
 				if (leftActive) open('left'); // If left Slidebar is open, calling open will ensure it is the correct size.
 				if (rightActive) open('right'); // If right Slidebar is open, calling open will ensure it is the correct size.
 			}
