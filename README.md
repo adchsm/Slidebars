@@ -14,6 +14,7 @@ Version 0.10 - Unreleased
 * New helper class `.sb-enable-close` - When using 'standard' link behaviour, add this class to a link to make it close the Slidebar first.
 * New helper class `.sb-disbale-close` - When using 'close' link behaviour, add this class to a link to stop it closing the Slidebar.
 * API rework. All API methods are now prefixed with `.slidebars`. For example `yourVariable.slidebars.open('left');`.
+* New API method `.destroy(side)`. Removes Slidebar from the DOM.
 * You may now use class `.sb-site` as your site container rather than id `#sb-site`.
 * The script no longer checks positions of site and Slidebar elements, or moves them if located incorrectly.
 * .NET compatible.
