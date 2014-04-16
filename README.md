@@ -5,6 +5,25 @@ Slidebars is a jQuery plugin for quickly and easily implementing app-style revea
 
 See the [Slidebars website](http://plugins.adchsm.me/slidebars/) for more information, usage documentation and compatibility tables.
 
+Coming Soon
+-----------
+
+Version 0.10 - Unreleased
+
+* Link behaviour options - By default links in Slidebars no longer close the Slidebar before following the link. Options: 'standard' or 'close', default: 'standard'.
+* New helper class `.sb-enable-close` - When using 'standard' link behaviour, add this class to a link to make it close the Slidebar first.
+* New helper class `.sb-disbale-close` - When using 'close' link behaviour, add this class to a link to stop it closing the Slidebar.
+* API rework. All API methods are now prefixed with `.slidebars`. For example `yourVariable.slidebars.open('left');`.
+* You may now use class `.sb-site` as your site container rather than id `#sb-site`.
+* The script no longer checks positions of site and Slidebar elements, or moves them if located incorrectly.
+* .NET compatible.
+* Smooth native scrolling for Slidebar elements from `-webkit-overflow-scrolling: touch;`.
+* Fixes an issue with minimum heights for site container.
+* Minimum heights are no longer set for screen sizes larger than disableOver (if provided).
+* Fixes issues with push and overlay styles on iOS 7.
+* Inactive Slidebars now use `display: none;` instead of `visibility: hidden;` to allow for smooth scrolling as above.
+* Inline styling removed after closing animation.
+
 Whats New
 ---------
 

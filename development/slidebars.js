@@ -166,24 +166,20 @@
 			} else if (animation === 'side') {		
 				if (amount[0] === '-') amount = amount.substr(1); // Remove the '-' from the passed amount for side animations.
 				selector.css(side, amount);
-				setTimeout(function() {
-					if (amount === '0px') {
-						selector.removeAttr('style');
-						css();
-					}
-				}, 400);
 			} else if (animation === 'jQuery') {
 				if (amount[0] === '-') amount = amount.substr(1); // Remove the '-' from the passed amount for jQuery animations.
 				var properties = {};
 				properties[side] = amount;
 				selector.stop().animate(properties, 400); // Stop any current jQuery animation before starting another.
-				setTimeout(function() {
-					if (amount === '0px') {
-						selector.removeAttr('style');
-						css();
-					}
-				}, 400); // If closed, remove the inline styling on completion of the animation.	
 			}
+			
+			// If closed, remove the inline styling on completion of the animation.
+			setTimeout(function() {
+				if (amount === '0px') {
+					selector.removeAttr('style');
+					css();
+				}
+			}, 400);
 		}
 
 		// ----------------
@@ -256,17 +252,35 @@
 
 		// ---------
 		// 007 - API
-
-		this.open = open; // Maps user variable name to the open method.
-		this.close = close; // Maps user variable name to the close method.
-		this.toggle = toggle; // Maps user variable name to the toggle method.
-		this.init = function() { // Returns true or false whether Slidebars are running or not.
-			return init;
-		};
-		this.state = function(side) { // Returns true or false whether Slidebar is open or closed.
-			if (side === 'left' && $left) return leftActive;
-			if (side === 'right' && $right) return rightActive;
-		};
+		
+		this.slidebars = {
+			open: open, // Maps user variable name to the open method.
+			close: close, // Maps user variable name to the close method.
+			toggle: toggle, // Maps user variable name to the toggle method.
+			init: function() { // Returns true or false whether Slidebars are running or not.
+				return init; // Returns true or false whether Slidebars are running.
+			},
+			active: function(side) { // Returns true or false whether Slidebar is open or closed.
+				if (side === 'left' && $left) return leftActive;
+				if (side === 'right' && $right) return rightActive;
+			},
+			destroy: function(side) { // Removes the Slidebar from the DOM.
+				if (side === 'left' && $left) {
+					if (leftActive) close(); // Close if its open.
+					setTimeout(function() {
+						$left.remove(); // Remove it.
+						$left = false; // Set variable to false so it cannot be opened again.
+					}, 400);
+				}
+				if (side === 'right' && $right) {
+					if (rightActive) close(); // Close if its open.
+					setTimeout(function() {
+						$right.remove(); // Remove it.
+						$right = false; // Set variable to false so it cannot be opened again.
+					}, 400);
+				}
+			}
+		}
 
 		// ----------------
 		// 008 - User Input
