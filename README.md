@@ -10,7 +10,7 @@ Coming Soon
 
 Version 0.10 - Unreleased
 
-* Link behaviour options - By default links in Slidebars no longer close the Slidebar before following the link. Options: 'standard' or 'close', default: 'standard'.
+* Link behaviour options - By default, links in Slidebars no longer close the Slidebar before following the link. Options: 'standard' or 'close', default: 'standard'.
 * New helper class `.sb-enable-close` - When using 'standard' link behaviour, add this class to a link to make it close the Slidebar first.
 * New helper class `.sb-disbale-close` - When using 'close' link behaviour, add this class to a link to stop it closing the Slidebar.
 * API rework. All API methods are now prefixed with `.slidebars`. For example `yourVariable.slidebars.open('left');`.
