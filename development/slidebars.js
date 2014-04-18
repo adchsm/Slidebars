@@ -119,7 +119,7 @@
 			if ($right && ($right.hasClass('sb-style-push') || $right.hasClass('sb-style-overlay'))) $right.css('marginRight', '-' + $right.css('width'));
 			
 			// Site lock.
-			if (settings.siteLock) $('html').addClass('sb-lock');
+			if (settings.siteLock) $('html').addClass('sb-site-lock');
 		}
 		
 		// Resize Functions
