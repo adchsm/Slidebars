@@ -110,7 +110,7 @@
 			$site.css('minHeight', ''); // Reset minimum height.
 			$site.css('minHeight', $('html').height() + 'px'); // Set minimum height of the site to the minimum height of the html.
 			
-			// Custom Slidebar Widths
+			// Custom Slidebar widths.
 			if ($left && $left.hasClass('sb-width-custom')) $left.css('width', $left.attr('data-sb-width')); // Set user custom width.
 			if ($right && $right.hasClass('sb-width-custom')) $right.css('width', $right.attr('data-sb-width')); // Set user custom width.
 			
