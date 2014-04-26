@@ -227,6 +227,12 @@
 					$('html').removeClass('sb-active sb-active-left sb-active-right'); // Remove active classes.
 					if ($left) $left.removeClass('sb-active');
 					if ($right) $right.removeClass('sb-active');
+
+					//keeping a 3d transform on the sb-site div will decrease scrolling frames per second in Chrome. 
+					if (animation === 'translate') {
+						$site.css('transform', 'none');
+					}
+
 					if (link) window.location = link; // If a link has been passed to the function, go to it.
 				}, 400);
 			}
