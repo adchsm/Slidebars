@@ -67,7 +67,7 @@
 		// -----------
 		// 004 - Setup
 
-		// Site Container
+		// Site container
 		var $site = $('#sb-site, .sb-site'); // Cache the selector.
 
 		// Left Slidebar	
@@ -139,7 +139,7 @@
 
 		var animation; // Animation type.
 
-		// Set Animation Type
+		// Set animation type.
 		if (supportTransition && supportTransform) { // Browser supports css transitions and transforms.
 			animation = 'translate'; // Translate for browsers that support it.
 			if (android && android < 4.4) animation = 'side'; // Android supports both, but can't translate any fixed positions, so use left instead.
@@ -147,7 +147,7 @@
 			animation = 'jQuery'; // Browsers that don't support css transitions and transitions.
 		}
 
-		// Animate Mixin
+		// Animate mixin.
 		function animate(object, amount, side) {
 			// Choose selectors depending on animation style.
 			var selector;
@@ -160,7 +160,7 @@
 				selector = $site.add($slide); // Reveal - Animate site and user elements.
 			}
 			
-			// Apply Animation
+			// Apply animation
 			if (animation === 'translate') {
 				selector.css('transform', 'translate(' + amount + ')');
 			} else if (animation === 'side') {		
@@ -291,25 +291,25 @@
 			if (event.type === 'touchend') selector.off('click'); // If event type was touch turn off clicks to prevent phantom clicks.
 		}
 		
-		// Toggle Left Slidebar
+		// Toggle left Slidebar
 		$('.sb-toggle-left').on('touchend click', function(event) {
 			eventHandler(event, $(this)); // Handle the event.
 			toggle('left'); // Toggle the left Slidbar.
 		});
 		
-		// Toggle Right Slidebar
+		// Toggle right Slidebar
 		$('.sb-toggle-right').on('touchend click', function(event) {
 			eventHandler(event, $(this)); // Handle the event.
 			toggle('right'); // Toggle the right Slidbar.
 		});
 		
-		// Open Left Slidebar
+		// Open left Slidebar
 		$('.sb-open-left').on('touchend click', function(event) {
 			eventHandler(event, $(this)); // Handle the event.
 			open('left'); // Open the left Slidebar.
 		});
 		
-		// Open Right Slidebar
+		// Open right Slidebar
 		$('.sb-open-right').on('touchend click', function(event) {
 			eventHandler(event, $(this)); // Handle the event.
 			open('right'); // Open the right Slidebar.
@@ -321,7 +321,7 @@
 			close(); // Close either Slidebar.
 		});
 		
-		// Close Slidebar via Link
+		// Close Slidebar via link
 		$('.sb-slidebar a').not('.sb-disable-close').on('click', function(event) {
 			if (settings.slidebarLinks == 'close' || settings.slidebarLinks == 'standard' && $(this).hasClass('sb-enable-close')) {
 				eventHandler(event, $(this)); // Handle the event.
@@ -329,7 +329,7 @@
 			}
 		});
 		
-		// Close Slidebar via Site
+		// Close Slidebar via site
 		$site.on('touchend click', function(event) {
 			if (settings.siteClose && (leftActive || rightActive)) { // If settings permit closing by site and left or right Slidebar is open.
 				eventHandler(event, $(this)); // Handle the event.
@@ -337,6 +337,6 @@
 			}
 		});
 		
-	}; // End slidebars function.
+	}; // End Slidebars function.
 
 }) (jQuery);
