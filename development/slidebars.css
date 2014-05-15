@@ -42,6 +42,7 @@ html {
 
 body {
 	min-height: 100%;
+	height: auto !important; /* Override user set height which can prevent full screen mode on iOS and Android. */
 	position: relative; /* Required for static Slidebars to function properly. */
 }
 

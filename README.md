@@ -19,7 +19,7 @@ Version 0.10 - Unreleased
 * You may now use class `.sb-site` as your site container rather than id `#sb-site`.
 * The script no longer checks positions of site and Slidebar elements, or moves them if located incorrectly.
 * .NET compatible.
-* Smooth native scrolling for Slidebar elements from `-webkit-overflow-scrolling: touch;`.
+* New modifier class `.sb-smooth-scrolling` for Slidebar elements that uses `-webkit-overflow-scrolling: touch;`.
 * Fixes an issue with minimum heights for site container.
 * Minimum heights are no longer set for screen sizes larger than disableOver (if provided).
 * Fixes issues with push and overlay styles on iOS 7.
