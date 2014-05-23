@@ -10,21 +10,20 @@ Coming Soon
 
 Version 0.10 - Unreleased
 
-* Link behaviour options - By default, links in Slidebars no longer close the Slidebar before following the link. Options: 'standard' or 'close', default: 'standard'.
-* New helper class `.sb-enable-close` - When using 'standard' link behaviour, add this class to a link to make it close the Slidebar first.
-* New helper class `.sb-disable-close` - When using 'close' link behaviour, add this class to a link to stop it closing the Slidebar.
+* Links in Slidebars no longer close the containing Slidebar before following the link. Instead add class `.sb-close` to the `<a>`, or the parent of `<a>` to close first.
 * API rework. All API methods are now prefixed with `.slidebars`. For example `yourVariable.slidebars.open('left');`.
 * New API method `.destroy(side)`. Removes Slidebar from the DOM.
-* New option `siteLock` set to true or false, default: false. Locks site to prevent site scrolling when Slidebar is open.
-* You may now use class `.sb-site` as your site container rather than id `#sb-site`.
+* New option `siteLock` set to true or false, default: false. Locks site to prevent site scrolling when Slidebar is open. Alternatively you may also add class `sb-lock` the `<html>`.
+* You may now use class `.sb-site-container` instead of `#sb-site`.
 * The script no longer checks positions of site and Slidebar elements, or moves them if located incorrectly.
 * .NET compatible.
-* New modifier class `.sb-smooth-scrolling` for Slidebar elements that uses `-webkit-overflow-scrolling: touch;`.
+* New modifier class `.sb-momentum-scrolling` for Slidebar elements that uses `-webkit-overflow-scrolling: touch;`.
 * Fixes an issue with minimum heights for site container.
 * Minimum heights are no longer set for screen sizes larger than disableOver (if provided).
 * Fixes issues with push and overlay styles on iOS 7.
-* Inactive Slidebars now use `display: none;` instead of `visibility: hidden;` to allow for smooth scrolling as above.
+* Inactive Slidebars now use `display: none;` instead of `visibility: hidden;` to allow for native scrolling as above.
 * Inline styling removed after closing animation.
+* Fixes a bug with incorrect negative margins when using custom widths and push/overlay styles.
 
 Whats New
 ---------

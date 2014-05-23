@@ -22,7 +22,7 @@
  * 001 - Box Model, Html & Body
  */
 
-html, body, #sb-site, .sb-site, .sb-slidebar {
+html, body, #sb-site, .sb-site-container, .sb-slidebar {
 	/* Set box model to prevent any user added margins or paddings from altering the widths or heights. */
 	margin: 0;
 	padding: 0;
@@ -42,11 +42,11 @@ html {
 
 body {
 	min-height: 100%;
-	height: auto !important; /* Override user set height which can prevent full screen mode on iOS and Android. */
+	height: auto;
 	position: relative; /* Required for static Slidebars to function properly. */
 }
 
-html.sb-site-lock.sb-active:not(.sb-static) {
+html.sb-lock.sb-active:not(.sb-static) {
 	overflow: hidden; /* Prevent site from scrolling when a Slidebar is open, except when static Slidebars are only available. */
 }
 
@@ -54,8 +54,8 @@ html.sb-site-lock.sb-active:not(.sb-static) {
  * 002 - Site
  */
 
-#sb-site, .sb-site {
-	/* You may now use .sb-site as your site container if you wish to use your own id. However please make sure you don't set any of the following styles any differently on your id. */
+#sb-site, .sb-site-container {
+	/* You may now use .sb-site-container as your site container if you wish to use your own id. However please make sure you don't set any of the following styles any differently on your id. */
 	width: 100%;
 	position: relative;
 	z-index: 1; /* Site sits above Slidebars */
@@ -98,8 +98,8 @@ html.sb-static .sb-slidebar,
 	z-index: 9999; /* Set z-index high to ensure it overlays any other site elements. */
 }
 
-.sb-smooth-scrolling {
-	-webkit-overflow-scrolling: touch; /* Adds smooth native scrolling for iOS & Android devices. */
+.sb-momentum-scrolling {
+	-webkit-overflow-scrolling: touch; /* Adds native momentum scrolling for iOS & Android devices. */
 }
 
 /* Slidebar widths for browsers/devices that don't support media queries. */
@@ -189,7 +189,7 @@ html.sb-static .sb-slidebar,
  * 004 - Animation
  */
 
-.sb-slide, #sb-site, .sb-site, .sb-slidebar {
+.sb-slide, #sb-site, .sb-site-container, .sb-slidebar {
 	-webkit-transition: -webkit-transform 400ms ease;
 	   -moz-transition: -moz-transform 400ms ease;
 	     -o-transition: -o-transform 400ms ease;

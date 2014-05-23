@@ -32,8 +32,7 @@
 			siteClose: true, // true or false - Enable closing of Slidebars by clicking on #sb-site.
 			siteLock: false, // true or false - Prevent scrolling of site when a Slidebar is open.
 			disableOver: false, // integer or false - Hide Slidebars over a specific width.
-			hideControlClasses: false, // true or false - Hide controls at same width as disableOver.
-			slidebarLinks: 'standard' // 'close' or 'standard' - Links clicked in Slidebars close Slidebars.
+			hideControlClasses: false // true or false - Hide controls at same width as disableOver.
 		}, options);
 
 		// -----------------------
@@ -68,7 +67,7 @@
 		// 004 - Setup
 
 		// Site container
-		var $site = $('#sb-site, .sb-site'); // Cache the selector.
+		var $site = $('#sb-site, .sb-site-container'); // Cache the selector.
 
 		// Left Slidebar	
 		if ($('.sb-left').length) { // Check if the left Slidebar exists.
@@ -119,7 +118,7 @@
 			if ($right && ($right.hasClass('sb-style-push') || $right.hasClass('sb-style-overlay'))) $right.css('marginRight', '-' + $right.css('width'));
 			
 			// Site lock.
-			if (settings.siteLock) $('html').addClass('sb-site-lock');
+			if (settings.siteLock) $('html').addClass('sb-lock');
 		}
 		
 		// Resize Functions
@@ -163,9 +162,11 @@
 			// Apply animation
 			if (animation === 'translate') {
 				selector.css('transform', 'translate(' + amount + ')');
+
 			} else if (animation === 'side') {		
 				if (amount[0] === '-') amount = amount.substr(1); // Remove the '-' from the passed amount for side animations.
 				selector.css(side, amount);
+
 			} else if (animation === 'jQuery') {
 				if (amount[0] === '-') amount = amount.substr(1); // Remove the '-' from the passed amount for jQuery animations.
 				var properties = {};
@@ -322,11 +323,9 @@
 		});
 		
 		// Close Slidebar via link
-		$('.sb-slidebar a').not('.sb-disable-close').on('click', function(event) {
-			if (settings.slidebarLinks == 'close' || settings.slidebarLinks == 'standard' && $(this).hasClass('sb-enable-close')) {
-				eventHandler(event, $(this)); // Handle the event.
-				close( $(this).attr('href') ); // Close the Slidebar and pass link.
-			}
+		$('.sb-slidebar a.sb-close, .sb-slidebar .sb-close a').on('click', function(event) {
+			eventHandler(event, $(this)); // Handle the event.
+			close( $(this).attr('href') ); // Close the Slidebar and pass link.
 		});
 		
 		// Close Slidebar via site
