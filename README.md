@@ -8,7 +8,7 @@ See the [Slidebars website](http://plugins.adchsm.me/slidebars/) for more inform
 Coming Soon
 -----------
 
-Version 0.10 - Unreleased
+Version 0.10 - Unreleased (available for testing in the development directory)
 
 * Links in Slidebars no longer close the containing Slidebar before following the link. Instead add class `.sb-close` to the `<a>`, or the parent of `<a>` to close first.
 * API rework. All API methods are now prefixed with `.slidebars`. For example `yourVariable.slidebars.open('left');`.
@@ -24,6 +24,7 @@ Version 0.10 - Unreleased
 * Inactive Slidebars now use `display: none;` instead of `visibility: hidden;` to allow for native scrolling as above.
 * Inline styling removed after closing animation.
 * Fixes a bug with incorrect negative margins when using custom widths and push/overlay styles.
+* Fixes a bug where animation snapped open on Android < 4.3.
 
 Whats New
 ---------

@@ -161,11 +161,14 @@
 			
 			// Apply animation
 			if (animation === 'translate') {
-				selector.css('transform', 'translate(' + amount + ')');
+				selector.css('transform', 'translate(' + amount + ')'); // Apply the animation.
 
 			} else if (animation === 'side') {		
 				if (amount[0] === '-') amount = amount.substr(1); // Remove the '-' from the passed amount for side animations.
-				selector.css(side, amount);
+				if (amount !== '0px') selector.css(side, '0px'); // Add a 0 value so css transition works.
+				setTimeout(function() { // Set a timeout to allow the 0 value to be applied above.
+					selector.css(side, amount); // Apply the animation.
+				}, 1);
 
 			} else if (animation === 'jQuery') {
 				if (amount[0] === '-') amount = amount.substr(1); // Remove the '-' from the passed amount for jQuery animations.
