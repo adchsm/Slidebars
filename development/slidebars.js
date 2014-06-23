@@ -30,7 +30,7 @@
 
 		var settings = $.extend({
 			siteClose: true, // true or false - Enable closing of Slidebars by clicking on #sb-site.
-			siteLock: false, // true or false - Prevent scrolling of site when a Slidebar is open.
+			scrollLock: false, // true or false - Prevent scrolling of site when a Slidebar is open.
 			disableOver: false, // integer or false - Hide Slidebars over a specific width.
 			hideControlClasses: false // true or false - Hide controls at same width as disableOver.
 		}, options);
@@ -117,8 +117,8 @@
 			if ($left && ($left.hasClass('sb-style-push') || $left.hasClass('sb-style-overlay'))) $left.css('marginLeft', '-' + $left.css('width'));
 			if ($right && ($right.hasClass('sb-style-push') || $right.hasClass('sb-style-overlay'))) $right.css('marginRight', '-' + $right.css('width'));
 			
-			// Site lock.
-			if (settings.siteLock) $('html').addClass('sb-lock');
+			// Site scroll locking.
+			if (settings.scrollLock) $('html').addClass('sb-scroll-lock');
 		}
 		
 		// Resize Functions

@@ -13,7 +13,7 @@ Version 0.10 - Unreleased (available for testing in the development directory)
 * Links in Slidebars no longer close the containing Slidebar before following the link. Instead add class `.sb-close` to the `<a>`, or the parent of `<a>` to close first.
 * API rework. All API methods are now prefixed with `.slidebars`. For example `yourVariable.slidebars.open('left');`.
 * New API method `.destroy(side)`. Removes Slidebar from the DOM.
-* New option `siteLock` set to true or false, default: false. Locks site to prevent site scrolling when Slidebar is open. Alternatively you may also add class `sb-lock` the `<html>`.
+* New option `scrollLock` set to true or false, default: false. Prevents site scrolling when a Slidebar is open. Alternatively you may also add class `sb-scroll-lock` the `<html>`.
 * You may now use class `.sb-site-container` instead of `#sb-site`.
 * The script no longer checks positions of site and Slidebar elements, or moves them if located incorrectly.
 * .NET compatible.

@@ -46,7 +46,7 @@ body {
 	position: relative; /* Required for static Slidebars to function properly. */
 }
 
-html.sb-lock.sb-active:not(.sb-static) {
+html.sb-scroll-lock.sb-active:not(.sb-static) {
 	overflow: hidden; /* Prevent site from scrolling when a Slidebar is open, except when static Slidebars are only available. */
 }
 
