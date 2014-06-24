@@ -122,6 +122,11 @@
 			if ($right && $right.hasClass('sb-width-custom')) $right.css('width', $right.attr('data-sb-width')); // Set user custom width.
 		}
 		css();
+
+		// Reset inline CSS
+		function resetcss() {
+			css();
+		}
 		
 		// Resize Functions
 		$(window).resize(function() {
@@ -262,6 +267,7 @@
 		this.open = open; // Maps user variable name to the open method.
 		this.close = close; // Maps user variable name to the close method.
 		this.toggle = toggle; // Maps user variable name to the toggle method.
+		this.resetcss = resetcss; // Maps user variable name to the resetcss method.
 		this.init = function() { // Returns true or false whether Slidebars are running or not.
 			return init;
 		};
