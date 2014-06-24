@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
 		<!-- Slidebars CSS -->
-		<link rel="stylesheet" href="slidebars/slidebars.min.css">
+		<link rel="stylesheet" href="slidebars/slidebars.css">
 		
 		<!-- Example Styles -->
 		<link rel="stylesheet" href="example-styles.css">
@@ -14,7 +14,8 @@
 	<body>	
 		<div id="sb-site">
 			<h1>Slidebars API Usage</h1>
-			<p>The list items below do not use the standard control classes and are instead mapped to the Slidebars API. The last three list items are used to return information about the Slidebars. You can check if Slidebars has been initiated, and if the left or right Slidebar is open.</p>
+			<p>The list items below do not use the standard control classes and are instead mapped to the Slidebars API. You can open a Slidebar, check if the plugin  has been initiated, check if a Slidebars is active, and remove them from the DOM entirely.</p>
+			<p>As of version 0.10, all API methods have been prefixed with '.slidebars'. myVariable.open('left') should now be myVariable.slidebars.open('left').</p>
 			<ul>
 				<li class="toggle-left">Toggle left Slidebar</li>
 				<li class="toggle-right">Toggle right Slidebar</li>
@@ -24,6 +25,8 @@
 				<li class="test-slidebars-init">Test Slidebars Initialisation</li>
 				<li class="test-left-slidebar">Test left Slidebar</li>
 				<li class="test-right-slidebar">Test right Slidebar</li>
+				<li class="destroy-left-slidebar">Destroy left Slidebar</li>
+				<li class="destroy-right-slidebar">Destroy right Slidebar</li>
 			</ul>
 			
 			<h2>More Examples</h2>
@@ -34,7 +37,10 @@
 				<li><a href="animation-styles.html">Animation Styles</a></li>
 				<li><a href="optional-widths.html">Optional Widths</a></li>
 				<li><a href="custom-widths.html">Custom Widths</a></li>
+				<li><a href="scroll-lock.html">Scroll Lock</a></li>
+				<li><a href="slidebar-links.html">Slidebar Links</a></li>
 				<li><a href="static-slidebars.html">Static Slidebars</a></li>
+				<li><a href="momentum-scrolling.html">Momentum Scrolling</a></li>
 				<li><a href="left-slidebar-only.html">Left Slidebar Only</a></li>
 				<li><a href="right-slidebar-only.html">Right Slidebar Only</a></li>
 			</ul>
@@ -52,44 +58,60 @@
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		
 		<!-- Slidebars -->
-		<script src="slidebars/slidebars.min.js"></script>
+		<script src="slidebars/slidebars.js"></script>
 		<script>
 			(function($) {
 				$(document).ready(function() {
 					var mySlidebars = new $.slidebars(); // Create new instance of Slidebars
 					
-					$('.toggle-left').on('click', function() {
-						mySlidebars.toggle('left');
-					});
-					
-					$('.toggle-right').on('click', function() {
-						mySlidebars.toggle('right');
-					});
-					
-					$('.open-left').on('click', function() {
-						mySlidebars.open('left');
-					});
-					
-					$('.open-right').on('click', function() {
-						mySlidebars.open('right');
-					});
-					
-					$('.close').on('click', function() {
-						mySlidebars.close();
-					});
-					
-					$('.test-slidebars-init').on('click', function(e) {
+					// Event handler
+					function eventHandler(e) {
 						e.stopPropagation();
-						if (mySlidebars.init) { // Check if Slidebars has been initiated.
+						e.preventDefault();
+					}
+					
+					// Toggle methods
+					$('.toggle-left').on('click', function(e) {
+						eventHandler(e);
+						mySlidebars.slidebars.toggle('left');
+					});
+					
+					$('.toggle-right').on('click', function(e) {
+						eventHandler(e);
+						mySlidebars.slidebars.toggle('right');
+					});
+					
+					// Open methods
+					$('.open-left').on('click', function(e) {
+						eventHandler(e);
+						mySlidebars.slidebars.open('left');
+					});
+					
+					$('.open-right').on('click', function(e) {
+						eventHandler(e);
+						mySlidebars.slidebars.open('right');
+					});
+					
+					// Close
+					$('.close').on('click', function(e) {
+						eventHandler(e);
+						mySlidebars.slidebars.close();
+					});
+					
+					// Test initialisation
+					$('.test-slidebars-init').on('click', function(e) {
+						eventHandler(e);
+						if (mySlidebars.slidebars.init) { // Check if Slidebars has been initiated.
 							alert('Slidebars has been initialised.');
 						} else {
 							alert('Slidebars has not been initialised.');
 						}
 					});
 					
+					// Test Slidebar active states
 					$('.test-left-slidebar').on('click', function(e) {
-						e.stopPropagation();
-						if (mySlidebars.active('left')) { // Check if left Slidebar is active.
+						eventHandler(e);
+						if (mySlidebars.slidebars.active('left')) { // Check if left Slidebar is active.
 							alert('Left Slidebar is open.');
 						} else {
 							alert('Left Slidebar is closed.');
@@ -97,12 +119,23 @@
 					});
 					
 					$('.test-right-slidebar').on('click', function(e) {
-						e.stopPropagation();
-						if (mySlidebars.active('right')) { // Check if right Slidebar is active.
+						eventHandler(e);
+						if (mySlidebars.slidebars.active('right')) { // Check if right Slidebar is active.
 							alert('Right Slidebar is open.');
 						} else {
 							alert('Right Slidebar is closed.');
 						}
+					});
+					
+					// Destroy Slidebars
+					$('.destroy-left-slidebar').on('click', function() {
+						mySlidebars.slidebars.destroy('left');
+						alert('Boom!');
+					});
+					
+					$('.destroy-right-slidebar').on('click', function() {
+						mySlidebars.slidebars.destroy('right');
+						alert('Boom!');
 					});
 				});
 			}) (jQuery);

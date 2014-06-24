@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Slidebars Animation Styles</title>
+		<title>Slidebar Links Example</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
 		<!-- Slidebars CSS -->
@@ -13,8 +13,9 @@
 	
 	<body>	
 		<div id="sb-site">
-			<h1>Slidebars Animation Styles</h1>
-			<p>The standard animation is to reveal Slidebars, however you can add modifier classes to change this. In this example, the left Slidebar has class '.sb-style-push' which makes the Slidebar push the site across. The right Slidebar has class '.sb-style-overlay', which makes the Slidebar slide over the site without moving it.</p>
+			<h1>Slidebar Links Example</h1>
+			<p>As of version 0.10, Slidebars no longer changes the default behaviour of links. If you want a link to close the Slidebar before following the link, you must add class '.sb-close' to the a, or the parent containing the a.</p>
+			
 			<ul>
 				<li class="sb-toggle-left">Toggle left Slidebar</li>
 				<li class="sb-toggle-right">Toggle right Slidebar</li>
@@ -40,14 +41,24 @@
 			</ul>
 		</div>
 		
-		<div class="sb-slidebar sb-left sb-style-push">
-			<!-- Your left Slidebar content. -->
-			<p>Just a line of text to demonstrate the push effect.</p>
+		<div class="sb-slidebar sb-left">
+			<ul>
+				<li><a href="#">Normal Link</a></li>
+				<li><a href="#">Normal Link</a></li>
+				<li><a href="#">Normal Link</a></li>
+				<li><a href="#">Normal Link</a></li>
+				<li><a href="#" class="sb-close">Close Enabled Link</a></li>
+			</ul>
 		</div>
 		
-		<div class="sb-slidebar sb-right sb-style-overlay">
-			<!-- Your right Slidebar content. -->
-			<p>Just a line of text to demonstrate the overlay effect.</p>
+		<div class="sb-slidebar sb-right">
+			<ul>
+				<li><a href="#">Normal Link</a></li>
+				<li><a href="#">Normal Link</a></li>
+				<li><a href="#">Normal Link</a></li>
+				<li><a href="#">Normal Link</a></li>
+				<li class="sb-close"><a href="#">Close Enabled Parent</a></li>
+			</ul>
 		</div>
 				
 		<!-- jQuery -->

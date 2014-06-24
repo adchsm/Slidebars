@@ -1,21 +1,22 @@
 Slidebars
 =========
 
-Slidebars is a jQuery plugin for quickly and easily implementing app-style revealing, overlaying, push menus and sidebars into your website.
+Slidebars is a jQuery plugin for quickly and easily implementing app style off-canvas menus and sidebars into your website.
 
 See the [Slidebars website](http://plugins.adchsm.me/slidebars/) for more information, usage documentation and compatibility tables.
 
-Coming Soon
------------
+Whats New
+---------
 
-Version 0.10 - Unreleased (available for testing in the development directory)
+Version 0.10 - Released June 24, 2014
 
 * Links in Slidebars no longer close the containing Slidebar before following the link. Instead add class `.sb-close` to the `<a>`, or the parent of `<a>` to close first.
+* Class `.sb-disable-close` has been depreciated, see above.
 * API rework. All API methods are now prefixed with `.slidebars`. For example `yourVariable.slidebars.open('left');`.
 * New API method `.destroy(side)`. Removes Slidebar from the DOM.
 * New option `scrollLock` set to true or false, default: false. Prevents site scrolling when a Slidebar is open. Alternatively you may also add class `sb-scroll-lock` the `<html>`.
 * You may now use class `.sb-site-container` instead of `#sb-site`.
-* The script no longer checks positions of site and Slidebar elements, or moves them if located incorrectly.
+* The script no longer checks positions of site container and Slidebar elements, or moves them if located incorrectly.
 * .NET compatible.
 * New modifier class `.sb-momentum-scrolling` for Slidebar elements that uses `-webkit-overflow-scrolling: touch;`.
 * Fixes an issue with minimum heights for site container.
@@ -26,8 +27,19 @@ Version 0.10 - Unreleased (available for testing in the development directory)
 * Fixes a bug with incorrect negative margins when using custom widths and push/overlay styles.
 * Fixes a bug where animation snapped open on Android < 4.3.
 
-Whats New
----------
+Plans for Next Release
+----------------------
+
+* Callback functions
+* Event listeners
+* Additional animation styles
+* Additional API methods and event handling
+* Windows phone bug fixes
+* Improved scroll locking
+* Web app setting
+
+Version History
+---------------
 
 Version 0.9.4 - Released April 1, 2014
 
@@ -51,9 +63,6 @@ Version 0.9 - Released March 10, 2014
 * Fixed a bug where control classes couldn't be hidden using CSS.
 * [Helper class](http://plugins.adchsm.me/slidebars/usage.php#helper-classes) `html.sb-android` has been depreciated, see below.
 * New [helper class](http://plugins.adchsm.me/slidebars/usage.php#helper-classes) `html.sb-static` has been added, use this to un-fix your fixed elements for use on Android &lt; 3 and iOS &lt; 5.
-
-Version History
----------------
 
 Version 0.8.2 - Released February 24, 2014
 

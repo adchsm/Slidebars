@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Static Slidebars Example</title>
+		<title>Using Fixed Positions with Slidebars Example</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
 		<!-- Slidebars CSS -->
@@ -11,10 +11,15 @@
 		<link rel="stylesheet" href="example-styles.css">
 	</head>
 	
-	<body>	
-		<div id="sb-site">
-			<h1>Static Slidebars Example</h1>
-			<p>By default, Slidebars are fixed to the screen and scroll independently. However you can make them scroll naturally by adding the modifier class '.sb-static'. In this example the left Slidebar is static, and the right is fixed. Open them up and scroll down to see how they work.</p>
+	<body>
+		<div id="fixed-top" class="sb-slide">
+			<span class="sb-toggle-left">Toggle left Slidebar</span>
+			<span class="sb-toggle-right">Toggle right Slidebar</span>
+		</div>
+		
+		<div id="sb-site" class="top-padding">
+			<h1>Using Fixed Positions with Slidebars Example</h1>
+			<p>If you have elements with a fixed position (for example a top navigation bar), there are a few steps you need to take to make them work properly. Firstly, your fixed element must be outside of your '#sb-site' container. Next, give your fixed element an additional class '.sb-slide'. The plugin will pick up on this class, and animate it alongside your Slidebars.</p>
 			<ul>
 				<li class="sb-toggle-left">Toggle left Slidebar</li>
 				<li class="sb-toggle-right">Toggle right Slidebar</li>
@@ -60,7 +65,7 @@
 			<p>Morbi mattis bibendum interdum. Nulla sed dolor faucibus, euismod diam vel, blandit magna. Ut eu mauris posuere, mattis leo id, venenatis augue. In ut auctor felis. Morbi congue pulvinar convallis. Pellentesque blandit leo vitae auctor posuere. Fusce sodales vel tortor eu vestibulum. Suspendisse condimentum nunc nec turpis semper, quis rutrum sapien suscipit. Cras lacus orci, elementum vitae suscipit sit amet, tincidunt ut ipsum. Quisque vestibulum, nunc vitae vehicula ultricies, lorem enim gravida tortor, et tempus leo risus id tellus. Quisque non sem risus. Curabitur sed lorem ac turpis feugiat adipiscing a vel neque. Nunc in lectus est. Fusce hendrerit, lacus a ullamcorper bibendum, ligula ante lacinia dolor, sollicitudin porta lectus nulla nec enim. Nam at convallis metus, a facilisis sem. Mauris vehicula placerat lorem, et consectetur leo sollicitudin consectetur.</p> 
 		</div>
 		
-		<div class="sb-slidebar sb-left sb-static">
+		<div class="sb-slidebar sb-left">
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae lorem eleifend, ultricies nisi tempor, dapibus dui. Ut iaculis adipiscing mi, at lacinia augue pulvinar in. Pellentesque et nunc a libero cursus posuere. Fusce semper metus id nunc laoreet vulputate. Maecenas sit amet augue ornare, tempus augue eget, scelerisque arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec quis diam ac est ultricies vestibulum. Aenean nec rhoncus lorem. Nam velit elit, mollis in blandit vel, pellentesque id augue. In hac habitasse platea dictumst. Nunc placerat est eget vulputate tristique. Sed turpis libero, aliquam at dolor eu, consectetur tincidunt est. Nulla vel semper dui, porttitor gravida lacus. Mauris lacinia pharetra tincidunt. Nunc varius mattis molestie.</p>
 			
 			<p>Sed quis velit leo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam malesuada lobortis commodo. Maecenas egestas augue diam, eget semper massa sodales nec. Nunc fermentum suscipit augue, at sagittis mauris. Vestibulum in turpis elementum, facilisis ipsum vitae, fermentum erat. Integer sodales at dolor vitae porttitor. Pellentesque tempus in eros eu elementum. Phasellus molestie, ligula et elementum feugiat, libero purus mollis metus, quis semper tellus velit ut risus. Nullam adipiscing erat ac tortor rutrum, eu laoreet libero sollicitudin. Nunc auctor et sem quis fringilla. In erat lacus, rutrum in erat id, lacinia cursus velit. Pellentesque consequat sit amet justo non aliquet. Donec ligula eros, convallis sit amet vehicula et, dignissim id velit.</p>
