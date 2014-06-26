@@ -291,7 +291,7 @@
 		
 		function eventHandler(event, selector) {
 			event.stopPropagation(); // Stop event bubbling.
-			event.preventDefault(); // Prevent default behaviour
+			event.preventDefault(); // Prevent default behaviour.
 			if (event.type === 'touchend') selector.off('click'); // If event type was touch, turn off clicks to prevent phantom clicks.
 		}
 		
@@ -317,18 +317,19 @@
 		$('.sb-open-right').on('touchend click', function(event) {
 			eventHandler(event, $(this)); // Handle the event.
 			open('right'); // Open the right Slidebar.
-		});
-		
-		// Close a Slidebar via Link
-		$('.sb-slidebar a.sb-close, .sb-slidebar .sb-close a').on('click', function(event) {
-			eventHandler(event, $(this)); // Handle the event.
-			close( $(this).attr('href') ); // Close Slidebar and pass link.
-		});
+		})
 		
 		// Close Slidebar
 		$('.sb-close').on('touchend click', function(event) {
-			eventHandler(event, $(this)); // Handle the event.
-			close(); // Close Slidebar.
+			if ( $(this).is('a') || $(this).children().is('a') ) { // Is a link or contains a link.
+				if ( event.type === 'click' ) { // Make sure the user wanted to follow the link.
+					var href = ( $(this).is('a') ? $(this).attr('href') : $(this).find('a').attr('href') );
+					close( href ); // Close Slidebar and pass link.
+				}
+			} else { // Just a normal control class.
+				eventHandler(event, $(this)); // Handle the event.
+				close(); // Close Slidebar.
+			}
 		});
 		
 		// Close Slidebar via site
