@@ -292,7 +292,7 @@
 		function eventHandler(event, selector) {
 			event.stopPropagation(); // Stop event bubbling.
 			event.preventDefault(); // Prevent default behaviour
-			if (event.type === 'touchend') selector.off('click'); // If event type was touch turn off clicks to prevent phantom clicks.
+			if (event.type === 'touchend') selector.off('click'); // If event type was touch, turn off clicks to prevent phantom clicks.
 		}
 		
 		// Toggle left Slidebar
@@ -319,21 +319,16 @@
 			open('right'); // Open the right Slidebar.
 		});
 		
-		// Close a Slidebar
+		// Close a Slidebar via Link
+		$('.sb-slidebar a.sb-close, .sb-slidebar .sb-close a').on('click', function(event) {
+			eventHandler(event, $(this)); // Handle the event.
+			close( $(this).attr('href') ); // Close Slidebar and pass link.
+		});
+		
+		// Close Slidebar
 		$('.sb-close').on('touchend click', function(event) {
 			eventHandler(event, $(this)); // Handle the event.
-			var link;
-			
-			// Close Slidebar via link
-			if ( $(this).parents('.sb-slidebar') ) {
-				if ( $(this).is('a') ) {
-					link = $(this).attr('href');
-				} else if ( $(this).children('a') ) {
-					link = $(this).children('a').attr('href');
-				}
-			}
-			
-			close(link); // Close Slidebar and pass link.
+			close(); // Close Slidebar.
 		});
 		
 		// Close Slidebar via site
