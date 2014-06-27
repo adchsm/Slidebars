@@ -8,6 +8,12 @@ See the [Slidebars website](http://plugins.adchsm.me/slidebars/) for more inform
 Whats New
 ---------
 
+Version 0.10.1 - Released June 27, 2014
+
+* Re-written close control class.
+* Fixes an issue with scrolling Slidebar menu items on touch devices.
+* Improved support for scroll locking on iOS.
+
 Version 0.10 - Released June 24, 2014
 
 * Links in Slidebars no longer close the containing Slidebar before following the link. Instead add class `.sb-close` to the `<a>`, or the parent of `<a>` to close first.
