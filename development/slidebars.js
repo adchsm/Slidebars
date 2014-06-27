@@ -317,13 +317,14 @@
 		$('.sb-open-right').on('touchend click', function(event) {
 			eventHandler(event, $(this)); // Handle the event.
 			open('right'); // Open the right Slidebar.
-		})
+		});
 		
 		// Close Slidebar
 		$('.sb-close').on('touchend click', function(event) {
 			if ( $(this).is('a') || $(this).children().is('a') ) { // Is a link or contains a link.
 				if ( event.type === 'click' ) { // Make sure the user wanted to follow the link.
-					var href = ( $(this).is('a') ? $(this).attr('href') : $(this).find('a').attr('href') );
+					event.preventDefault(); // Stop default behaviour.
+					var href = ( $(this).is('a') ? $(this).attr('href') : $(this).find('a').attr('href') ); // Get the href.
 					close( href ); // Close Slidebar and pass link.
 				}
 			} else { // Just a normal control class.
