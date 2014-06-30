@@ -12,14 +12,14 @@
  * -------------------
  * Slidebars CSS Index
  *
- * 001 - Box Model, Html & Body
+ * 001 - Base Stlying, Scroll Locking & Web App
  * 002 - Site
  * 003 - Slidebars
  * 004 - Animation
  * 005 - Helper Classes
  *
- * ----------------------------
- * 001 - Box Model, Html & Body
+ * --------------------------------------------
+ * 001 - Base Stlying, Scroll Locking & Web App
  */
 
 html, body, #sb-site, .sb-site-container, .sb-slidebar {
@@ -46,7 +46,7 @@ body {
 	position: relative; /* Required for static Slidebars to function properly. */
 }
 
-/* Site scroll locking - prevent site from scrolling when a Slidebar is open, except when static Slidebars are only available. */
+/* Prevent site from scrolling when a Slidebar is open, except when static Slidebars are only available. */
 html.sb-scroll-lock body {
 	height: 100%;
 }
@@ -56,8 +56,19 @@ html.sb-scroll-lock.sb-active:not(.sb-static) body {
 	overflow: hidden;
 }
 
-/* ----------
- * 002 - Site
+/* Web app */
+html.sb-web-app,
+html.sb-web-app body {
+	height: 100%;
+	overflow: hidden;
+}
+
+html.sb-web-app body {
+	-webkit-overflow-scrolling: touch;
+}
+
+/* --------------------
+ * 002 - Site Container
  */
 
 #sb-site, .sb-site-container {

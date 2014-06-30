@@ -190,7 +190,7 @@
 		// 006 - Operations
 
 		// Open a Slidebar
-		function open(side) {
+		function open(side, callback) {
 			// Check to see if opposite Slidebar is open.
 			if (side === 'left' && $left && rightActive || side === 'right' && $right && leftActive) { // It's open, close it, then continue.
 				close();
@@ -205,18 +205,24 @@
 					$('html').addClass('sb-active sb-active-left'); // Add active classes.
 					$left.addClass('sb-active');
 					animate($left, $left.css('width'), 'left'); // Animation
-					setTimeout(function() { leftActive = true; }, 400); // Set active variables.
+					setTimeout(function() {
+						leftActive = true;
+						if (typeof callback === 'function') callback(); // Run callback function.
+					}, 400); // Set active variables.
 				} else if (init && side === 'right' && $right) { // Slidebars is initiated, right is in use and called to open.
 					$('html').addClass('sb-active sb-active-right'); // Add active classes.
 					$right.addClass('sb-active');
 					animate($right, '-' + $right.css('width'), 'right'); // Animation
-					setTimeout(function() { rightActive = true; }, 400); // Set active variables.
+					setTimeout(function() {
+						rightActive = true;
+						if (typeof callback === 'function') callback(); // Run callback function.
+					}, 400); // Set active variables.
 				}
 			}
 		}
 			
 		// Close either Slidebar
-		function close(link) {
+		function close(callback) {
 			if (leftActive || rightActive) { // If a Slidebar is open.
 				if (leftActive) {
 					animate($left, '0px', 'left'); // Animation
@@ -231,25 +237,25 @@
 					$('html').removeClass('sb-active sb-active-left sb-active-right'); // Remove active classes.
 					if ($left) $left.removeClass('sb-active');
 					if ($right) $right.removeClass('sb-active');
-					if (typeof link !== 'undefined') window.location = link; // If a link has been passed to the function, go to it.
+					if (typeof callback === 'function') callback(); // Run callback function.
 				}, 400);
 			}
 		}
 		
 		// Toggle either Slidebar
-		function toggle(side) {
+		function toggle(side, callback) {
 			if (side === 'left' && $left) { // If left Slidebar is called and in use.
 				if (!leftActive) {
-					open('left'); // Slidebar is closed, open it.
+					open('left', callback); // Slidebar is closed, open it.
 				} else {
-					close(); // Slidebar is open, close it.
+					close(null, callback); // Slidebar is open, close it.
 				}
 			}
 			if (side === 'right' && $right) { // If right Slidebar is called and in use.
 				if (!rightActive) {
-					open('right'); // Slidebar is closed, open it.
+					open('right', callback); // Slidebar is closed, open it.
 				} else {
-					close(); // Slidebar is open, close it.
+					close(null, callback); // Slidebar is open, close it.
 				}
 			}
 		}
@@ -264,6 +270,8 @@
 			init: function() { // Returns true or false whether Slidebars are running or not.
 				return init; // Returns true or false whether Slidebars are running.
 			},
+			reInit: initialise, // Run the init method to check if the plugin should still be running.
+			resetCSS: css, // Reset inline 
 			active: function(side) { // Returns true or false whether Slidebar is open or closed.
 				if (side === 'left' && $left) return leftActive;
 				if (side === 'right' && $right) return rightActive;
@@ -325,7 +333,9 @@
 				if ( event.type === 'click' ) { // Make sure the user wanted to follow the link.
 					event.preventDefault(); // Stop default behaviour.
 					var href = ( $(this).is('a') ? $(this).attr('href') : $(this).find('a').attr('href') ); // Get the href.
-					close( href ); // Close Slidebar and pass link.
+					close(function() { // Close Slidebar and pass callback to redirect.
+						window.location = href;
+					});
 				}
 			} else { // Just a normal control class.
 				eventHandler(event, $(this)); // Handle the event.
