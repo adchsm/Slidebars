@@ -1,6 +1,6 @@
 /* -----------------------------------
  * Slidebars
- * Development version, do not use this in your site, use the latest in the distribution folder.
+ * Version 0.10.2
  * http://plugins.adchsm.me/slidebars/
  *
  * Written by Adam Smith
@@ -12,14 +12,14 @@
  * -------------------
  * Slidebars CSS Index
  *
- * 001 - Base Stlying, Scroll Locking & Web App
+ * 001 - Box Model, Html & Body
  * 002 - Site
  * 003 - Slidebars
  * 004 - Animation
  * 005 - Helper Classes
  *
- * --------------------------------------------
- * 001 - Base Stlying, Scroll Locking & Web App
+ * ----------------------------
+ * 001 - Box Model, Html & Body
  */
 
 html, body, #sb-site, .sb-site-container, .sb-slidebar {
@@ -46,24 +46,13 @@ body {
 	position: relative; /* Required for static Slidebars to function properly. */
 }
 
-/* Prevent site from scrolling when a Slidebar is open, except when static Slidebars are only available. */
+/* Site scroll locking - prevent site from scrolling when a Slidebar is open, except when static Slidebars are only available. */
 html.sb-scroll-lock.sb-active:not(.sb-static) {
 	overflow: hidden;
 }
 
-/* Web app */
-html.sb-web-app,
-html.sb-web-app body {
-	height: 100%;
-	overflow: hidden;
-}
-
-html.sb-web-app body {
-	-webkit-overflow-scrolling: touch;
-}
-
-/* --------------------
- * 002 - Site Container
+/* ----------
+ * 002 - Site
  */
 
 #sb-site, .sb-site-container {
@@ -71,7 +60,7 @@ html.sb-web-app body {
 	width: 100%;
 	position: relative;
 	z-index: 1; /* Site sits above Slidebars */
-	background-color: #ffffff; /* Default background colour, you can overwrite this with your own css. I suggest moving your html or body background styling here. Making this transparent will allow the Slidebars beneath to be visible. */
+	background-color: #ffffff; /* Default background colour, overwrite this with your own css. I suggest moving your html or body background styling here. Making this transparent will allow the Slidebars beneath to be visible. */
 }
 
 /* ---------------

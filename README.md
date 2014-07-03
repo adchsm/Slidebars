@@ -8,6 +8,10 @@ See the [Slidebars website](http://plugins.adchsm.me/slidebars/) for more inform
 Whats New
 ---------
 
+Version 0.10.2 - Released July 3, 2014
+
+* Fixes an issue with scrolling locking when Slidebars are closed (thanks to [Jay Padua](https://github.com/jpadua)).
+ 
 Version 0.10.1 - Released June 27, 2014
 
 * Re-written close control class.
