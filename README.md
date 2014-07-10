@@ -1,7 +1,6 @@
 # Slidebars
-===========
 
-Slidebars is a jQuery plugin for quickly and easily implementing app style off-canvas menus and sidebars into your website.
+Slidebars is a jQuery framework for quickly and easily implementing app style off-canvas space into your website.
 
 See the [Slidebars website](http://plugins.adchsm.me/slidebars/) for information on getting started, usage documentation and compatibility tables.
 
@@ -13,7 +12,7 @@ Slidebars is stable, but still in early development. It's markup, installation a
 
 If your having problems getting Slidebars to work, please read through the usage documentation. Also, make sure your running the latest version of Slidebars, and at least jQuery 1.8 or higher.
 
-There are a few common issues and fixes which can be found on the [Slidebars website](). Please check there, and the closed issues list to see if your problem has previously been answered.
+There are a few common issues and fixes which can be found on the [Slidebars website](http://plugins.adchsm.me/slidebars/issues.php). Please check there, and the closed issues list to see if your problem has previously been answered.
 
 If the issue is being caused by your own markup, styling, scripts or a conflicting plugin, I won't be able to help. You can however, [hire me to help you] (mailto:adam@adchsm.me).
 
