@@ -147,8 +147,6 @@
 		} else {
 			animation = 'jQuery'; // Browsers that don't support css transitions and transitions.
 		}
-		
-		animation = 'jQuery';
 
 		// Animate mixin.
 		function animate(object, amount, side) {
@@ -184,7 +182,7 @@
 			// If closed, remove the inline styling on completion of the animation.
 			setTimeout(function() {
 				if (amount === '0px') selector.css( {
-					'trasnform': '',
+					'transform': '',
 					'left': '',
 					'right': ''
 				} );
