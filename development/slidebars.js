@@ -24,7 +24,7 @@
 ;(function($) {
 
 	$.slidebars = function(options) {
-
+	
 		// ----------------------
 		// 001 - Default Settings
 
@@ -32,7 +32,8 @@
 			siteClose: true, // true or false - Enable closing of Slidebars by clicking on #sb-site.
 			scrollLock: false, // true or false - Prevent scrolling of site when a Slidebar is open.
 			disableOver: false, // integer or false - Hide Slidebars over a specific width.
-			hideControlClasses: false // true or false - Hide controls at same width as disableOver.
+			hideControlClasses: false, // true or false - Hide controls at same width as disableOver.
+			webApp: false // true, false or 'detect' - Enable web app feature, or detect for use with iOS fullscreen view.
 		}, options);
 
 		// -----------------------
@@ -93,6 +94,7 @@
 				$('html').addClass('sb-init'); // Add helper class.
 				if (settings.hideControlClasses) $controls.removeClass('sb-hide'); // Remove class just incase Slidebars was originally disabled.
 				css(); // Set required inline styles.
+				if ( settings.webApp === true || ( settings.webApp === 'detect' && iOS && window.navigator.standalone ) ) $( 'html' ).addClass( 'sb-web-app' ); // Web app settings.
 			} else if (typeof settings.disableOver === 'number' && settings.disableOver < windowWidth) { // Less than window size.
 				init = false; // false stop Slidebars from opening.
 				$('html').removeClass('sb-init'); // Remove helper class.
@@ -105,9 +107,9 @@
 		
 		// Inline CSS
 		function css() {
-			// Set minimum height.
-			$site.css('minHeight', ''); // Reset minimum height.
-			$site.css('minHeight', $('html').height() + 'px'); // Set minimum height of the site to the minimum height of the html.
+			// Site container height.
+			$site.css('minHeight', '');
+			if (  $site.height() < $( 'html' ).height()  ) $site.css( 'minHeight', $( 'html' ).css( 'height' ) ); // Test height for vh support.
 			
 			// Custom Slidebar widths.
 			if ($left && $left.hasClass('sb-width-custom')) $left.css('width', $left.attr('data-sb-width')); // Set user custom width.
@@ -145,6 +147,8 @@
 		} else {
 			animation = 'jQuery'; // Browsers that don't support css transitions and transitions.
 		}
+		
+		animation = 'jQuery';
 
 		// Animate mixin.
 		function animate(object, amount, side) {
@@ -179,10 +183,11 @@
 			
 			// If closed, remove the inline styling on completion of the animation.
 			setTimeout(function() {
-				if (amount === '0px') {
-					selector.removeAttr('style');
-					css();
-				}
+				if (amount === '0px') selector.css( {
+					'trasnform': '',
+					'left': '',
+					'right': ''
+				} );
 			}, 400);
 		}
 
@@ -332,9 +337,13 @@
 			if ( $(this).is('a') || $(this).children().is('a') ) { // Is a link or contains a link.
 				if ( event.type === 'click' ) { // Make sure the user wanted to follow the link.
 					event.preventDefault(); // Stop default behaviour.
-					var href = ( $(this).is('a') ? $(this).attr('href') : $(this).find('a').attr('href') ); // Get the href.
+
+					var link = ( $(this).is('a') ? $(this) : $(this).find('a') ), // Get the link selector.
+					url = link.attr( 'href' ), // Get the link url.
+					target = ( $(this).attr('target') ? $(this).attr('target') : '_self' ); // Set target, default to _self if not provided.
+					
 					close(function() { // Close Slidebar and pass callback to redirect.
-						window.location = href;
+						window.open( url, target );
 					});
 				}
 			} else { // Just a normal control class.

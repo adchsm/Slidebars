@@ -52,13 +52,20 @@ html.sb-scroll-lock.sb-active:not(.sb-static) {
 }
 
 /* Web app */
-html.sb-web-app,
-html.sb-web-app body {
+html.sb-web-app, html.sb-web-app body {
 	height: 100%;
 	overflow: hidden;
 }
 
-html.sb-web-app body {
+html.sb-web-app #sb-site, html.sb-web-app .sb-site-container {
+	min-height: 0 !important;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+html.sb-web-app .sb-slidebar {
 	-webkit-overflow-scrolling: touch;
 }
 
@@ -69,6 +76,7 @@ html.sb-web-app body {
 #sb-site, .sb-site-container {
 	/* You may now use class .sb-site-container instead of #sb-site and use your own id. However please make sure you don't set any of the following styles any differently on your id. */
 	width: 100%;
+	min-height: 100vh; /* Min-height fallback provided by slidebars.js. */
 	position: relative;
 	z-index: 1; /* Site sits above Slidebars */
 	background-color: #ffffff; /* Default background colour, you can overwrite this with your own css. I suggest moving your html or body background styling here. Making this transparent will allow the Slidebars beneath to be visible. */
