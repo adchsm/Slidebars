@@ -16,7 +16,7 @@ There are a few common issues and fixes which can be found on the [Slidebars web
 
 If the issue is being caused by your own markup, styling, scripts or a conflicting plugin, I won't be able to help. You can however, [hire me to help you] (mailto:adam@adchsm.me).
 
-I no longer support the Slidebars theme! I once released a small set of components for use with Slidebars. They were pulled after a month as I didn't have the time to continue developing or offer support for them. Please don't raise issues relating to these. Slidebars simply provides the off-canvas functionality for your to build your own menus. The beauty of this plugin is it's freedom, get creative.
+I no longer support the Slidebars theme! I once released a small set of components for use with Slidebars. They were pulled after a month as I didn't have the time to continue developing or offer support for them. Please don't raise issues relating to these. Slidebars simply provides the off-canvas functionality for you to build your own menus. The beauty of this plugin is it's freedom, get creative.
 
 Please don't post feature requests here, thats not an issue. Instead [email me](mailto:adam@adchsm.me) your ideas.
 
