@@ -4,7 +4,13 @@ Slidebars is a jQuery framework for quickly and easily implementing app style of
 
 See the [Slidebars website](http://plugins.adchsm.me/slidebars/) for information on getting started, usage documentation and compatibility tables.
 
-Slidebars is stable, but still in early development. It's markup, installation and functionality is likely to change at any time, therefore I advise you to read up on any usage changes when updating to ensure they go smoothly.
+Slidebars is stable, but still in early development. It's markup, installation and functionality is likely to change at any time, therefore I advise you to read up on any usage changes when updating to ensure it goes smoothly.
+
+## Development on Hold
+
+Fortunately, life is good and work is busy, I currently have no time to spend developing Slidebars. This doesn't mean its finished or abandoned, its just temporarily on hold, until winter, or when work calms down.
+
+I also need to spend some time refining my skills and learning more pure JS, I want Slidebars to run independently and not rely on other libraries such as jQuery. 0.11 and 0.12 will expand and improve the current jQuery version, but after that it's likely to change.
 
 ## How to Contribute to Slidebars Using GitHub
 
