@@ -207,7 +207,7 @@
 				if ( init && side === 'left' && $left ) { // Slidebars is initiated, left is in use and called to open.
 					$( 'html' ).addClass( 'sb-active sb-active-left' ); // Add active classes.
 					$left.addClass( 'sb-active' );
-					animate( $left, $left.css( 'width' ), 'left' ); // Animation
+					animate( $left, ( ($left.css('marginLeft') != '') ? $left.css('marginLeft').replace('-', '') : $left.css('width') ), 'left' ); // Animation
 					setTimeout( function() {
 						leftActive = true;
 						if ( typeof callback === 'function' ) callback(); // Run callback function.
@@ -215,7 +215,7 @@
 				} else if ( init && side === 'right' && $right ) { // Slidebars is initiated, right is in use and called to open.
 					$( 'html' ).addClass( 'sb-active sb-active-right' ); // Add active classes.
 					$right.addClass( 'sb-active' );
-					animate( $right, '-' + $right.css( 'width' ), 'right' ); // Animation
+					animate( $right, '-' + ( ($right.css('marginRight') != '') ? $right.css('marginRight').replace('-', '') : $right.css('width') ), 'right' ); // Animation
 					setTimeout( function() {
 						rightActive = true;
 						if ( typeof callback === 'function' ) callback(); // Run callback function.
