@@ -33,7 +33,8 @@
 			scrollLock: false, // true or false - Prevent scrolling of site when a Slidebar is open.
 			disableOver: false, // integer or false - Hide Slidebars over a specific width.
 			hideControlClasses: false, // true or false - Hide controls at same width as disableOver.
-			webApp: false // true, false or 'detect' - Enable web app feature, or detect for use with iOS fullscreen view.
+			webApp: false, // true, false or 'detect' - Enable web app feature, or detect for use with iOS fullscreen view.
+			forcedAnimationType: false // 'side'|'jQuery'|'translate' - Animation is forced to this value
 		}, options );
 
 		// -----------------------
@@ -141,7 +142,10 @@
 		var animation; // Animation type.
 
 		// Set animation type.
-		if ( supportTransition && supportTransform ) { // Browser supports css transitions and transforms.
+		if (typeof forcedAnimationType == 'string') {
+			animation = forcedAnimationType; // Animation is forced by an external configuration
+		}
+		else if ( supportTransition && supportTransform ) { // Browser supports css transitions and transforms.
 			animation = 'translate'; // Translate for browsers that support it.
 			if ( android && android < 4.4 ) animation = 'side'; // Android supports both, but can't translate any fixed positions, so use left instead.
 		} else {
