@@ -142,8 +142,8 @@
 		var animation; // Animation type.
 
 		// Set animation type.
-		if (typeof forcedAnimationType == 'string') {
-			animation = forcedAnimationType; // Animation is forced by an external configuration
+		if (typeof settings.forcedAnimationType == 'string') {
+			animation = settings.forcedAnimationType; // Animation is forced by an external configuration
 		}
 		else if ( supportTransition && supportTransform ) { // Browser supports css transitions and transforms.
 			animation = 'translate'; // Translate for browsers that support it.
