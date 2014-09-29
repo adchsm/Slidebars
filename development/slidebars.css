@@ -211,7 +211,6 @@ html.sb-static .sb-slidebar,
 
 .sb-slide, #sb-site, .sb-site-container, .sb-slidebar {
 	-webkit-transition: -webkit-transform 400ms ease;
-	   -moz-transition: -moz-transform 400ms ease;
 	     -o-transition: -o-transform 400ms ease;
 	        transition: transform 400ms ease;
 	-webkit-transition-property: -webkit-transform, left, right; /* Add left/right for Android < 4.4. */
