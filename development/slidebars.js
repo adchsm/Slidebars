@@ -163,7 +163,7 @@
 			
 			// Apply animation
 			if ( animation === 'translate' ) {
-				selector.css( 'transform', 'translate( ' + amount + ' )' ); // Apply the animation.
+				selector.css( 'left', amount ); // Apply the animation.
 
 			} else if ( animation === 'side' ) {		
 				if ( amount[0] === '-' ) amount = amount.substr( 1 ); // Remove the '-' from the passed amount for side animations.
