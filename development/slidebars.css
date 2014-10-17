@@ -80,6 +80,7 @@ html.sb-web-app .sb-slidebar {
 	position: relative;
 	z-index: 1; /* Site sits above Slidebars */
 	background-color: #ffffff; /* Default background colour, you can overwrite this with your own css. I suggest moving your html or body background styling here. Making this transparent will allow the Slidebars beneath to be visible. */
+	left: 0;
 }
 
 /* ---------------
@@ -210,10 +211,10 @@ html.sb-static .sb-slidebar,
  */
 
 .sb-slide, #sb-site, .sb-site-container, .sb-slidebar {
-	-webkit-transition: -webkit-transform 400ms ease;
-	   -moz-transition: -moz-transform 400ms ease;
-	     -o-transition: -o-transform 400ms ease;
-	        transition: transform 400ms ease;
+	-webkit-transition: left 400ms ease;
+	   -moz-transition: left 400ms ease;
+	     -o-transition: left 400ms ease;
+	        transition: left 400ms ease;
 	-webkit-transition-property: -webkit-transform, left, right; /* Add left/right for Android < 4.4. */
 	-webkit-backface-visibility: hidden; /* Prevents flickering. This is non essential, and you may remove it if your having problems with fixed background images in Chrome. */
 }
