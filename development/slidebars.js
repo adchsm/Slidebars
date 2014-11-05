@@ -266,7 +266,7 @@
 		// ---------
 		// 007 - API
 		
-		this.slidebars = {
+		var slidebars = {
 			open: open, // Maps user variable name to the open method.
 			close: close, // Maps user variable name to the close method.
 			toggle: toggle, // Maps user variable name to the toggle method.
