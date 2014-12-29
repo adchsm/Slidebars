@@ -163,21 +163,21 @@
 			
 			// Apply animation
 			if ( animation === 'translate' ) {
-                selector.each(function (){
-                    var element =  $(this);
-                    // the slide element animate in the opposite direction
-                    if(element.hasClass("sb-slide")){
-                        var slideAmount
-                        if (amount[0] === '-'){
-                            slideAmount = amount.substr(1); // Remove the '-' from the passed amount for side animations.
-                        }else{
-                            slideAmount = "-" + amount;
-                        }
-                        element.css('transform', 'translate(' + slideAmount + ')'); // Apply the animation.
-                    }else{
-                        element.css('transform', 'translate(' + amount + ')'); // Apply the animation.
-                    }
-                })
+		                selector.each(function (){
+		                    var element =  $(this);
+		                    // the slide element animate in the opposite direction
+		                    if(element.hasClass("sb-slide")){
+		                        var slideAmount
+		                        if (amount[0] === '-'){
+		                            slideAmount = amount.substr(1); // Remove the '-' from the passed amount for side animations.
+		                        }else{
+		                            slideAmount = "-" + amount;
+		                        }
+		                        element.css('transform', 'translate(' + slideAmount + ')'); // Apply the animation.
+		                    }else{
+		                        element.css('transform', 'translate(' + amount + ')'); // Apply the animation.
+		                    }
+		                })
 
 			} else if ( animation === 'side' ) {		
 				if ( amount[0] === '-' ) amount = amount.substr( 1 ); // Remove the '-' from the passed amount for side animations.
