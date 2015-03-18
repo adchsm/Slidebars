@@ -12,6 +12,13 @@ Fortunately, life is good and work is busy, I currently have no time to spend de
 
 I also need to spend some time refining my skills and learning more pure JS, I want Slidebars to run independently and not rely on other libraries such as jQuery. 0.11 and 0.12 will expand and improve the current jQuery version, but after that it's likely to change.
 
+## Extentions
+
+### Slidebars Swap
+
+Extends Slidebars to display multiple content panels.
+Written by Lee Moran - [Website](http://moran.graphics/sbswap/) | [GitHub](https://github.com/leemoran/sbswap)
+
 ## How to Contribute to Slidebars Using GitHub
 
 ### Raising Issues
