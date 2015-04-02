@@ -16,6 +16,18 @@
 			<h1>Slidebars API Usage</h1>
 			<p>The list items below do not use the standard control classes and are instead mapped to the Slidebars API. You can open a Slidebar, check if the plugin  has been initiated, check if a Slidebars is active, and remove them from the DOM entirely.</p>
 			<p>As of version 0.10, all API methods have been prefixed with '.slidebars'. myVariable.open('left') should now be myVariable.slidebars.open('left').</p>
+			<p>Using the .on() method you can listen for various events triggered
+			by various actions. Currently supported events are - </p>
+			
+			<ul>
+				<li>left-opening (when the opening animation starts)</li>
+				<li>left-closing (when the closing animation starts)</li>
+				<li>left-open (when the opening animation ends)</li>
+				<li>left-close (when the closing animation ends)</li>
+			</ul>
+			
+			<p></p>
+			
 			<ul>
 				<li class="toggle-left">Toggle left Slidebar</li>
 				<li class="toggle-right">Toggle right Slidebar</li>
@@ -136,6 +148,23 @@
 					$('.destroy-right-slidebar').on('click', function() {
 						mySlidebars.slidebars.destroy('right');
 						alert('Boom!');
+					});
+
+					// Test Slidebar event handlers
+					mySlidebars.slidebars.on('left-opening', function (e, data) {
+						console.log('opening left');
+					});
+					
+					mySlidebars.slidebars.on('left-open', function (e, data) {
+						console.log('left is now open');
+					});
+
+					mySlidebars.slidebars.on('left-closing', function (e, data) {
+						console.log('closing left');
+					});
+
+					mySlidebars.slidebars.on('left-close', function (e, data) {
+						console.log('left is now closed');
 					});
 				});
 			}) (jQuery);

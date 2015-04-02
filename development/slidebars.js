@@ -20,6 +20,7 @@
 // 006 - Operations
 // 007 - API
 // 008 - User Input
+// 009 - Slidebar Events
 
 ;( function ( $ ) {
 
@@ -217,25 +218,39 @@
 				if ( init && side === 'left' && $left ) { // Slidebars is initiated, left is in use and called to open.
 					$( 'html' ).addClass( 'sb-active sb-active-left' ); // Add active classes.
 					$left.addClass( 'sb-active' );
+					triggerEvent( side, 'opening' );
 					animate( $left, $left.css( 'width' ), 'left' ); // Animation
-					setTimeout( function () { leftActive = true; }, 400 ); // Set active variables.
+					setTimeout( function () { 
+						leftActive = true; 
+						triggerEvent( side, 'open' );
+					}, 400 ); // Set active variables.
 				} else if ( init && side === 'right' && $right ) { // Slidebars is initiated, right is in use and called to open.
 					$( 'html' ).addClass( 'sb-active sb-active-right' ); // Add active classes.
 					$right.addClass( 'sb-active' );
+					triggerEvent( side, 'opening' );
 					animate( $right, '-' + $right.css( 'width' ), 'right' ); // Animation
-					setTimeout( function () { rightActive = true; }, 400 ); // Set active variables.
+					setTimeout( function () { 
+						rightActive = true;
+						triggerEvent(side, 'open'); 
+					}, 400 ); // Set active variables.
 				}
 			}
 		}
 			
 		// Close either Slidebar
 		function close( url, target ) {
+			var sideToClose = null;
+
 			if ( leftActive || rightActive ) { // If a Slidebar is open.
 				if ( leftActive ) {
+					sideToClose = 'left';
+					triggerEvent( sideToClose, 'closing' ); 
 					animate( $left, '0px', 'left' ); // Animation
 					leftActive = false;
 				}
 				if ( rightActive ) {
+					sideToClose = 'right';
+					triggerEvent( sideToClose, 'closing' ); 
 					animate( $right, '0px', 'right' ); // Animation
 					rightActive = false;
 				}
@@ -248,6 +263,7 @@
 						if ( typeof target === undefined ) target = '_self'; // Set to _self if undefined.
 						window.open( url, target ); // Open the url.
 					}
+					triggerEvent( sideToClose, 'close' ); 
 				}, 400 );
 			}
 		}
@@ -299,6 +315,9 @@
 						$right = false; // Set variable to false so it cannot be opened again.
 					}, 400 );
 				}
+			},
+			on: function ( event, callback ) {
+				$site.on( event, callback );
 			}
 		};
 
@@ -361,6 +380,20 @@
 				close(); // Close it.
 			}
 		} );
+
+		// ----------------
+		// 009 - Slidebar Events
+
+		// trigger an event on the $site element
+		// side can be left or right
+		// name can be open, opening, close, closing
+		function triggerEvent(side, name) {
+			if (!side || !name)
+				return;
+
+			var eventName = side +'-'+ name;
+			$site.trigger(eventName);
+		}
 		
 	}; // End Slidebars function.
 
