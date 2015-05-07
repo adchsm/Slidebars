@@ -1,6 +1,6 @@
 // -----------------------------------
 // Slidebars
-// Development version 0.10.3, do not use this in a production site, use the latest in the distribution folder.
+// Version 0.10.3
 // http://plugins.adchsm.me/slidebars/
 //
 // Written by Adam Smith
@@ -165,14 +165,14 @@
 			// Apply animation
 			if ( animation === 'translate' ) {
 				if ( amount === '0px' ) {
-					removeStyleAttributes();
+					removeAnimation();
 				} else {
 					selector.css( 'transform', 'translate( ' + amount + ' )' ); // Apply the animation.
 				}
-			
+
 			} else if ( animation === 'side' ) {
 				if ( amount === '0px' ) {
-					removeStyleAttributes();
+					removeAnimation();
 				} else {
 					if ( amount[0] === '-' ) amount = amount.substr( 1 ); // Remove the '-' from the passed amount for side animations.
 					selector.css( side, '0px' ); // Add a 0 value so css transition works.
@@ -180,20 +180,16 @@
 						selector.css( side, amount ); // Apply the animation.
 					}, 1 );
 				}
-			
+
 			} else if ( animation === 'jQuery' ) {
 				if ( amount[0] === '-' ) amount = amount.substr( 1 ); // Remove the '-' from the passed amount for jQuery animations.
 				var properties = {};
 				properties[side] = amount;
 				selector.stop().animate( properties, 400 ); // Stop any current jQuery animation before starting another.
-				
-				if ( amount === '0px' ) {
-					setTimeout( removeStyleAttributes, 400 );
-				}
 			}
 			
-			function removeStyleAttributes() {
-				// Remove animation
+			// Remove animation
+			function removeAnimation () {
 				selector.removeAttr( 'style' );
 				css();
 			}
