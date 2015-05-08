@@ -7,3 +7,83 @@
  * License: MIT
  * License url: http://opensource.org/licenses/MIT
  */
+
+
+/**
+ * Box Model, Html & Body
+ */
+
+html, body, [canvas*=container], [off-canvas] {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+
+html, body {
+	overflow-x: hidden;
+	width: 100%;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	height: auto;
+	min-height: 100%;
+}
+
+/**
+ * Canvas Container
+ */
+
+[canvas*=container] {
+	background-color: white;
+	min-height: 100vh;
+	position: relative;
+	width: 100%;
+	z-index: 1;
+}
+
+[canvas*=container]:before, [canvas*=container]:after {
+	clear: both;
+	content: '';
+	display: table;
+}
+
+/**
+ * Off-Canavs Slidebars
+ */
+
+[off-canvas] {
+	background-color: black;
+	display: none;
+	position: fixed;
+	z-index: 0;
+}
+
+[off-canvas*=top] {
+	height: 70%;
+	top: 0;
+	width: 100%;
+}
+
+[off-canvas*=right] {
+	height: 100%;
+	right: 0;
+	width: 70%;
+}
+
+[off-canvas*=bottom] {
+	bottom: 0;
+	height: 70%;
+	width: 100%;
+}
+
+[off-canvas*=left] {
+	height: 100%;
+	left: 0;
+	width: 70%;
+}
