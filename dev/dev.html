@@ -14,21 +14,24 @@
 		<div canvas>
 		</div>
 		
-		<div off-canvas="top-slidebar top reveal">
+		<div off-canvas="off-canvas-1 top reveal">
 		</div>
 		
-		<div off-canvas="right-slidebar right push">
+		<div off-canvas="off-canvas-2 right push">
 		</div>
 		
-		<div off-canvas="bottom-slidebar bottom overlay">
+		<div off-canvas="off-canvas-3 bottom overlay">
 		</div>
 		
-		<div off-canvas="left-slidebar left shift">
+		<div off-canvas="off-canvas-4 left shift">
 		</div>
 		
 		<script src="slidebars.js"></script>
 		<script>
 			( function ( $ ) {
+				$( function () {
+					slidebars();
+				} );
 			} ) ( jQuery );
 		</script>
 	</body>
