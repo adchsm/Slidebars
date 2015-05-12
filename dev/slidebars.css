@@ -24,14 +24,6 @@ html, body, [canvas*=container], [off-canvas] {
 html, body {
 	overflow-x: hidden;
 	width: 100%;
-}
-
-html {
-	height: 100%;
-}
-
-body {
-	height: auto;
 	min-height: 100%;
 }
 

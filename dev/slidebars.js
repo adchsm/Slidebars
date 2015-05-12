@@ -9,18 +9,77 @@
  */
 
 var slidebars = function () {
-	var offCanvas = {};
 	
-	$( '[off-canvas]' ).each( function () {
-		var values = $( this ).attr( 'off-canvas' ).split( ' ', 3 );
+	/**
+	 * Setup
+	 */
+	
+	slidebars = this;
+	
+	/**
+	 * Instances
+	 */
+	
+	slidebars.instances = {};
+	
+	/**
+	 * Initiation
+	 */
+	
+	slidebars.init = function () {
+		// Loop through and setup each Slidebar
+		$( '[off-canvas]' ).each( function () {
+			var values = $( this ).attr( 'off-canvas' ).split( ' ', 3 );
+			
+			slidebars.instances[ values[0] ] = {
+				'id': values[0],
+				'side': values[1],
+				'style': values[2],
+				'element': $( this ),
+				'active': false
+			};
+		} );
 		
-		offCanvas[ values[0] ] = {
-			'id': values[0],
-			'side': values[1],
-			'style': values[2],
-			'element': $( this )
-		};
-	} );
+		// Check canvas container height (test for vh support)
+		if ( parseInt( $( '[canvas="container"]' ).css( 'height' ), 10 ) < parseInt( $( 'html' ).css( 'height' ), 10 ) ) {
+			$( '[canvas="container"]' ).css( 'minHeight', $( 'html' ).css( 'height' ) );
+		}
+	};
 	
-	console.log( offCanvas );
+	/**
+	 * Animation
+	 */
+	
+	slidebars.animate = function ( id, amount ) {
+	};
+	
+	/**
+	 * Controls
+	 */
+	 
+	slidebars.open = function ( id ) {
+	};
+	
+	slidebars.close = function ( id ) {
+	};
+	
+	slidebars.toggle = function ( id ) {
+	};
+	
+	/**
+	 * Status
+	 */
+	 
+	slidebars.active = function ( id ) {
+	};
+	
+	/**
+	 * Creation
+	 */
+	
+	slidebars.create = function () {
+	};
+	
+	slidebars.destroy = function () {
+	};
 };

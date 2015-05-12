@@ -29,9 +29,9 @@
 		<script src="slidebars.js"></script>
 		<script>
 			( function ( $ ) {
-				$( function () {
-					slidebars();
-				} );
+				var controller = new slidebars();
+				controller.init();
+				console.log( controller.instances );
 			} ) ( jQuery );
 		</script>
 	</body>
