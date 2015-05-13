@@ -77,9 +77,30 @@ var slidebars = function () {
 	 * Creation
 	 */
 	
-	slidebars.create = function () {
+	slidebars.create = function ( id, side, style, content ) {
+		// Create new element
+		$( '<div id="' + id + '" off-canvas="' + id + ' ' + side + ' ' + style + '"></div>' ).appendTo( 'body' );
+		
+		// Add content to the Slidebar
+		if ( typeof content !== 'undefined' ) {
+			$( '#' + id ).html( content );
+		}
+		
+		// Add Slidebar to instances
+		slidebars.instances[ id ] = {
+			'id': id,
+			'side': side,
+			'style': style,
+			'element': $( '#' + id ),
+			'active': false
+		};
 	};
 	
-	slidebars.destroy = function () {
+	slidebars.destroy = function ( id ) {
+		// Remove the element
+		slidebars.instances[ id ].element.remove();
+		
+		// Remove Slidebar from instances
+		delete slidebars.instances[ id ];
 	};
 };

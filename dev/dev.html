@@ -29,8 +29,21 @@
 		<script src="slidebars.js"></script>
 		<script>
 			( function ( $ ) {
+				// Initialize Slidebars
 				var controller = new slidebars();
 				controller.init();
+				
+				// Create a few Slidebars
+				controller.create( 'off-canvas-5', 'top', 'push' );
+				controller.create( 'off-canvas-6', 'right', 'reveal', '<p>This is the content to be inserted.</p>' );
+				
+				var content = '<p>This is content stored in a variable.</p>';
+				controller.create( 'off-canvas-7', 'bottom', 'shift', content );
+				
+				// Lets destroy a Slidebar
+				controller.destroy( 'off-canvas-1' );
+				
+				// Lets check this shit
 				console.log( controller.instances );
 			} ) ( jQuery );
 		</script>
