@@ -8,7 +8,6 @@
  * License url: http://opensource.org/licenses/MIT
  */
 
-
 /**
  * Box Model, Html & Body
  */
@@ -119,7 +118,9 @@ html, body {
 @media print {
 	[canvas] {
 		-webkit-transform: translate( 0px );
-		transform: translate( 0px );
+		   -moz-transform: translate( 0px );
+		     -o-transform: translate( 0px );
+		        transform: translate( 0px );
 	}
 	
 	[off-canvas] {
