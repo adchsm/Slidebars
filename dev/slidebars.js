@@ -15,38 +15,28 @@ var slidebars = function () {
 	 */
 	
 	slidebars = this;
-	
-	/**
-	 * Accepted Parameters
-	 */
-	
-	slidebars.parameters = {
-		'side': [ 'top', 'right', 'bottom', 'left' ],
-		'style': [ 'reveal', 'push', 'overlay', 'shift' ]
-	};
-	
-	/**
-	 * Instances
-	 */
-	
-	slidebars.instances = {};
+	slidebars.canvas = $( '[canvas]' );
+	slidebars.canvasContainer = $( '[canvas="container"]' );
+	slidebars.offCanvas = {};
+	slidebars.sides = [ 'top', 'right', 'bottom', 'left' ];
+	slidebars.styles = [ 'reveal', 'push', 'overlay', 'shift' ];
 	
 	/**
 	 * Initiation
 	 */
 	
 	slidebars.init = function () {
-		// Loop through and register each Slidebar
+		// Loop through and register Slidebars
 		$( '[off-canvas]' ).each( function () {
 			// Get the Slidebar parameters
 			var parameters = $( this ).attr( 'off-canvas' ).split( ' ', 3 );
 			
 			// Make sure a valid id, side and style are specified
-			if ( typeof parameters[0] !== 'undefined' && slidebars.parameters.side.indexOf( parameters[1] ) !== -1 && slidebars.parameters.style.indexOf( parameters[2] ) !== -1 ) {
+			if ( typeof parameters[0] !== 'undefined' && slidebars.sides.indexOf( parameters[1] ) !== -1 && slidebars.styles.indexOf( parameters[2] ) !== -1 ) {
 				// Check to see if the Slidebar exists
-				if ( ! ( parameters[0] in slidebars.instances ) ) {
+				if ( ! ( parameters[0] in slidebars.offCanvas ) ) {
 					// Register the Slidebar
-					slidebars.instances[ parameters[0] ] = {
+					slidebars.offCanvas[ parameters[0] ] = {
 						'id': parameters[0],
 						'side': parameters[1],
 						'style': parameters[2],
@@ -54,16 +44,49 @@ var slidebars = function () {
 						'active': false
 					};
 				} else {
-					throw "Error attempting to register a Slidebar, a Slidebar with ID '" + parameters[0] + "' already exists.";
+					throw "Error attempting to register Slidebar, a Slidebar with ID '" + parameters[0] + "' already exists.";
 				}
 			} else {
-				throw "Error attempting to register a Slidebar, please specifiy a valid space separated 'id side style'.";
+				throw "Error attempting to register Slidebar, please specifiy a valid space separated 'id side style'.";
 			}
 		} );
 		
+		// Call CSS methodd
+		slidebars.css();
+	};
+	
+	/**
+	 * CSS
+	 */
+	
+	slidebars.css = function () {
 		// Check canvas container height (test for vh support)
-		if ( parseInt( $( '[canvas="container"]' ).css( 'height' ), 10 ) < parseInt( $( 'html' ).css( 'height' ), 10 ) ) {
-			$( '[canvas="container"]' ).css( 'minHeight', $( 'html' ).css( 'height' ) );
+		if ( parseInt( slidebars.canvasContainer.css( 'height' ), 10 ) < parseInt( $( 'html' ).css( 'height' ), 10 ) ) {
+			slidebars.canvasContainer.css( 'minHeight', $( 'html' ).css( 'height' ) );
+		}
+		
+		// Loop through Slidebars to set negative margins
+		for ( var key in slidebars.offCanvas ) {
+			// Check Slidebar has the correct id
+			if ( slidebars.offCanvas.hasOwnProperty( key ) ) {
+				// Calculate offset
+				if ( slidebars.offCanvas[ key ].side === 'top' || slidebars.offCanvas[ key ].side === 'bottom' ) {
+					var offset =  slidebars.offCanvas[ key ].element.css( 'height' );
+				} else {
+					var offset =  slidebars.offCanvas[ key ].element.css( 'width' );
+				}
+				
+				// Push and overlay style
+				if ( slidebars.offCanvas[ key ].style === 'push' || slidebars.offCanvas[ key ].style === 'overlay' ) {
+					slidebars.offCanvas[ key ].element.css( 'margin-' + slidebars.offCanvas[ key ].side, '-' + offset );
+				}
+				
+				// Shift style
+				if ( slidebars.offCanvas[ key ].style === 'shift' ) {
+					offset = ( parseInt( offset, 10 ) / 2 ) + 'px';
+					slidebars.offCanvas[ key ].element.css( 'margin-' + slidebars.offCanvas[ key ].side, '-' + offset );
+				}
+			}
 		}
 	};
 	
@@ -86,9 +109,9 @@ var slidebars = function () {
 	
 	slidebars.toggle = function ( id ) {
 		// Check to see if the Slidebar exists
-		if ( id in slidebars.instances ) {
+		if ( id in slidebars.offCanvas ) {
 			// Check its status
-			if ( slidebars.instances[ id ].active ) {
+			if ( slidebars.offCanvas[ id ].active ) {
 				// It's open, close it
 				slidebars.close( id );
 			} else {
@@ -106,9 +129,9 @@ var slidebars = function () {
 	 
 	slidebars.active = function ( id ) {
 		// Check to see if the Slidebar exists
-		if ( id in slidebars.instances ) {
+		if ( id in slidebars.offCanvas ) {
 			// Return it's status
-			return slidebars.instances[ id ].active;
+			return slidebars.offCanvas[ id ].active;
 		} else {
 			throw "Error retrieving status of Slidebar, there is no Slidebar with ID '" + id + "'.";
 		}
@@ -120,9 +143,9 @@ var slidebars = function () {
 	
 	slidebars.create = function ( id, side, style, content ) {
 		// Make sure a valid id, side and style are specified
-		if ( typeof id !== 'undefined' && slidebars.parameters.side.indexOf( side ) !== -1 && slidebars.parameters.style.indexOf( style ) !== -1 ) {
+		if ( typeof id !== 'undefined' && slidebars.sides.indexOf( side ) !== -1 && slidebars.styles.indexOf( style ) !== -1 ) {
 			// Check to see if the Slidebar exists
-			if ( ! ( id in slidebars.instances ) ) {
+			if ( ! ( id in slidebars.offCanvas ) ) {
 				// Create new element
 				$( '<div id="' + id + '" off-canvas="' + id + ' ' + side + ' ' + style + '"></div>' ).appendTo( 'body' );
 				
@@ -132,29 +155,32 @@ var slidebars = function () {
 				}
 				
 				// Register the Slidebar
-				slidebars.instances[ id ] = {
+				slidebars.offCanvas[ id ] = {
 					'id': id,
 					'side': side,
 					'style': style,
 					'element': $( '#' + id ),
 					'active': false
 				};
+				
+				// Call CSS methodd
+				slidebars.css();
 			} else {
-				throw "Error attempting to create a Slidebar, a Slidebar with ID '" + id + "' already exists.";
+				throw "Error attempting to create Slidebar, a Slidebar with ID '" + id + "' already exists.";
 			}
 		} else {
-			throw "Error attempting to create a Slidebar, please specifiy a valid space separated 'id side style'.";
+			throw "Error attempting to create Slidebar, please specifiy a valid space separated 'id side style'.";
 		}
 	};
 	
 	slidebars.destroy = function ( id ) {
 		// Check to see if the Slidebar exists
-		if ( id in slidebars.instances ) {
+		if ( id in slidebars.offCanvas ) {
 			// Remove the element
-			slidebars.instances[ id ].element.remove();
+			slidebars.offCanvas[ id ].element.remove();
 			
 			// Remove Slidebar from instances
-			delete slidebars.instances[ id ];
+			delete slidebars.offCanvas[ id ];
 		} else {
 			throw "Error trying to destroy Slidebar, there is no Slidebar with ID '" + id + "'.";
 		}
