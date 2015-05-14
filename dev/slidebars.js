@@ -70,10 +70,12 @@ var slidebars = function () {
 			// Check Slidebar has the correct id
 			if ( slidebars.offCanvas.hasOwnProperty( key ) ) {
 				// Calculate offset
+				var offset;
+				
 				if ( slidebars.offCanvas[ key ].side === 'top' || slidebars.offCanvas[ key ].side === 'bottom' ) {
-					var offset =  slidebars.offCanvas[ key ].element.css( 'height' );
+					offset =  slidebars.offCanvas[ key ].element.css( 'height' );
 				} else {
-					var offset =  slidebars.offCanvas[ key ].element.css( 'width' );
+					offset =  slidebars.offCanvas[ key ].element.css( 'width' );
 				}
 				
 				// Push and overlay style
