@@ -10,6 +10,10 @@
 	
 	<body>
 		<div canvas="container">
+			<button id="open-top">Open top</button>
+			<button id="open-right">Open right</button>
+			<button id="open-bottom">Open bottom</button>
+			<button id="open-left">Open left</button>
 		</div>
 		
 		<div canvas>
@@ -35,7 +39,7 @@
 				controller.init();
 				
 				// Create a few Slidebars
-				controller.create( 'off-canvas-5', 'top', 'push' );
+				controller.create( 'off-canvas-5', 'top', 'reveal' );
 				controller.create( 'off-canvas-6', 'right', 'reveal', '<p>This is the content to be inserted.</p>' );
 				
 				var content = '<p>This is content stored in a variable.</p>';
@@ -48,7 +52,24 @@
 				console.log( controller.offCanvas );
 				
 				// Check to see if a Slidebar is active
-				console.log( controller.active( 'off-canvas-5' ) )
+				console.log( controller.active( 'off-canvas-5' ) );
+				
+				// Open Slidebars
+				$( '#open-top' ).on( 'click', function () {
+					controller.open( 'off-canvas-5' );
+				} );
+				
+				$( '#open-right' ).on( 'click', function () {
+					controller.open( 'off-canvas-2' );
+				} );
+				
+				$( '#open-bottom' ).on( 'click', function () {
+					controller.open( 'off-canvas-3' );
+				} );
+				
+				$( '#open-left' ).on( 'click', function () {
+					controller.open( 'off-canvas-4' );
+				} );
 			} ) ( jQuery );
 		</script>
 	</body>

@@ -15,9 +15,15 @@ var slidebars = function () {
 	 */
 	
 	slidebars = this;
+	
+	// Cache all canvas elements and container
 	slidebars.canvas = $( '[canvas]' );
 	slidebars.canvasContainer = $( '[canvas="container"]' );
+	
+	// Instances of Slidebars
 	slidebars.offCanvas = {};
+	
+	// Permitted sides and styles
 	slidebars.sides = [ 'top', 'right', 'bottom', 'left' ];
 	slidebars.styles = [ 'reveal', 'push', 'overlay', 'shift' ];
 	
@@ -96,7 +102,46 @@ var slidebars = function () {
 	 * Animation
 	 */
 	
-	slidebars.animate = function ( id ) {
+	var animate = function ( id, callback ) {
+		// Cache elements to animate by animation style
+		var elements = $();
+		
+		if ( slidebars.offCanvas[ id ].style === 'reveal' ) {
+			elements = elements.add( slidebars.canvas );
+		}
+		
+		if ( slidebars.offCanvas[ id ].style === 'push' ) {
+			elements = elements.add( slidebars.canvas ).add( slidebars.offCanvas[ id ].element );
+		}
+		
+		if ( slidebars.offCanvas[ id ].style === 'overlay' ) {
+			elements = elements.add( slidebars.offCanvas[ id ].element );
+		}
+		
+		if ( slidebars.offCanvas[ id ].style === 'shift' ) {
+			// Need to figure this out
+		}
+		
+		// Calculate amount
+		var amount;
+		
+		if ( slidebars.offCanvas[ id ].side === 'top' ) {
+			amount = '0px, ' + slidebars.offCanvas[ id ].element.css( 'height' );
+		} else if ( slidebars.offCanvas[ id ].side === 'right' ) {
+			amount = '-' + slidebars.offCanvas[ id ].element.css( 'width' ) + ', 0px';
+		} else if ( slidebars.offCanvas[ id ].side === 'bottom' ) {
+			amount = '0px, -' + slidebars.offCanvas[ id ].element.css( 'height' );
+		} else if ( slidebars.offCanvas[ id ].side === 'left' ) {
+			amount = slidebars.offCanvas[ id ].element.css( 'width' ) + ', 0px';
+		}
+		
+		// Apply CSS
+		elements.css( 'transform', 'translate(' + amount + ')' );
+		
+		// Run callback
+		if ( typeof callback === 'function' ) {
+			setTimeout( callback, 300 );
+		}
 	};
 	
 	/**
@@ -104,9 +149,29 @@ var slidebars = function () {
 	 */
 	 
 	slidebars.open = function ( id ) {
+		// Check to see if the Slidebar exists
+		if ( id in slidebars.offCanvas ) {
+			// Display the Slidebar
+			slidebars.offCanvas[ id ].element.css( 'display', 'block' );
+			
+			// Open the Slidebar
+			animate( id, function () {
+				slidebars.offCanvas[ id ].active = true;
+			} );
+		} else {
+			throw "Error trying to open Slidebar, there is no Slidebar with ID '" + id + "'.";
+		}
 	};
 	
 	slidebars.close = function ( id ) {
+		// Check if an id was passed
+		if ( typeof id === 'undefined' ) {
+			// Close any Slidebar
+		} else if ( id in slidebars.offCanvas ) {
+			// Close a spefic Slidebar
+		} else {
+			throw "Error trying to close Slidebar, there is no Slidebar with ID '" + id + "'.";
+		}
 	};
 	
 	slidebars.toggle = function ( id ) {

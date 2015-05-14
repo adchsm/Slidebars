@@ -64,6 +64,7 @@ html, body {
 [off-canvas*=right] {
 	width: 255px;
 	height: 100%;
+	top: 0;
 	right: 0;
 }
 
@@ -76,6 +77,7 @@ html, body {
 [off-canvas*=left] {
 	width: 255px;
 	height: 100%;
+	top: 0;
 	left: 0;
 }
 
@@ -104,10 +106,10 @@ html, body {
 	   -moz-transform: translate( 0px );
 	     -o-transform: translate( 0px );
 	        transform: translate( 0px );
-	-webkit-transition: -webkit-transform 400ms ease;
-	   -moz-transition:    -moz-transform 400ms ease;
-	     -o-transition:      -o-transform 400ms ease;
-	        transition:         transform 400ms ease;
+	-webkit-transition: -webkit-transform 300ms ease;
+	   -moz-transition:    -moz-transform 300ms ease;
+	     -o-transition:      -o-transform 300ms ease;
+	        transition:         transform 300ms ease;
 	-webkit-backface-visibility: hidden;
 }
 
