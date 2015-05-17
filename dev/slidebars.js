@@ -327,7 +327,15 @@ var slidebars = function () {
 	
 	this.destroy = function ( id, callback ) {
 		// Check to see if the Slidebar exists
-		if ( id in offCanvas ) {
+		if ( id in offCanvas ) {			
+			// Close the Slidebar
+			if ( offCanvas[ id ].active === true ) {
+				this.close( id );
+			}
+			
+			// Trigger event
+			this.events.trigger( 'destroyed-' + offCanvas[ id ].id );
+			
 			// Remove the element
 			offCanvas[ id ].element.remove();
 			
@@ -336,9 +344,6 @@ var slidebars = function () {
 		} else {
 			throw "Error trying to destroy Slidebar, there is no Slidebar with ID '" + id + "'.";
 		}
-		
-		// Trigger event
-		this.events.trigger( 'destroyed-' + offCanvas[ id ].id );
 		
 		// Run callback
 		if ( typeof callback === 'function' ) {
