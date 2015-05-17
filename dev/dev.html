@@ -14,6 +14,8 @@
 			<button id="open-right">Open right</button>
 			<button id="open-bottom">Open bottom</button>
 			<button id="open-left">Open left</button>
+			<button id="close-top">Close top</button>
+			<button id="close-any">Close any</button>
 		</div>
 		
 		<div canvas>
@@ -69,6 +71,14 @@
 				
 				$( '#open-left' ).on( 'click', function () {
 					controller.open( 'off-canvas-4' );
+				} );
+				
+				$( '#close-top' ).on( 'click', function () {
+					controller.close( 'off-canvas-5' );
+				} );
+				
+				$( '#close-any' ).on( 'click', function () {
+					controller.close();
 				} );
 			} ) ( jQuery );
 		</script>
