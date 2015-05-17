@@ -16,6 +16,7 @@
 			<button id="open-left">Open left</button>
 			<button id="close-top">Close top</button>
 			<button id="close-any">Close any</button>
+			<button id="destroy">Destroy</button>
 		</div>
 		
 		<div canvas>
@@ -30,14 +31,21 @@
 		<div off-canvas="off-canvas-3 bottom overlay">
 		</div>
 		
-		<div off-canvas="off-canvas-4 left shift">
+		<div off-canvas="off-canvas-4 left reveal">
 		</div>
 		
 		<script src="slidebars.js"></script>
 		<script>
 			( function ( $ ) {
-				// Initialize Slidebars
+				// Create a new instance of Slidebars
 				var controller = new slidebars();
+				
+				// Test events
+				controller.events.on( 'init', function () {
+					console.log( 'Slidebars initialized' );
+				} );
+				
+				// Initialize Slidebars
 				controller.init();
 				
 				// Create a few Slidebars
@@ -45,13 +53,14 @@
 				controller.create( 'off-canvas-6', 'right', 'reveal', '<p>This is the content to be inserted.</p>' );
 				
 				var content = '<p>This is content stored in a variable.</p>';
-				controller.create( 'off-canvas-7', 'bottom', 'shift', content );
+				controller.create( 'off-canvas-7', 'bottom', 'reveal', content );
 				
 				// Destroy a Slidebar
-				controller.destroy( 'off-canvas-1' );
-				
-				// Check this shit
-				console.log( controller.offCanvas );
+				$( '#destroy' ).on( 'click', function () {
+					controller.destroy( 'off-canvas-1', function () {
+						alert( 'Boom!' );
+					} );
+				} );
 				
 				// Check to see if a Slidebar is active
 				console.log( controller.active( 'off-canvas-5' ) );
@@ -79,6 +88,15 @@
 				
 				$( '#close-any' ).on( 'click', function () {
 					controller.close();
+				} );
+				
+				// Test events
+				controller.events.on( 'opening-off-canvas-5', function () {
+					console.log( 'Opening top' );
+				} );
+				
+				controller.events.on( 'opened-off-canvas-5', function () {
+					console.log( 'Opened top' );
 				} );
 			} ) ( jQuery );
 		</script>
