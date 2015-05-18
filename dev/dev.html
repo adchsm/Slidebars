@@ -16,7 +16,7 @@
 			<button id="open-left">Open left</button>
 			<button id="close-top">Close top</button>
 			<button id="close-any">Close any</button>
-			<button id="destroy">Destroy</button>
+			<button id="destroy-top">Destroy top</button>
 			<button id="check-top">Check top</button>
 			<button id="check-any">Check any</button>
 		</div>
@@ -58,8 +58,8 @@
 				controller.create( 'off-canvas-7', 'bottom', 'reveal', content );
 				
 				// Destroy a Slidebar
-				$( '#destroy' ).on( 'click', function () {
-					controller.destroy( 'off-canvas-1', function () {
+				$( '#destroy-top' ).on( 'click', function () {
+					controller.destroy( 'off-canvas-5', function () {
 						alert( 'Boom!' );
 					} );
 				} );

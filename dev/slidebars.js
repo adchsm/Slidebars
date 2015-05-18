@@ -25,7 +25,7 @@ var slidebars = function () {
 	init = false,
 	sides = [ 'top', 'right', 'bottom', 'left' ],
 	styles = [ 'reveal', 'push', 'overlay' ],
-	transitions = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
+	endTransitions = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
 	
 	/**
 	 * Initiation
@@ -38,20 +38,9 @@ var slidebars = function () {
 			var parameters = $( this ).attr( 'off-canvas' ).split( ' ', 3 );
 			
 			// Make sure a valid id, side and style are specified
-			if ( typeof parameters[ 0 ] !== 'undefined' && sides.indexOf( parameters[ 1 ] ) !== -1 && styles.indexOf( parameters[ 2 ] ) !== -1 ) {
-				// Check to see if the Slidebar exists
-				if ( ! ( parameters[ 0 ] in offCanvas ) ) {
-					// Register the Slidebar
-					offCanvas[ parameters[ 0 ] ] = {
-						'id': parameters[ 0 ],
-						'side': parameters[ 1 ],
-						'style': parameters[ 2 ],
-						'element': $( this ),
-						'active': false
-					};
-				} else {
-					throw "Error attempting to register Slidebar, a Slidebar with ID '" + parameters[ 0 ] + "' already exists.";
-				}
+			if ( parameters[ 0 ] && sides.indexOf( parameters[ 1 ] ) !== -1 && styles.indexOf( parameters[ 2 ] ) !== -1 ) {
+				// Register Slidebar
+				registerSlidebar( parameters[ 0 ], parameters[ 1 ], parameters[ 2 ], $( this ) );
 			} else {
 				throw "Error attempting to register Slidebar, please specifiy a valid space separated 'id side style'.";
 			}
@@ -64,7 +53,7 @@ var slidebars = function () {
 		this.css();
 		
 		// Trigger event
-		this.events.trigger( 'init' );
+		events.trigger( 'init' );
 		
 		// Run callback
 		if ( typeof callback === 'function' ) {
@@ -73,45 +62,22 @@ var slidebars = function () {
 	};
 	
 	/**
-	 * CSS
+	 * Register Slidebar
 	 */
 	
-	this.css = function ( callback ) {
-		if ( init ) {
-			// Check canvas container height (test for vh support)
-			if ( parseInt( canvasContainer.css( 'height' ), 10 ) < parseInt( $( 'html' ).css( 'height' ), 10 ) ) {
-				canvasContainer.css( 'minHeight', $( 'html' ).css( 'height' ) );
-			}
-			
-			// Loop through Slidebars to set negative margins
-			for ( var key in offCanvas ) {
-				// Check Slidebar has the correct id
-				if ( offCanvas.hasOwnProperty( key ) ) {
-					// Calculate offset
-					var offset;
-					
-					if ( offCanvas[ key ].side === 'top' || offCanvas[ key ].side === 'bottom' ) {
-						offset =  offCanvas[ key ].element.css( 'height' );
-					} else {
-						offset =  offCanvas[ key ].element.css( 'width' );
-					}
-					
-					// Push and overlay style
-					if ( offCanvas[ key ].style === 'push' || offCanvas[ key ].style === 'overlay' ) {
-						offCanvas[ key ].element.css( 'margin-' + offCanvas[ key ].side, '-' + offset );
-					}
-				}
-			}
-			
-			// Trigger event
-			this.events.trigger( 'css-reset' );
-			
-			// Run callback
-			if ( typeof callback === 'function' ) {
-				callback();
-			}
+	var registerSlidebar = function ( id, side, style, element ) {
+		// Check the Slidebar doesn't already exist
+		if ( ! ( id in offCanvas ) ) {
+			// Register the Slidebar
+			offCanvas[ id ] = {
+				'id': id,
+				'side': side,
+				'style': style,
+				'element': element,
+				'active': false
+			};
 		} else {
-			throw 'You need to initialize Slidebars first.';
+			throw "Error attempting to register Slidebar, a Slidebar with ID '" + id + "' already exists.";
 		}
 	};
 	
@@ -153,47 +119,98 @@ var slidebars = function () {
 	};
 	
 	/**
+	 * CSS
+	 */
+	
+	this.css = function ( callback ) {
+		// Slidebars has been initialized
+		if ( init ) {
+			// Check canvas container height (test for vh support)
+			if ( parseInt( canvasContainer.css( 'height' ), 10 ) < parseInt( $( 'html' ).css( 'height' ), 10 ) ) {
+				canvasContainer.css( 'minHeight', $( 'html' ).css( 'height' ) );
+			}
+			
+			// Loop through Slidebars to set negative margins
+			for ( var key in offCanvas ) {
+				// Check Slidebar has the correct id
+				if ( offCanvas.hasOwnProperty( key ) ) {
+					// Calculate offset
+					var offset;
+					
+					if ( offCanvas[ key ].side === 'top' || offCanvas[ key ].side === 'bottom' ) {
+						offset =  offCanvas[ key ].element.css( 'height' );
+					} else {
+						offset =  offCanvas[ key ].element.css( 'width' );
+					}
+					
+					// Push and overlay style
+					if ( offCanvas[ key ].style === 'push' || offCanvas[ key ].style === 'overlay' ) {
+						offCanvas[ key ].element.css( 'margin-' + offCanvas[ key ].side, '-' + offset );
+					}
+				}
+			}
+			
+			// Trigger event
+			events.trigger( 'css-reset' );
+			
+			// Run callback
+			if ( typeof callback === 'function' ) {
+				callback();
+			}
+		} else {
+			throw 'You need to initialize Slidebars first.';
+		}
+	};
+	
+	/**
 	 * Controls
 	 */
 	 
 	this.open = function ( id, callback ) {
+		// Slidebars has been initialized
 		if ( init ) {
 			// Check to see if the Slidebar exists
 			if ( id in offCanvas ) {
-				// Close any open Slidebar except for current id
-				if ( offCanvas[ id ].active === false ) {
-					this.close();
-				}
-				
-				// Set active state to true
-				offCanvas[ id ].active = true;
-				
-				// Display the Slidebar
-				offCanvas[ id ].element.css( 'display', 'block' );
-				
-				// Trigger event
-				this.events.trigger( 'opening-' + offCanvas[ id ].id );
-				var eventCallback = this.events;
-				
-				// Get animation properties
-				var animationProperties = getAnimationProperties( id );
-				
-				// Apply CSS
-				animationProperties.elements.css( 'transform', 'translate(' + animationProperties.amount + ')' );
-				
-				// On animation completion
-				animationProperties.elements.on( transitions, function () {
+				// Open
+				var open = function () {
+					// Set active state to true
+					offCanvas[ id ].active = true;
+					
+					// Display the Slidebar
+					offCanvas[ id ].element.css( 'display', 'block' );
+					
 					// Trigger event
-					eventCallback.trigger( 'opened-' + offCanvas[ id ].id );
+					events.trigger( 'opening-' + offCanvas[ id ].id );
 					
-					// Run Callback
-					if ( typeof callback === 'function' ) {
-						callback();
-					}
+					// Get animation properties
+					var animationProperties = getAnimationProperties( id );
 					
-					// Off animation completion
-					animationProperties.elements.off( transitions );
-				} );
+					// Apply CSS
+					animationProperties.elements.css( 'transform', 'translate(' + animationProperties.amount + ')' );
+					
+					// On animation completion
+					animationProperties.elements.on( endTransitions, function () {
+						// Trigger event
+						events.trigger( 'opened-' + offCanvas[ id ].id );
+						
+						// Run Callback
+						if ( typeof callback === 'function' ) {
+							callback();
+						}
+						
+						// Off animation completion
+						animationProperties.elements.off( endTransitions );
+					} );
+				};
+				
+				// Call to open the Slidebar, close any open Slidebars first ( except for current id )
+				if ( this.active() && this.active() !== id ) {
+					this.close( this.active(), function () {
+						open();
+					} );
+				} else {
+					open();
+				}
 			} else {
 				throw "Error trying to open Slidebar, there is no Slidebar with ID '" + id + "'.";
 			}
@@ -203,9 +220,10 @@ var slidebars = function () {
 	};
 	
 	this.close = function ( id, callback ) {
+		// Slidebars has been initialized
 		if ( init ) {
 			// If no id was passed, close any Slidebar
-			if ( typeof id === 'undefined' ) {
+			if ( ! id ) {
 				// Loop through Slidebars to find active one
 				for ( var key in offCanvas ) {
 					// Check Slidebar has the correct id
@@ -220,36 +238,38 @@ var slidebars = function () {
 			
 			// Close the Slidebar
 			if ( id in offCanvas ) {
-				// Set active state to false
-				offCanvas[ id ].active = false;
-				
-				// Trigger event
-				this.events.trigger( 'closing-' + offCanvas[ id ].id );
-				var eventCallback = this.events;
-				
-				// Get animation properties
-				var animationProperties = getAnimationProperties( id );
-				
-				// Apply CSS
-				animationProperties.elements.css( 'transform', 'translate(' + animationProperties.amount + ')' );
-				
-				// On animation completion
-				animationProperties.elements.on( transitions, function () {
-					// Hide the Slidebar
-					offCanvas[ id ].element.css( 'display', 'none' );
+				// Make sure the Slidebar is open
+				if ( offCanvas[ id ].active === true ) {
+					// Set active state to false
+					offCanvas[ id ].active = false;
 					
 					// Trigger event
-					eventCallback.trigger( 'closed-' + offCanvas[ id ].id );
+					events.trigger( 'closing-' + offCanvas[ id ].id );
 					
-					// Run Callback
-					if ( typeof callback === 'function' ) {
-						callback();
-					}
+					// Get animation properties
+					var animationProperties = getAnimationProperties( id );
 					
-					// Off animation completion
-					animationProperties.elements.off( transitions );
-				} );
-			} else if ( typeof id !== 'undefined' ) {
+					// Apply CSS
+					animationProperties.elements.css( 'transform', 'translate(' + animationProperties.amount + ')' );
+					
+					// On animation completion
+					animationProperties.elements.on( endTransitions, function () {
+						// Hide the Slidebar
+						offCanvas[ id ].element.css( 'display', 'none' );
+						
+						// Trigger event
+						events.trigger( 'closed-' + offCanvas[ id ].id );
+						
+						// Run Callback
+						if ( typeof callback === 'function' ) {
+							callback();
+						}
+						
+						// Off animation completion
+						animationProperties.elements.off( endTransitions );
+					} );
+				}
+			} else if ( id ) {
 				throw "Error trying to close Slidebar, there is no Slidebar with ID '" + id + "'.";
 			}
 		} else {
@@ -258,6 +278,7 @@ var slidebars = function () {
 	};
 	
 	this.toggle = function ( id, callback ) {
+		// Slidebars has been initialized
 		if ( init ) {
 			// Check to see if the Slidebar exists
 			if ( id in offCanvas ) {
@@ -292,9 +313,10 @@ var slidebars = function () {
 	 */
 	 
 	this.active = function ( id, callback ) {
+		// Slidebars has been initialized
 		if ( init ) {
 			// If no id is passed check through all
-			if ( typeof id === 'undefined' ) {
+			if ( ! id ) {
 				// Active variable
 				var active = false;
 				
@@ -336,33 +358,28 @@ var slidebars = function () {
 	 */
 	
 	this.create = function ( id, side, style, content, callback ) {
+		// Slidebars has been initialized
 		if ( init ) {
 			// Make sure a valid id, side and style are specified
-			if ( typeof id !== 'undefined' && sides.indexOf( side ) !== -1 && styles.indexOf( style ) !== -1 ) {
+			if ( id && sides.indexOf( side ) !== -1 && styles.indexOf( style ) !== -1 ) {
 				// Check to see if the Slidebar exists
 				if ( ! ( id in offCanvas ) ) {
 					// Create new element
 					$( '<div id="' + id + '" off-canvas="' + id + ' ' + side + ' ' + style + '"></div>' ).appendTo( 'body' );
 					
 					// Add content to the Slidebar
-					if ( typeof content !== 'undefined' ) {
+					if ( content ) {
 						$( '#' + id ).html( content );
 					}
 					
 					// Register the Slidebar
-					offCanvas[ id ] = {
-						'id': id,
-						'side': side,
-						'style': style,
-						'element': $( '#' + id ),
-						'active': false
-					};
+					registerSlidebar( id, side, style, $( '#' + id ) );
 					
 					// Call CSS methodd
 					this.css();
 					
 					// Trigger event
-					this.events.trigger( 'created-' + offCanvas[ id ].id );
+					events.trigger( 'created-' + offCanvas[ id ].id );
 					
 					// Run callback
 					if ( typeof callback === 'function' ) {
@@ -380,26 +397,34 @@ var slidebars = function () {
 	};
 	
 	this.destroy = function ( id, callback ) {
+		// Slidebars has been initialized
 		if ( init ) {
 			// Check to see if the Slidebar exists
 			if ( id in offCanvas ) {
-				// Close Slidebar if active
+				// Destruction
+				var destroy = function () {
+					// Trigger event
+					events.trigger( 'destroyed-' + offCanvas[ id ].id );
+					
+					// Remove the element
+					offCanvas[ id ].element.remove();
+					
+					// Remove Slidebar from instances
+					delete offCanvas[ id ];
+					
+					// Run callback
+					if ( typeof callback === 'function' ) {
+						callback();
+					}
+				};
+				
+				// Destroy the Slidebar, but close first if active
 				if ( offCanvas[ id ].active === true ) {
-					this.close( id );
-				}
-				
-				// Trigger event
-				this.events.trigger( 'destroyed-' + offCanvas[ id ].id );
-				
-				// Remove the element
-				offCanvas[ id ].element.remove();
-				
-				// Remove Slidebar from instances
-				delete offCanvas[ id ];
-				
-				// Run callback
-				if ( typeof callback === 'function' ) {
-					callback();
+					this.close( id, function () {
+						destroy();
+					} );
+				} else {
+					destroy();
 				}
 			} else {
 				throw "Error trying to destroy Slidebar, there is no Slidebar with ID '" + id + "'.";
@@ -413,5 +438,9 @@ var slidebars = function () {
 	 * Events
 	 */
 	
+	// Public
 	this.events = $( this );
+	
+	// Private
+	var events = this.events; 
 };
