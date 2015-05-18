@@ -325,19 +325,19 @@ var slidebars = function () {
 				
 				// Call CSS methodd
 				this.css();
+				
+				// Trigger event
+				this.events.trigger( 'created-' + offCanvas[ id ].id );
+				
+				// Run callback
+				if ( typeof callback === 'function' ) {
+					callback();
+				}
 			} else {
 				throw "Error attempting to create Slidebar, a Slidebar with ID '" + id + "' already exists.";
 			}
 		} else {
 			throw "Error attempting to create Slidebar, please specifiy a valid space separated 'id side style'.";
-		}
-		
-		// Trigger event
-		this.events.trigger( 'created-' + offCanvas[ id ].id );
-		
-		// Run callback
-		if ( typeof callback === 'function' ) {
-			callback();
 		}
 	};
 	
@@ -357,13 +357,13 @@ var slidebars = function () {
 			
 			// Remove Slidebar from instances
 			delete offCanvas[ id ];
+			
+			// Run callback
+			if ( typeof callback === 'function' ) {
+				callback();
+			}
 		} else {
 			throw "Error trying to destroy Slidebar, there is no Slidebar with ID '" + id + "'.";
-		}
-		
-		// Run callback
-		if ( typeof callback === 'function' ) {
-			callback();
 		}
 	};
 	
