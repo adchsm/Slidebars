@@ -23,7 +23,7 @@ var slidebars = function () {
 	
 	// Permitted sides and styles
 	sides = [ 'top', 'right', 'bottom', 'left' ],
-	styles = [ 'reveal', 'push', 'overlay' ]; // Need to figure shift out
+	styles = [ 'reveal', 'push', 'overlay' ];
 	
 	/**
 	 * Initiation
@@ -36,19 +36,19 @@ var slidebars = function () {
 			var parameters = $( this ).attr( 'off-canvas' ).split( ' ', 3 );
 			
 			// Make sure a valid id, side and style are specified
-			if ( typeof parameters[0] !== 'undefined' && sides.indexOf( parameters[1] ) !== -1 && styles.indexOf( parameters[2] ) !== -1 ) {
+			if ( typeof parameters[ 0 ] !== 'undefined' && sides.indexOf( parameters[ 1 ] ) !== -1 && styles.indexOf( parameters[ 2 ] ) !== -1 ) {
 				// Check to see if the Slidebar exists
-				if ( ! ( parameters[0] in offCanvas ) ) {
+				if ( ! ( parameters[ 0 ] in offCanvas ) ) {
 					// Register the Slidebar
-					offCanvas[ parameters[0] ] = {
-						'id': parameters[0],
-						'side': parameters[1],
-						'style': parameters[2],
+					offCanvas[ parameters[ 0 ] ] = {
+						'id': parameters[ 0 ],
+						'side': parameters[ 1 ],
+						'style': parameters[ 2 ],
 						'element': $( this ),
 						'active': false
 					};
 				} else {
-					throw "Error attempting to register Slidebar, a Slidebar with ID '" + parameters[0] + "' already exists.";
+					throw "Error attempting to register Slidebar, a Slidebar with ID '" + parameters[ 0 ] + "' already exists.";
 				}
 			} else {
 				throw "Error attempting to register Slidebar, please specifiy a valid space separated 'id side style'.";
@@ -94,12 +94,6 @@ var slidebars = function () {
 				if ( offCanvas[ key ].style === 'push' || offCanvas[ key ].style === 'overlay' ) {
 					offCanvas[ key ].element.css( 'margin-' + offCanvas[ key ].side, '-' + offset );
 				}
-				
-				// Shift style
-				if ( offCanvas[ key ].style === 'shift' ) {
-					offset = ( parseInt( offset, 10 ) / 2 ) + 'px';
-					offCanvas[ key ].element.css( 'margin-' + offCanvas[ key ].side, '-' + offset );
-				}
 			}
 		}
 		
@@ -120,20 +114,12 @@ var slidebars = function () {
 		// Cache elements to animate by animation style
 		var elements = $();
 		
-		if ( offCanvas[ id ].style === 'reveal' ) {
+		if ( offCanvas[ id ].style === 'reveal' || offCanvas[ id ].style === 'push' ) {
 			elements = elements.add( canvas );
 		}
 		
-		if ( offCanvas[ id ].style === 'push' ) {
-			elements = elements.add( canvas ).add( offCanvas[ id ].element );
-		}
-		
-		if ( offCanvas[ id ].style === 'overlay' ) {
+		if ( offCanvas[ id ].style === 'push' || offCanvas[ id ].style === 'overlay' ) {
 			elements = elements.add( offCanvas[ id ].element );
-		}
-		
-		if ( offCanvas[ id ].style === 'shift' ) {
-			// Need to figure this out
 		}
 		
 		// Calculate amount
@@ -348,8 +334,8 @@ var slidebars = function () {
 	
 	this.destroy = function ( id, callback ) {
 		// Check to see if the Slidebar exists
-		if ( id in offCanvas ) {			
-			// Close the Slidebar
+		if ( id in offCanvas ) {
+			// Close Slidebar if active
 			if ( offCanvas[ id ].active === true ) {
 				this.close( id );
 			}

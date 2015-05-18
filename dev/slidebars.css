@@ -93,10 +93,6 @@ html, body {
 	z-index: 9999;
 }
 
-[off-canvas*=shift] {
-	z-index: 0;
-}
-
 /**
  * Animation
  */
@@ -114,7 +110,7 @@ html, body {
 }
 
 /**
- * Print Styles
+ * Print
  */
 
 @media print {
