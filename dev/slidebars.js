@@ -23,7 +23,8 @@ var slidebars = function () {
 	
 	// Permitted sides and styles
 	sides = [ 'top', 'right', 'bottom', 'left' ],
-	styles = [ 'reveal', 'push', 'overlay' ];
+	styles = [ 'reveal', 'push', 'overlay' ],
+	transitions = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
 	
 	/**
 	 * Initiation
@@ -171,7 +172,7 @@ var slidebars = function () {
 			animationProperties.elements.css( 'transform', 'translate(' + animationProperties.amount + ')' );
 			
 			// On animation completion
-			animationProperties.elements.on( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+			animationProperties.elements.on( transitions, function () {
 				// Trigger event
 				eventCallback.trigger( 'opened-' + offCanvas[ id ].id );
 				
@@ -181,7 +182,7 @@ var slidebars = function () {
 				}
 				
 				// Off animation completion
-				animationProperties.elements.off( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend' );
+				animationProperties.elements.off( transitions );
 			} );
 		} else {
 			throw "Error trying to open Slidebar, there is no Slidebar with ID '" + id + "'.";
@@ -204,7 +205,7 @@ var slidebars = function () {
 		}
 		
 		// Close the Slidebar
-		if ( id in offCanvas && offCanvas[ id ].active === true ) {
+		if ( id in offCanvas ) {
 			// Set active state to false
 			offCanvas[ id ].active = false;
 			
@@ -219,7 +220,7 @@ var slidebars = function () {
 			animationProperties.elements.css( 'transform', 'translate(' + animationProperties.amount + ')' );
 			
 			// On animation completion
-			animationProperties.elements.on( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+			animationProperties.elements.on( transitions, function () {
 				// Hide the Slidebar
 				offCanvas[ id ].element.css( 'display', 'none' );
 				
@@ -232,7 +233,7 @@ var slidebars = function () {
 				}
 				
 				// Off animation completion
-				animationProperties.elements.off( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend' );
+				animationProperties.elements.off( transitions );
 			} );
 		} else if ( typeof id !== 'undefined' ) {
 			throw "Error trying to close Slidebar, there is no Slidebar with ID '" + id + "'.";
@@ -242,7 +243,7 @@ var slidebars = function () {
 	this.toggle = function ( id, callback ) {
 		// Check to see if the Slidebar exists
 		if ( id in offCanvas ) {
-			// Check its status
+			// Check its state
 			if ( offCanvas[ id ].active ) {
 				// It's open, close it
 				this.close( id, function () {
