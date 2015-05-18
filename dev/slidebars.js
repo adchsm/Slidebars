@@ -220,6 +220,9 @@ var slidebars = function () {
 			
 			// On animation completion
 			animationProperties.elements.on( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+				// Hide the Slidebar
+				offCanvas[ id ].element.css( 'display', 'none' );
+				
 				// Trigger event
 				eventCallback.trigger( 'closed-' + offCanvas[ id ].id );
 				
@@ -247,13 +250,13 @@ var slidebars = function () {
 				// It's closed, open it
 				this.open( id );
 			}
+			
+			// Run callback
+			if ( typeof callback === 'function' ) {
+				callback();
+			}
 		} else {
 			throw "Error trying to toggle Slidebar, there is no Slidebar with ID '" + id + "'.";
-		}
-		
-		// Run callback
-		if ( typeof callback === 'function' ) {
-			callback();
 		}
 	};
 	
