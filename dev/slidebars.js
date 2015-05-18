@@ -146,13 +146,13 @@ var slidebars = function () {
 	 * Controls
 	 */
 	 
-	this.open = function ( id, callback ) {		
+	this.open = function ( id, callback ) {
 		// Check to see if the Slidebar exists
 		if ( id in offCanvas ) {
 			// Close any open Slidebar except for current id
 			if ( offCanvas[ id ].active === false ) {
 				this.close();
-			} 
+			}
 			
 			// Set active state to true
 			offCanvas[ id ].active = true;
@@ -204,7 +204,7 @@ var slidebars = function () {
 		}
 		
 		// Close the Slidebar
-		if ( typeof id !== 'undefined' && id in offCanvas && offCanvas[ id ].active === true ) {
+		if ( id in offCanvas && offCanvas[ id ].active === true ) {
 			// Set active state to false
 			offCanvas[ id ].active = false;
 			
@@ -231,6 +231,8 @@ var slidebars = function () {
 				// Off animation completion
 				animationProperties.elements.off( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend' );
 			} );
+		} else if ( typeof id !== 'undefined' ) {
+			throw "Error trying to close Slidebar, there is no Slidebar with ID '" + id + "'.";
 		}
 	};
 	
