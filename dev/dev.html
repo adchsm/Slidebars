@@ -85,7 +85,9 @@
 				} );
 				
 				$( '#close-top' ).on( 'click', function () {
-					controller.close( 'off-canvas-5' );
+					controller.close( 'off-canvas-5', function () {
+						console.log( 'Callback function on close' );
+					} );
 				} );
 				
 				$( '#close-any' ).on( 'click', function () {

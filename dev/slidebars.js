@@ -107,47 +107,38 @@ var slidebars = function () {
 	};
 	
 	/**
-	 * Animation
+	 * Get Animation Properties
 	 */
 	
-	this.animate = function ( id, callback ) {
-		// Cache elements to animate by animation style
-		var elements = $();
-		
-		if ( offCanvas[ id ].style === 'reveal' || offCanvas[ id ].style === 'push' ) {
-			elements = elements.add( canvas );
-		}
-		
-		if ( offCanvas[ id ].style === 'push' || offCanvas[ id ].style === 'overlay' ) {
-			elements = elements.add( offCanvas[ id ].element );
-		}
-		
-		// Calculate amount
-		var amount;
-		
-		if ( offCanvas[ id ].active === true ) {
-			if ( offCanvas[ id ].side === 'top' ) {
-				amount = '0px, ' + offCanvas[ id ].element.css( 'height' );
-			} else if ( offCanvas[ id ].side === 'right' ) {
-				amount = '-' + offCanvas[ id ].element.css( 'width' ) + ', 0px';
-			} else if ( offCanvas[ id ].side === 'bottom' ) {
-				amount = '0px, -' + offCanvas[ id ].element.css( 'height' );
-			} else if ( offCanvas[ id ].side === 'left' ) {
-				amount = offCanvas[ id ].element.css( 'width' ) + ', 0px';
-			}
-		} else {			
+	var getAnimationProperties = function ( id ) {		
+		if ( id in offCanvas ) {
+			// Set variables
+			var elements = $(),
 			amount = '0px, 0px';
-		}
-		
-		// Apply CSS
-		elements.css( 'transform', 'translate(' + amount + ')' );
-		
-		// Run callback
-		if ( typeof callback === 'function' ) {
-			elements.on( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
-				callback();
-				elements.off( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend' );
-			} );
+			
+			// Elements to animate
+			if ( offCanvas[ id ].style === 'reveal' || offCanvas[ id ].style === 'push' ) {
+				elements = elements.add( canvas );
+			}
+			
+			if ( offCanvas[ id ].style === 'push' || offCanvas[ id ].style === 'overlay' ) {
+				elements = elements.add( offCanvas[ id ].element );
+			}
+			
+			// Amount to animate
+			if ( offCanvas[ id ].active ) {
+				if ( offCanvas[ id ].side === 'top' ) {
+					amount = '0px, ' + offCanvas[ id ].element.css( 'height' );
+				} else if ( offCanvas[ id ].side === 'right' ) {
+					amount = '-' + offCanvas[ id ].element.css( 'width' ) + ', 0px';
+				} else if ( offCanvas[ id ].side === 'bottom' ) {
+					amount = '0px, -' + offCanvas[ id ].element.css( 'height' );
+				} else if ( offCanvas[ id ].side === 'left' ) {
+					amount = offCanvas[ id ].element.css( 'width' ) + ', 0px';
+				}
+			}
+			
+			return { 'elements': elements, 'amount': amount };
 		}
 	};
 	
@@ -163,7 +154,7 @@ var slidebars = function () {
 				this.close();
 			} 
 			
-			// Set active to true
+			// Set active state to true
 			offCanvas[ id ].active = true;
 			
 			// Display the Slidebar
@@ -173,17 +164,27 @@ var slidebars = function () {
 			this.events.trigger( 'opening-' + offCanvas[ id ].id );
 			var eventCallback = this.events;
 			
-			// Animate
-			this.animate( id, function () {
+			// Get animation properties
+			var animationProperties = getAnimationProperties( id );
+			
+			// Apply CSS
+			animationProperties.elements.css( 'transform', 'translate(' + animationProperties.amount + ')' );
+			
+			// On animation completion
+			animationProperties.elements.on( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
+				// Trigger event
 				eventCallback.trigger( 'opened-' + offCanvas[ id ].id );
+				
+				// Run Callback
+				if ( typeof callback === 'function' ) {
+					callback();
+				}
+				
+				// Off animation completion
+				animationProperties.elements.off( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend' );
 			} );
 		} else {
 			throw "Error trying to open Slidebar, there is no Slidebar with ID '" + id + "'.";
-		}
-		
-		// Run callback
-		if ( typeof callback === 'function' ) {
-			callback();
 		}
 	};
 	
@@ -204,26 +205,32 @@ var slidebars = function () {
 		
 		// Close the Slidebar
 		if ( typeof id !== 'undefined' && id in offCanvas && offCanvas[ id ].active === true ) {
-			// Set active to false
+			// Set active state to false
 			offCanvas[ id ].active = false;
 			
 			// Trigger event
 			this.events.trigger( 'closing-' + offCanvas[ id ].id );
 			var eventCallback = this.events;
 			
-			// Animate
-			this.animate( id, 'close', function () {
-				// Hide the Slidebar
-				offCanvas[ id ].element.css( 'display', 'hidden' );
-				
+			// Get animation properties
+			var animationProperties = getAnimationProperties( id );
+			
+			// Apply CSS
+			animationProperties.elements.css( 'transform', 'translate(' + animationProperties.amount + ')' );
+			
+			// On animation completion
+			animationProperties.elements.on( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function () {
 				// Trigger event
 				eventCallback.trigger( 'closed-' + offCanvas[ id ].id );
+				
+				// Run Callback
+				if ( typeof callback === 'function' ) {
+					callback();
+				}
+				
+				// Off animation completion
+				animationProperties.elements.off( 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend' );
 			} );
-		}
-		
-		// Run callback
-		if ( typeof callback === 'function' ) {
-			callback();
 		}
 	};
 	
