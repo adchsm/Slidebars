@@ -263,16 +263,37 @@ var slidebars = function () {
 	};
 	
 	/**
-	 * Status
+	 * State
 	 */
 	 
 	this.active = function ( id, callback ) {
-		// Check to see if the Slidebar exists
-		if ( id in offCanvas ) {
-			// Return it's status
-			return offCanvas[ id ].active;
+		// If no id is passed check through all
+		if ( typeof id === 'undefined' ) {
+			// Active variable
+			var active = false;
+			
+			// Loop through Slidebars
+			for ( var key in offCanvas ) {
+				// Check Slidebar has the correct id
+				if ( offCanvas.hasOwnProperty( key ) ) {
+					if ( offCanvas[ key ].active ) {
+						// If is active return the id
+						active = offCanvas[ key ].id;
+						break;
+					}
+				}
+			}
+			
+			// Return active
+			return active;
 		} else {
-			throw "Error retrieving status of Slidebar, there is no Slidebar with ID '" + id + "'.";
+			// Check to see if the Slidebar exists
+			if ( id in offCanvas ) {
+				// Return it's state
+				return offCanvas[ id ].active;
+			} else {
+				throw "Error retrieving state of Slidebar, there is no Slidebar with ID '" + id + "'.";
+			}
 		}
 		
 		// Run callback

@@ -17,6 +17,8 @@
 			<button id="close-top">Close top</button>
 			<button id="close-any">Close any</button>
 			<button id="destroy">Destroy</button>
+			<button id="check-top">Check top</button>
+			<button id="check-any">Check any</button>
 		</div>
 		
 		<div canvas>
@@ -88,6 +90,14 @@
 				
 				$( '#close-any' ).on( 'click', function () {
 					controller.close();
+				} );
+				
+				$( '#check-top' ).on( 'click', function () {
+					console.log ( controller.active( 'off-canvas-5' ) );
+				} );
+				
+				$( '#check-any' ).on( 'click', function () {
+					console.log( controller.active() );
 				} );
 				
 				// Test events
