@@ -245,15 +245,20 @@ var slidebars = function () {
 			// Check its status
 			if ( offCanvas[ id ].active ) {
 				// It's open, close it
-				this.close( id );
+				this.close( id, function () {
+					// Run callback
+					if ( typeof callback === 'function' ) {
+						callback();
+					}
+				} );
 			} else {
 				// It's closed, open it
-				this.open( id );
-			}
-			
-			// Run callback
-			if ( typeof callback === 'function' ) {
-				callback();
+				this.open( id, function () {
+					// Run callback
+					if ( typeof callback === 'function' ) {
+						callback();
+					}
+				} );
 			}
 		} else {
 			throw "Error trying to toggle Slidebar, there is no Slidebar with ID '" + id + "'.";
