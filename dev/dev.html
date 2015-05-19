@@ -27,7 +27,7 @@
 		<div off-canvas="off-canvas-1 top reveal">
 		</div>
 		
-		<div off-canvas="off-canvas-2 right push">
+		<div id="right-slidebar" off-canvas="off-canvas-2 right push">
 		</div>
 		
 		<div off-canvas="off-canvas-3 bottom overlay">
@@ -109,6 +109,14 @@
 				
 				controller.events.on( 'opened-off-canvas-5', function () {
 					console.log( 'Opened top' );
+				} );
+				
+				$( '#right-slidebar' ).on( 'opening', function () {
+					console.log( 'The right Slidebar is opening.' );
+				} );
+				
+				$( '#right-slidebar' ).on( 'opened', function () {
+					console.log( 'The right Slidebar has opened.' );
 				} );
 			} ) ( jQuery );
 		</script>

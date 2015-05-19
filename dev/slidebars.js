@@ -179,6 +179,7 @@ var slidebars = function () {
 				
 				// Trigger event
 				events.trigger( 'opening-' + offCanvas[ id ].id );
+				offCanvas[ id ].element.trigger( 'opening' );
 				
 				// Get animation properties
 				var animationProperties = getAnimationProperties( id );
@@ -190,6 +191,7 @@ var slidebars = function () {
 				animationProperties.elements.on( endTransitions, function () {
 					// Trigger event
 					events.trigger( 'opened-' + offCanvas[ id ].id );
+					offCanvas[ id ].element.trigger( 'opened' );
 					
 					// Run callback
 					if ( typeof callback === 'function' ) {
@@ -245,6 +247,7 @@ var slidebars = function () {
 				
 				// Trigger event
 				events.trigger( 'closing-' + offCanvas[ id ].id );
+				offCanvas[ id ].element.trigger( 'closing' );
 				
 				// Get animation properties
 				var animationProperties = getAnimationProperties( id );
@@ -259,6 +262,7 @@ var slidebars = function () {
 					
 					// Trigger event
 					events.trigger( 'closed-' + offCanvas[ id ].id );
+					offCanvas[ id ].element.trigger( 'closed' );
 					
 					// Run callback
 					if ( typeof callback === 'function' ) {
