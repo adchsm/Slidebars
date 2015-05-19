@@ -21,9 +21,9 @@ html, body, [canvas*=container], [off-canvas] {
 }
 
 html, body {
-	overflow-x: hidden;
 	width: 100%;
-	min-height: 100%;
+	height: 100%;
+	overflow: hidden;
 }
 
 /**
@@ -31,11 +31,13 @@ html, body {
  */
 
 [canvas*=container] {
-	background-color: white;
-	min-height: 100vh;
-	position: relative;
 	width: 100%;
+	height: 100%;
+	overflow-y: auto;
+	position: relative;
 	z-index: 1;
+	background-color: white; /* Basic background color, overwrite this in your own css. */
+	-webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS devices, may be removed by setting to 'auto' in your own CSS. */
 }
 
 [canvas*=container]:before, [canvas*=container]:after {
@@ -49,21 +51,24 @@ html, body {
  */
 
 [off-canvas] {
-	background-color: black;
 	display: none;
 	position: fixed;
-	-webkit-overflow-scrolling: touch;
+	overflow: hidden;
+	background-color: black;  /* Basic background color, overwrite this in your own css. */
+	-webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS devices, may be removed by setting to 'auto' in your own CSS. */
 }
 
 [off-canvas*=top] {
 	width: 100%;
 	height: 255px;
+	overflow-x: auto;
 	top: 0;
 }
 
 [off-canvas*=right] {
 	width: 255px;
 	height: 100%;
+	overflow-y: auto;
 	top: 0;
 	right: 0;
 }
@@ -71,12 +76,14 @@ html, body {
 [off-canvas*=bottom] {
 	width: 100%;
 	height: 255px;
+	overflow-x: auto;
 	bottom: 0;
 }
 
 [off-canvas*=left] {
 	width: 255px;
 	height: 100%;
+	overflow-y: auto;
 	top: 0;
 	left: 0;
 }
@@ -105,8 +112,9 @@ html, body {
 	-webkit-transition: -webkit-transform 300ms ease;
 	   -moz-transition:    -moz-transform 300ms ease;
 	     -o-transition:      -o-transform 300ms ease;
-	        transition:         transform 300ms ease;
-	-webkit-backface-visibility: hidden;
+	        transition:         transform 300ms ease; /* Animation duration and timing function may be overwritten in your own CSS. */
+	-webkit-backface-visibility: hidden; /* Prevents flickering but may be removed if your having problems with fixed background images in Chrome. */
+	
 }
 
 /**
@@ -115,13 +123,13 @@ html, body {
 
 @media print {
 	[canvas] {
-		-webkit-transform: translate( 0px );
-		   -moz-transform: translate( 0px );
-		     -o-transform: translate( 0px );
-		        transform: translate( 0px );
+		-webkit-transform: translate( 0px, 0px ) !important;
+		   -moz-transform: translate( 0px, 0px ) !important;
+		     -o-transform: translate( 0px, 0px ) !important;
+		        transform: translate( 0px, 0px ) !important;
 	}
 	
 	[off-canvas] {
-		display: none;
+		display: none !important;
 	}
 }

@@ -86,36 +86,34 @@ var slidebars = function () {
 	 */
 	
 	var getAnimationProperties = function ( id ) {		
-		if ( id in offCanvas ) {
-			// Set variables
-			var elements = $(),
-			amount = '0px, 0px';
-			
-			// Elements to animate
-			if ( offCanvas[ id ].style === 'reveal' || offCanvas[ id ].style === 'push' ) {
-				elements = elements.add( canvas );
-			}
-			
-			if ( offCanvas[ id ].style === 'push' || offCanvas[ id ].style === 'overlay' ) {
-				elements = elements.add( offCanvas[ id ].element );
-			}
-			
-			// Amount to animate
-			if ( offCanvas[ id ].active ) {
-				if ( offCanvas[ id ].side === 'top' ) {
-					amount = '0px, ' + offCanvas[ id ].element.css( 'height' );
-				} else if ( offCanvas[ id ].side === 'right' ) {
-					amount = '-' + offCanvas[ id ].element.css( 'width' ) + ', 0px';
-				} else if ( offCanvas[ id ].side === 'bottom' ) {
-					amount = '0px, -' + offCanvas[ id ].element.css( 'height' );
-				} else if ( offCanvas[ id ].side === 'left' ) {
-					amount = offCanvas[ id ].element.css( 'width' ) + ', 0px';
-				}
-			}
-			
-			// Return animation properties
-			return { 'elements': elements, 'amount': amount };
+		// Set variables
+		var elements = $(),
+		amount = '0px, 0px';
+		
+		// Elements to animate
+		if ( offCanvas[ id ].style === 'reveal' || offCanvas[ id ].style === 'push' ) {
+			elements = elements.add( canvas );
 		}
+		
+		if ( offCanvas[ id ].style === 'push' || offCanvas[ id ].style === 'overlay' ) {
+			elements = elements.add( offCanvas[ id ].element );
+		}
+		
+		// Amount to animate
+		if ( offCanvas[ id ].active ) {
+			if ( offCanvas[ id ].side === 'top' ) {
+				amount = '0px, ' + offCanvas[ id ].element.css( 'height' );
+			} else if ( offCanvas[ id ].side === 'right' ) {
+				amount = '-' + offCanvas[ id ].element.css( 'width' ) + ', 0px';
+			} else if ( offCanvas[ id ].side === 'bottom' ) {
+				amount = '0px, -' + offCanvas[ id ].element.css( 'height' );
+			} else if ( offCanvas[ id ].side === 'left' ) {
+				amount = offCanvas[ id ].element.css( 'width' ) + ', 0px';
+			}
+		}
+		
+		// Return animation properties
+		return { 'elements': elements, 'amount': amount };
 	};
 	
 	/**
@@ -193,7 +191,7 @@ var slidebars = function () {
 						// Trigger event
 						events.trigger( 'opened-' + offCanvas[ id ].id );
 						
-						// Run Callback
+						// Run callback
 						if ( typeof callback === 'function' ) {
 							callback();
 						}
@@ -222,13 +220,13 @@ var slidebars = function () {
 	this.close = function ( id, callback ) {
 		// Slidebars has been initialized
 		if ( init ) {
-			// If no id was passed, close any Slidebar
+			// If no id was passed, check to see if any Slidebar is open
 			if ( ! id ) {
 				// Loop through Slidebars to find active one
 				for ( var key in offCanvas ) {
 					// Check Slidebar has the correct id
 					if ( offCanvas.hasOwnProperty( key ) ) {
-						// If its active, set id to close
+						// If it's active, set id
 						if ( offCanvas[ key ].active === true ) {
 							id = key;
 						}
@@ -260,7 +258,7 @@ var slidebars = function () {
 						// Trigger event
 						events.trigger( 'closed-' + offCanvas[ id ].id );
 						
-						// Run Callback
+						// Run callback
 						if ( typeof callback === 'function' ) {
 							callback();
 						}
@@ -315,7 +313,7 @@ var slidebars = function () {
 	this.active = function ( id, callback ) {
 		// Slidebars has been initialized
 		if ( init ) {
-			// If no id is passed check through all
+			// If no id is passed, check to see if any Slidebar is active
 			if ( ! id ) {
 				// Active variable
 				var active = false;
@@ -418,7 +416,7 @@ var slidebars = function () {
 					}
 				};
 				
-				// Destroy the Slidebar, but close first if active
+				// Call to destroy the Slidebar, close if the Slidebars is open first
 				if ( offCanvas[ id ].active === true ) {
 					this.close( id, function () {
 						destroy();
@@ -442,5 +440,5 @@ var slidebars = function () {
 	this.events = $( this );
 	
 	// Private
-	var events = this.events; 
+	var events = this.events;
 };
