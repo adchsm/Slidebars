@@ -148,7 +148,7 @@ var slidebars = function () {
 		}
 		
 		// Trigger event
-		events.trigger( 'css-reset' );
+		events.trigger( 'css' );
 		
 		// Run callback
 		if ( typeof callback === 'function' ) {
