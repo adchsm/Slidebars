@@ -14,9 +14,8 @@ var slidebars = function () {
 	 * Setup
 	 */
 	
-	// Cache all canvas elements and container
+	// Cache all canvas elements
 	var canvas = $( '[canvas]' ),
-	canvasContainer = $( '[canvas="container"]' ),
 	
 	// Instances of Slidebars
 	offCanvas = {},
@@ -50,7 +49,7 @@ var slidebars = function () {
 		init = true;
 		
 		// Set CSS
-		this.css();
+		this.setCSS();
 		
 		// Trigger event
 		events.trigger( 'init' );
@@ -117,14 +116,13 @@ var slidebars = function () {
 	};
 	
 	/**
-	 * CSS
+	 * Set CSS
 	 */
 	
-	this.css = function ( callback ) {
+	this.setCSS = function ( callback ) {
 		// Check Slidebars has been initialized
 		if ( ! init ) {
 			throw 'You need to initialize Slidebars first.';
-			return;
 		}
 		
 		// Loop through Slidebars to set negative margins
@@ -135,9 +133,9 @@ var slidebars = function () {
 				var offset;
 				
 				if ( offCanvas[ key ].side === 'top' || offCanvas[ key ].side === 'bottom' ) {
-					offset =  offCanvas[ key ].element.css( 'height' );
+					offset = offCanvas[ key ].element.css( 'height' );
 				} else {
-					offset =  offCanvas[ key ].element.css( 'width' );
+					offset = offCanvas[ key ].element.css( 'width' );
 				}
 				
 				// Push and overlay style
@@ -148,7 +146,7 @@ var slidebars = function () {
 		}
 		
 		// Trigger event
-		events.trigger( 'css' );
+		events.trigger( 'set-css' );
 		
 		// Run callback
 		if ( typeof callback === 'function' ) {
@@ -164,7 +162,6 @@ var slidebars = function () {
 		// Check Slidebars has been initialized
 		if ( ! init ) {
 			throw 'You need to initialize Slidebars first.';
-			return;
 		}
 		
 		// Check to see if the Slidebar exists
@@ -219,7 +216,6 @@ var slidebars = function () {
 		// Check Slidebars has been initialized
 		if ( ! init ) {
 			throw 'You need to initialize Slidebars first.';
-			return;
 		}
 		
 		// If no id was passed, check to see if any Slidebar is open
@@ -278,7 +274,6 @@ var slidebars = function () {
 		// Check Slidebars has been initialized
 		if ( ! init ) {
 			throw 'You need to initialize Slidebars first.';
-			return;
 		}
 		
 		// Check to see if the Slidebar exists
@@ -314,7 +309,6 @@ var slidebars = function () {
 		// Check Slidebars has been initialized
 		if ( ! init ) {
 			throw 'You need to initialize Slidebars first.';
-			return;
 		}
 		
 		// If no id is passed, check to see if any Slidebar is active
@@ -360,7 +354,6 @@ var slidebars = function () {
 		// Check Slidebars has been initialized
 		if ( ! init ) {
 			throw 'You need to initialize Slidebars first.';
-			return;
 		}
 		
 		// Make sure a valid id, side and style are specified
@@ -379,7 +372,7 @@ var slidebars = function () {
 				registerSlidebar( id, side, style, $( '#' + id ) );
 				
 				// Reset CSS
-				this.css();
+				this.setCSS();
 				
 				// Trigger event
 				events.trigger( 'created-' + offCanvas[ id ].id );
@@ -400,7 +393,6 @@ var slidebars = function () {
 		// Check Slidebars has been initialized
 		if ( ! init ) {
 			throw 'You need to initialize Slidebars first.';
-			return;
 		}
 		
 		// Check to see if the Slidebar exists
