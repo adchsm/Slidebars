@@ -1,6 +1,6 @@
 /*!
  * Slidebars - A jQuery framework for off-canvas menus and sidebars.
- * Version: 2.0 Beta 3
+ * Version: 2.0 Beta 4
  * Url: http://plugins.adchsm.me/slidebars/
  * Author: Adam Charles Smith
  * Author url: http://www.adchsm.me/
@@ -100,7 +100,7 @@ var slidebars = function () {
 		this.css();
 		
 		// Trigger event
-		$( document ).trigger( 'slidebars-init' );
+		$( events ).trigger( 'init' );
 		
 		// Run callback
 		if ( typeof callback === 'function' ) {
@@ -139,7 +139,7 @@ var slidebars = function () {
 		}
 		
 		// Trigger event
-		$( document ).trigger( 'slidebars-css' );
+		$( events ).trigger( 'css' );
 		
 		// Run callback
 		if ( typeof callback === 'function' ) {
@@ -171,7 +171,7 @@ var slidebars = function () {
 			offCanvas[ id ].element.css( 'display', 'block' );
 			
 			// Trigger event
-			$( document ).trigger( 'slidebar-opening', [ offCanvas[ id ].id ] );
+			$( events ).trigger( 'opening', [ offCanvas[ id ].id ] );
 			
 			// Get animation properties
 			var animationProperties = getAnimationProperties( id );
@@ -182,7 +182,7 @@ var slidebars = function () {
 			// On animation completion
 			animationProperties.elements.on( endTransitions, function () {
 				// Trigger event
-				$( document ).trigger( 'slidebar-opened', [ offCanvas[ id ].id ] );
+				$( events ).trigger( 'opened', [ offCanvas[ id ].id ] );
 				
 				// Run callback
 				if ( typeof callback === 'function' ) {
@@ -238,7 +238,7 @@ var slidebars = function () {
 				offCanvas[ id ].active = false;
 				
 				// Trigger event
-				$( document ).trigger( 'slidebar-closing', [ offCanvas[ id ].id ] );
+				$( events ).trigger( 'closing', [ offCanvas[ id ].id ] );
 				
 				// Get animation properties
 				var animationProperties = getAnimationProperties( id );
@@ -252,7 +252,7 @@ var slidebars = function () {
 					offCanvas[ id ].element.css( 'display', 'none' );
 					
 					// Trigger event
-					$( document ).trigger( 'slidebar-closed', [ offCanvas[ id ].id ] );
+					$( events ).trigger( 'closed', [ offCanvas[ id ].id ] );
 					
 					// Run callback
 					if ( typeof callback === 'function' ) {
@@ -374,7 +374,7 @@ var slidebars = function () {
 			this.css();
 			
 			// Trigger event
-			$( document ).trigger( 'slidebar-created', [ offCanvas[ id ].id ] );
+			$( events ).trigger( 'created', [ offCanvas[ id ].id ] );
 			
 			// Run callback
 			if ( typeof callback === 'function' ) {
@@ -399,7 +399,7 @@ var slidebars = function () {
 		// Destruction
 		var destroy = function () {
 			// Trigger event
-			$( document ).trigger( 'slidebar-destroyed', [ offCanvas[ id ].id ] );
+			$( events ).trigger( 'destroyed', [ offCanvas[ id ].id ] );
 			
 			// Remove the element
 			offCanvas[ id ].element.remove();
@@ -423,4 +423,14 @@ var slidebars = function () {
 			destroy();
 		}
 	};
+	
+	/**
+	 * Events
+	 */
+	
+	// Public
+	this.events = {};
+	
+	// Private
+	var events = this.events;
 };

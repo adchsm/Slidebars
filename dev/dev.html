@@ -43,11 +43,11 @@
 				var controller = new slidebars();
 				
 				// Test events
-				$( document ).on( 'slidebars-init', function () {
+				$( controller.events ).on( 'init', function () {
 					console.log( 'Slidebars initialized' );
 				} );
 				
-				$( document ).on( 'slidebar-opening', function ( event, id ) {
+				$( controller.events ).on( 'opening', function ( event, id ) {
 					console.log( 'Opening a Slidebar' );
 					
 					if ( id ) {
@@ -57,11 +57,6 @@
 					if ( id === 'off-canvas-5' ) {
 						console.log( 'Opening top' );
 					}
-				} );
-				
-				// Pure JS
-				document.addEventListener( 'slidebars-init', function () {
-					console.log( 'Init event heard.' );
 				} );
 				
 				// Initialize Slidebars
