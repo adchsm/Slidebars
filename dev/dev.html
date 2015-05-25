@@ -43,8 +43,25 @@
 				var controller = new slidebars();
 				
 				// Test events
-				controller.events.on( 'init', function () {
+				$( document ).on( 'slidebars-init', function () {
 					console.log( 'Slidebars initialized' );
+				} );
+				
+				$( document ).on( 'slidebar-opening', function ( event, id ) {
+					console.log( 'Opening a Slidebar' );
+					
+					if ( id ) {
+						console.log( id );
+					}
+					
+					if ( id === 'off-canvas-5' ) {
+						console.log( 'Opening top' );
+					}
+				} );
+				
+				// Pure JS
+				document.addEventListener( 'slidebars-init', function () {
+					console.log( 'Init event heard.' );
 				} );
 				
 				// Initialize Slidebars
@@ -100,23 +117,6 @@
 				
 				$( '#check-any' ).on( 'click', function () {
 					console.log( controller.active() );
-				} );
-				
-				// Test events
-				controller.events.on( 'opening-off-canvas-5', function () {
-					console.log( 'Opening top' );
-				} );
-				
-				controller.events.on( 'opened-off-canvas-5', function () {
-					console.log( 'Opened top' );
-				} );
-				
-				$( '#right-slidebar' ).on( 'opening', function () {
-					console.log( 'The right Slidebar is opening.' );
-				} );
-				
-				$( '#right-slidebar' ).on( 'opened', function () {
-					console.log( 'The right Slidebar has opened.' );
 				} );
 			} ) ( jQuery );
 		</script>
