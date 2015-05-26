@@ -19,6 +19,8 @@
 			<button id="destroy-top">Destroy top</button>
 			<button id="check-top">Check top</button>
 			<button id="check-any">Check any</button>
+			<button id="exit">Exit</button>
+			<button id="init">Init</button>
 		</div>
 		
 		<div canvas>
@@ -71,13 +73,10 @@
 				
 				// Destroy a Slidebar
 				$( '#destroy-top' ).on( 'click', function () {
-					controller.destroy( 'off-canvas-5', function () {
+					controller.destroy( 'off-canvas-1', function () {
 						alert( 'Boom!' );
 					} );
 				} );
-				
-				// Check to see if a Slidebar is active
-				console.log( controller.active( 'off-canvas-5' ) );
 				
 				// Open Slidebars
 				$( '#open-top' ).on( 'click', function () {
@@ -111,7 +110,17 @@
 				} );
 				
 				$( '#check-any' ).on( 'click', function () {
-					console.log( controller.active() );
+					console.log( controller.active( 'slidebar' ) );
+				} );
+				
+				$( '#exit' ).on( 'click', function () {
+					controller.exit( function () {
+						alert( 'Bye' );
+					} );
+				} );
+				
+				$( '#init' ).on( 'click', function () {
+					controller.init();
 				} );
 			} ) ( jQuery );
 		</script>

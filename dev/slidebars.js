@@ -22,6 +22,7 @@ var slidebars = function () {
 	
 	// Variables, permitted sides, styles and transitions
 	initialized = false,
+	registered = false,
 	sides = [ 'top', 'right', 'bottom', 'left' ],
 	styles = [ 'reveal', 'push', 'overlay' ],
 	endTransitions = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend',
@@ -75,23 +76,33 @@ var slidebars = function () {
 	};
 	
 	/**
-	 * Initiation
+	 * Initialize
 	 */
 	
 	this.init = function ( callback ) {
+		// Check Slidebars hasn't been initialized
+		if ( initialized ) {
+			throw 'You have already initialized Slidebars.';
+		}
+		
 		// Loop through and register Slidebars
-		$( '[off-canvas]' ).each( function () {
-			// Get the Slidebar parameters
-			var parameters = $( this ).attr( 'off-canvas' ).split( ' ', 3 );
+		if ( ! registered ) {
+			$( '[off-canvas]' ).each( function () {
+				// Get the Slidebar parameters
+				var parameters = $( this ).attr( 'off-canvas' ).split( ' ', 3 );
+				
+				// Make sure a valid id, side and style are specified
+				if ( parameters[ 0 ] && sides.indexOf( parameters[ 1 ] ) !== -1 && styles.indexOf( parameters[ 2 ] ) !== -1 ) {
+					// Register Slidebar
+					registerSlidebar( parameters[ 0 ], parameters[ 1 ], parameters[ 2 ], $( this ) );
+				} else {
+					throw "Error attempting to register Slidebar, please specifiy a valid space separated 'id side style'.";
+				}
+			} );
 			
-			// Make sure a valid id, side and style are specified
-			if ( parameters[ 0 ] && sides.indexOf( parameters[ 1 ] ) !== -1 && styles.indexOf( parameters[ 2 ] ) !== -1 ) {
-				// Register Slidebar
-				registerSlidebar( parameters[ 0 ], parameters[ 1 ], parameters[ 2 ], $( this ) );
-			} else {
-				throw "Error attempting to register Slidebar, please specifiy a valid space separated 'id side style'.";
-			}
-		} );
+			// Set registered variable
+			registered = true;
+		}
 		
 		// Set init variable
 		initialized = true;
@@ -105,6 +116,34 @@ var slidebars = function () {
 		// Run callback
 		if ( typeof callback === 'function' ) {
 			callback();
+		}
+	};
+	
+	this.exit = function ( callback ) {
+		// Check Slidebars has been initialized
+		if ( ! initialized ) {
+			throw 'You need to initialize Slidebars first.';
+		}
+		
+		// Exit
+		var exit = function () {
+			// Set init variable
+			initialized = false;
+			
+			// Trigger event
+			$( events ).trigger( 'exit' );
+			
+			// Run callback
+			if ( typeof callback === 'function' ) {
+				callback();
+			}
+		};
+		
+		// Call exit, close open Slidebar if active
+		if ( this.active( 'slidebar' ) ) {
+			this.close( this.active( 'slidebar' ), exit );
+		} else {
+			exit();
 		}
 	};
 	
@@ -139,8 +178,8 @@ var slidebars = function () {
 		}
 		
 		// Reposition open Slidebars
-		if ( this.active() ) {
-			this.open( this.active() );
+		if ( this.active( 'slidebar' ) ) {
+			this.open( this.active( 'slidebar' ) );
 		}
 		
 		// Trigger event
@@ -204,12 +243,10 @@ var slidebars = function () {
 			} );
 		};
 		
-		// Call to open Slidebar, close any open Slidebars first ( except for current id )
-		if ( this.active() && this.active() !== id ) {
+		// Call open, close open Slidebar if active
+		if ( this.active( 'slidebar' ) && this.active( 'slidebar' ) !== id ) {
 			// Open on callback
-			this.close( this.active(), function () {
-				open();
-			} );
+			this.close( this.active( 'slidebar' ), open );
 		} else {
 			open();
 		}
@@ -282,6 +319,11 @@ var slidebars = function () {
 			throw 'You need to initialize Slidebars first.';
 		}
 		
+		// If no id was passed, throw error
+		if ( ! id ) {
+			throw "Error trying to toggle Slidebar, you must specify an ID.";
+		}
+		
 		// Check to see if the Slidebar exists
 		if ( ! offCanvas.hasOwnProperty( id ) ) {
 			throw "Error trying to toggle Slidebar, there is no Slidebar with ID '" + id + "'.";
@@ -311,36 +353,55 @@ var slidebars = function () {
 	 * State
 	 */
 	 
-	this.active = function ( id, callback ) {
-		// Check Slidebars has been initialized
-		if ( ! initialized ) {
-			throw 'You need to initialize Slidebars first.';
+	this.active = function ( query, callback ) {
+		// Check query is set
+		if ( ! query ) {
+			throw 'You need to specify a query.';
 		}
 		
 		// Variable to return
 		var active = false;
 		
-		// If no id is passed, check to see if any Slidebar is active
-		if ( ! id ) {
+		// Check Slidebars
+		if ( query === 'init' ) {
+			active = initialized;
+		}
+		
+		// Check all
+		if ( query === 'slidebar' ) {
+			// Check Slidebars has been initialized
+			if ( ! initialized ) {
+				throw 'You need to initialize Slidebars first.';
+			}
+			
 			// Loop through Slidebars
-			for ( var key in offCanvas ) {
+			for ( var id in offCanvas ) {
 				// Check Slidebar has the correct id
-				if ( offCanvas.hasOwnProperty( key ) ) {
-					if ( offCanvas[ key ].active ) {
+				if ( offCanvas.hasOwnProperty( id ) ) {
+					// Check if it's active
+					if ( offCanvas[ id ].active ) {
 						// Set the active id
-						active = offCanvas[ key ].id;
+						active = offCanvas[ id ].id;
 						break;
 					}
 				}
 			}
-		} else {
+		}
+		
+		// Check id
+		if ( query && query !== 'slidebar' ) {
+			// Check Slidebars has been initialized
+			if ( ! initialized ) {
+				throw 'You need to initialize Slidebars first.';
+			}
+			
 			// Check to see if the Slidebar exists
-			if ( ! offCanvas.hasOwnProperty( id ) ) {
-				throw "Error retrieving state of Slidebar, there is no Slidebar with ID '" + id + "'.";
+			if ( ! offCanvas.hasOwnProperty( query ) ) {
+				throw "Error retrieving state of Slidebar, there is no Slidebar with ID '" + query + "'.";
 			}
 			
 			// Set the active state
-			active = offCanvas[ id ].active;
+			active = offCanvas[ query ].active;
 		}
 		
 		// Run callback
@@ -423,12 +484,10 @@ var slidebars = function () {
 			}
 		};
 		
-		// Call to destroy Slidebar, close if the Slidebars is open first
+		// Call destroy, close open Slidebar if active
 		if ( offCanvas[ id ].active === true ) {
 			// Destroy on callback
-			this.close( id, function () {
-				destroy();
-			} );
+			this.close( id, destroy );
 		} else {
 			destroy();
 		}
