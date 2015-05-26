@@ -106,15 +106,10 @@ html, body {
 
 [canvas], [off-canvas] {
 	-webkit-transform: translate( 0px, 0px );
-	   -moz-transform: translate( 0px, 0px );
-	     -o-transform: translate( 0px, 0px );
 	        transform: translate( 0px, 0px );
 	-webkit-transition: -webkit-transform 300ms ease;
-	   -moz-transition:    -moz-transform 300ms ease;
-	     -o-transition:      -o-transform 300ms ease;
 	        transition:         transform 300ms ease; /* Animation duration and timing function may be overwritten in your own CSS. */
 	-webkit-backface-visibility: hidden; /* Prevents flickering but may be removed if your having problems with fixed background images in Chrome. */
-	
 }
 
 /**
@@ -124,8 +119,6 @@ html, body {
 @media print {
 	[canvas] {
 		-webkit-transform: translate( 0px, 0px ) !important;
-		   -moz-transform: translate( 0px, 0px ) !important;
-		     -o-transform: translate( 0px, 0px ) !important;
 		        transform: translate( 0px, 0px ) !important;
 	}
 	

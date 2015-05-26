@@ -138,6 +138,11 @@ var slidebars = function () {
 			}
 		}
 		
+		// Reposition open Slidebars
+		if ( this.active() ) {
+			this.open( this.active() );
+		}
+		
 		// Trigger event
 		$( events ).trigger( 'css' );
 		
@@ -155,6 +160,11 @@ var slidebars = function () {
 		// Check Slidebars has been initialized
 		if ( ! initialized ) {
 			throw 'You need to initialize Slidebars first.';
+		}
+		
+		// If no id was passed, throw error
+		if ( ! id ) {
+			throw "Error trying to open Slidebar, you must specify an ID.";
 		}
 		
 		// Check to see if the Slidebar exists
@@ -307,39 +317,39 @@ var slidebars = function () {
 			throw 'You need to initialize Slidebars first.';
 		}
 		
+		// Variable to return
+		var active = false;
+		
 		// If no id is passed, check to see if any Slidebar is active
 		if ( ! id ) {
-			// Active variable
-			var active = false;
-			
 			// Loop through Slidebars
 			for ( var key in offCanvas ) {
 				// Check Slidebar has the correct id
 				if ( offCanvas.hasOwnProperty( key ) ) {
 					if ( offCanvas[ key ].active ) {
-						// If is active return the id
+						// Set the active id
 						active = offCanvas[ key ].id;
 						break;
 					}
 				}
 			}
-			
-			// Return active
-			return active;
 		} else {
 			// Check to see if the Slidebar exists
 			if ( ! offCanvas.hasOwnProperty( id ) ) {
 				throw "Error retrieving state of Slidebar, there is no Slidebar with ID '" + id + "'.";
 			}
 			
-			// Return it's state
-			return offCanvas[ id ].active;
+			// Set the active state
+			active = offCanvas[ id ].active;
 		}
 		
 		// Run callback
 		if ( typeof callback === 'function' ) {
 			callback();
 		}
+		
+		// Return
+		return active;
 	};
 	
 	/**
