@@ -365,7 +365,7 @@ var slidebars = function () {
 		// Check Slidebars
 		if ( query === 'init' ) {
 			active = initialized;
-		}
+		} else
 		
 		// Check all
 		if ( query === 'slidebar' ) {
@@ -386,10 +386,10 @@ var slidebars = function () {
 					}
 				}
 			}
-		}
+		} else
 		
 		// Check id
-		if ( query && query !== 'slidebar' ) {
+		if ( query ) {
 			// Check Slidebars has been initialized
 			if ( ! initialized ) {
 				throw 'You need to initialize Slidebars first.';
