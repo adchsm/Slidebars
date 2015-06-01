@@ -2,7 +2,7 @@
 	"name": "slidebars",
 	"title": "Slidebars",
 	"description": "A jQuery plugin for quickly and easily implementing mobile app-style revealing menus and sidebars into your website.",
-	"main": "dist/0.10.3/slidebar.js",
+	"main": "dist/0.10.3/slidebars.js",
 	"keywords": [
 		"mobile",
 		"webapp",
@@ -30,6 +30,16 @@
 	"homepage": "http://plugins.adchsm.me/slidebars/",
 	"docs": "http://plugins.adchsm.me/slidebars/usage.php",
 	"download": "http://plugins.adchsm.me/slidebars/index.php#download",
+  "jspm": {
+    "main": "slidebars",
+    "format": "register",
+    "directories": {
+      "lib": "dist/0.10.3"
+    },
+    "dependencies": {
+      "jquery": ">=1.8"
+    },
+  },
 	"dependencies": {
 		"jquery": ">=1.8"
 	}
