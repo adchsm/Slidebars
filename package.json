@@ -1,0 +1,26 @@
+{
+  "name": "Slidebars",
+  "version": "0.10.3",
+  "description": "Slidebars is a jQuery framework for quickly and easily implementing app style off-canvas menus and sidebars into your website.",
+  "main": "slidebar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adchsm/Slidebars"
+  },
+  "keywords": [
+    "slidebars",
+    "jquery"
+  ],
+  "author": "Adam Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adchsm/Slidebars/issues"
+  },
+  "homepage": "https://github.com/adchsm/Slidebars",
+  "dependencies" : {
+    "jquery": ">=1.8"
+  }
+}
