@@ -4,7 +4,7 @@ Slidebars is a jQuery framework for quickly and easily implementing app style of
 
 See the [Slidebars website](http://plugins.adchsm.me/slidebars/) for information on getting started, usage documentation and compatibility tables.
 
-Version 0.10.3 is the last release of Slidebars in its current format. A complete overhaul is now in progress.
+Version 0.10.4 is the last release of Slidebars in its current format. A complete overhaul is now in progress.
 
 ## How to Contribute to Slidebars Using GitHub
 

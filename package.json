@@ -2,7 +2,7 @@
 	"name": "slidebars",
 	"title": "Slidebars",
 	"description": "A jQuery plugin for quickly and easily implementing mobile app-style revealing menus and sidebars into your website.",
-	"main": "dist/0.10.3/slidebars.js",
+	"main": "dist/0.10.4/slidebars.js",
 	"keywords": [
 		"mobile",
 		"webapp",
@@ -15,7 +15,7 @@
 		"panel",
 		"panel-menu"
 	],
-	"version": "0.10.3",
+	"version": "0.10.4",
 	"author": {
 		"name": "Adam Smith",
 		"url": "http://www.adchsm.me/"
@@ -34,7 +34,7 @@
     "main": "slidebars",
     "format": "register",
     "directories": {
-      "lib": "dist/0.10.3"
+      "lib": "dist/0.10.4"
     },
     "dependencies": {
       "jquery": ">=1.8"
