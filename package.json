@@ -2,6 +2,7 @@
 	"name": "slidebars",
 	"title": "Slidebars",
 	"description": "A jQuery plugin for quickly and easily implementing mobile app-style revealing menus and sidebars into your website.",
+	"main": "dist/0.10.3/slidebar.js",
 	"keywords": [
 		"mobile",
 		"webapp",
