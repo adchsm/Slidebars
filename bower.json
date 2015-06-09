@@ -4,9 +4,9 @@
 	"dependencies": {
 		"jquery": ">=1.8"
 	},
-  "main": [
-    "dist/0.10.3/slidebars.js",
-    "dist/0.10.3/slidebars.css"
-  ]
+	"main": [
+		"dist/0.10.3/slidebars.js",
+		"dist/0.10.3/slidebars.css"
+	]
 }
 
