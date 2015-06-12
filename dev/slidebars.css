@@ -3,7 +3,7 @@
  * Version: Development
  * Url: http://plugins.adchsm.me/slidebars/
  * Author: Adam Charles Smith
- * Author url: http://www.adchsm.me/
+ * Author url: http://www.adchsm.com/
  * License: GPL General Pubic License v2.0
  * License url: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -27,15 +27,18 @@ html, body {
 }
 
 /**
- * Canvas Container
+ * Canvas
  */
+
+[canvas] {
+	z-index: 1;
+}
 
 [canvas=container] {
 	width: 100%;
 	height: 100%;
 	overflow-y: auto;
 	position: relative;
-	z-index: 1;
 	background-color: white; /* Basic background color, overwrite this in your own css. */
 	-webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS devices, may be removed by setting to 'auto' in your own CSS. */
 }
@@ -47,13 +50,14 @@ html, body {
 }
 
 /**
- * Off-Canavs Slidebars
+ * Off-Canavs
  */
 
 [off-canvas] {
 	display: none;
 	position: fixed;
 	overflow: hidden;
+	overflow-y: auto;
 	background-color: black;  /* Basic background color, overwrite this in your own css. */
 	-webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS devices, may be removed by setting to 'auto' in your own CSS. */
 }
@@ -61,14 +65,12 @@ html, body {
 [off-canvas*=top] {
 	width: 100%;
 	height: 255px;
-	overflow-x: auto;
 	top: 0;
 }
 
 [off-canvas*=right] {
 	width: 255px;
 	height: 100%;
-	overflow-y: auto;
 	top: 0;
 	right: 0;
 }
@@ -76,14 +78,12 @@ html, body {
 [off-canvas*=bottom] {
 	width: 100%;
 	height: 255px;
-	overflow-x: auto;
 	bottom: 0;
 }
 
 [off-canvas*=left] {
 	width: 255px;
 	height: 100%;
-	overflow-y: auto;
 	top: 0;
 	left: 0;
 }
@@ -108,7 +108,7 @@ html, body {
 	-webkit-transform: translate( 0px, 0px );
 	        transform: translate( 0px, 0px );
 	-webkit-transition: -webkit-transform 300ms ease;
-	        transition:         transform 300ms ease; /* Animation duration and timing function may be overwritten in your own CSS. */
+	        transition:         transform 300ms ease;
 	-webkit-backface-visibility: hidden; /* Prevents flickering but may be removed if your having problems with fixed background images in Chrome. */
 }
 

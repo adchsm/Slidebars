@@ -3,7 +3,7 @@
  * Version: 2.0 Beta 6
  * Url: http://plugins.adchsm.me/slidebars/
  * Author: Adam Charles Smith
- * Author url: http://www.adchsm.me/
+ * Author url: http://www.adchsm.com/
  * License: GPL General Pubic License v2.0
  * License url: http://www.gnu.org/licenses/gpl-2.0.html
  */
