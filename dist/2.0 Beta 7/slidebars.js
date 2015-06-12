@@ -1,6 +1,6 @@
 /*!
  * Slidebars - A jQuery framework for off-canvas menus and sidebars.
- * Version: 2.0 Beta 6
+ * Version: 2.0 Beta 7
  * Url: http://plugins.adchsm.me/slidebars/
  * Author: Adam Charles Smith
  * Author url: http://www.adchsm.com/
@@ -245,7 +245,6 @@ var slidebars = function () {
 		
 		// Call open, close open Slidebar if active
 		if ( this.active( 'slidebar' ) && this.active( 'slidebar' ) !== id ) {
-			// Open on callback
 			this.close( this.active( 'slidebar' ), open );
 		} else {
 			open();
@@ -486,7 +485,6 @@ var slidebars = function () {
 		
 		// Call destroy, close open Slidebar if active
 		if ( offCanvas[ id ].active === true ) {
-			// Destroy on callback
 			this.close( id, destroy );
 		} else {
 			destroy();

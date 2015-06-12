@@ -58,7 +58,8 @@ html, body {
 	position: fixed;
 	overflow: hidden;
 	overflow-y: auto;
-	background-color: black;  /* Basic background color, overwrite this in your own css. */
+	background-color: black;
+	color: white; /* Basic colors, overwrite this in your own css. */
 	-webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS devices, may be removed by setting to 'auto' in your own CSS. */
 }
 
