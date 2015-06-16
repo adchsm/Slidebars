@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Slidebars Examples | Custom Fixed Width</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="libs/bootstrap.min.css">
+		<link rel="stylesheet" href="libs/slidebars.css">
+		<link rel="stylesheet" href="libs/demos.css">
+	</head>
+	
+	<body>
+		<div canvas="container" class="close-any">
+			<!-- Main content -->
+			
+			<h1>Slidebars Examples <small>Custom Fixed Width</small></h1>
+			
+			<p>This example has one Slidebars on the left with pre-defined classes for complete control.</p>
+			
+			<p>The Slidebar has a custom fixed width of 400px.</p>
+			
+			<div class="btn-group">
+				<div class="btn btn-default open-left">Open left</div>
+				<div class="btn btn-default toggle-left">Toggle left</div>
+				<div class="btn btn-default close-left">Close left</div>
+			</div>
+			
+			<div class="btn-group">
+				<div class="btn btn-default close-any">Close any</div>
+			</div>
+		</div>
+		
+		<div class="custom-fixed-width" off-canvas="sb-1 left reveal">
+			<!-- Left Slidebar content -->
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="libs/slidebars.js"></script>
+		<script>
+			( function ( $ ) {
+				$( document ).ready( function () {
+					// Create a new instance of Slidebars
+					var controller = new slidebars();
+					
+					// Initialize Slidebars
+					controller.init();
+					
+					/**
+					 * Control Classes
+					 */
+					
+					// Open left
+					$( '.open-left' ).on( 'click', function ( event ) {
+						// Stop default behaviour and propagation
+						event.preventDefault();
+						event.stopPropagation();
+						
+						// Open Slidebar
+						controller.open( 'sb-1' );
+					} );
+					
+					// Toggle left
+					$( '.toggle-left' ).on( 'click', function ( event ) {
+						// Stop default behaviour and propagation
+						event.preventDefault();
+						event.stopPropagation();
+						
+						// Toggle Slidebar
+						controller.toggle( 'sb-1' );
+					} );
+					
+					// Close left
+					$( '.close-left' ).on( 'click', function ( event ) {
+						// Stop default behaviour and propagation
+						event.preventDefault();
+						event.stopPropagation();
+						
+						// Close Slidebar
+						controller.close( 'sb-1' );
+					} );
+					
+					// Close any
+					$( '.close-any' ).on( 'click', function ( event ) {
+						// Stop default behaviour and propagation
+						event.preventDefault();
+						event.stopPropagation();
+						
+						// Close any Slidebar
+						controller.close();
+					} );
+				} );
+			} ) ( jQuery );
+		</script>
+	</body>
+</html>

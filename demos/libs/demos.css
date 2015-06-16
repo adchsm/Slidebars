@@ -1,0 +1,59 @@
+/**
+ * General Styling
+ */
+
+body {
+	background-color: black;
+}
+
+[canvas=container],
+[off-canvas] {
+	padding: 10px 20px;
+}
+
+/**
+ * Demos
+ */
+
+.custom-fixed-width {
+	width: 400px;
+}
+
+.custom-fluid-width {
+	width: 60%;
+	-webkit-transition-property: width, -webkit-transform;
+	        transition-property: width, transform;
+}
+
+@media ( min-width: 600px ) {
+	.custom-fluid-width {
+		width: 50%;
+	}
+}
+
+@media ( min-width: 900px ) {
+	.custom-fluid-width {
+		width: 40%;
+	}
+}
+
+@media ( min-width: 1200px ) {
+	.custom-fluid-width {
+		width: 30%;
+	}
+}
+
+@media ( min-width: 1500px ) {
+	.custom-fluid-width {
+		width: 20%;
+	}
+}
+
+/**
+ * Bootstrap Hacks
+ */
+
+.btn-group {
+	width: 100%;
+	margin-bottom: 10px;
+}
