@@ -1,6 +1,6 @@
 /*!
  * Slidebars - A jQuery framework for off-canvas menus and sidebars.
- * Version: 2.0 Beta 7
+ * Version: 2.0 Beta 8
  * Url: http://plugins.adchsm.me/slidebars/
  * Author: Adam Charles Smith
  * Author url: http://www.adchsm.com/
@@ -107,6 +107,7 @@ html, body {
 
 [canvas], [off-canvas] {
 	-webkit-transform: translate( 0px, 0px );
+	    -ms-transform: translate( 0px, 0px );
 	        transform: translate( 0px, 0px );
 	-webkit-transition: -webkit-transform 300ms ease;
 	        transition:         transform 300ms ease;
@@ -120,6 +121,7 @@ html, body {
 @media print {
 	[canvas] {
 		-webkit-transform: translate( 0px, 0px ) !important;
+		    -ms-transform: translate( 0px, 0px ) !important;
 		        transform: translate( 0px, 0px ) !important;
 	}
 	
