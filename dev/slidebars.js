@@ -257,6 +257,12 @@ var slidebars = function () {
 			throw 'You need to initialize Slidebars first.';
 		}
 		
+		// Shift callback arguments
+		if ( typeof id === 'function' ) {
+			callback = id;
+			id = null;
+		}
+		
 		// Check to see if the Slidebar exists
 		if ( id && ! offCanvas.hasOwnProperty( id ) ) {
 			throw "Error trying to close Slidebar, there is no Slidebar with ID '" + id + "'.";
@@ -420,6 +426,12 @@ var slidebars = function () {
 		// Check Slidebars has been initialized
 		if ( ! initialized ) {
 			throw 'You need to initialize Slidebars first.';
+		}
+		
+		// Shift callback arguments
+		if ( typeof content === 'function' ) {
+			callback = content;
+			content = null;
 		}
 		
 		// Make sure a valid id, side and style are specified
