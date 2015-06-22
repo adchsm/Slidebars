@@ -31,7 +31,6 @@ var slidebars = function () {
 		// Check to see if the Slidebar already exists
 		if ( offCanvas.hasOwnProperty( id ) ) {
 			throw "Error attempting to register Slidebar, a Slidebar with ID '" + id + "' already exists.";
-			// return false;
 		}
 		
 		// Register the Slidebar
@@ -83,7 +82,6 @@ var slidebars = function () {
 		// Check Slidebars hasn't been initialized
 		if ( initialized ) {
 			throw 'You have already initialized Slidebars.';
-			// return false;
 		}
 		
 		// Loop through and register Slidebars
@@ -124,7 +122,6 @@ var slidebars = function () {
 		// Check Slidebars has been initialized
 		if ( ! initialized ) {
 			throw 'You need to initialize Slidebars first.';
-			// return false;
 		}
 		
 		// Exit
@@ -157,7 +154,6 @@ var slidebars = function () {
 		// Check Slidebars has been initialized
 		if ( ! initialized ) {
 			throw 'You need to initialize Slidebars first.';
-			// return false;
 		}
 		
 		// Loop through Slidebars to set negative margins
@@ -214,11 +210,6 @@ var slidebars = function () {
 			throw "Error trying to open Slidebar, there is no Slidebar with ID '" + id + "'.";
 		}
 		
-		// Minimized
-		/*if ( ! initialized || ! id || ! offCanvas.hasOwnProperty( id ) ) {
-			return false;
-		}*/
-		
 		// Open
 		var open = function () {
 			// Set active state to true
@@ -272,11 +263,6 @@ var slidebars = function () {
 		if ( id && ! offCanvas.hasOwnProperty( id ) ) {
 			throw "Error trying to close Slidebar, there is no Slidebar with ID '" + id + "'.";
 		}
-		
-		// Minimized
-		/*if ( ! initialized || id && ! offCanvas.hasOwnProperty( id ) ) {
-			return false;
-		}*/
 		
 		// If no id was passed, check to see if any Slidebar is open
 		if ( ! id ) {
@@ -339,11 +325,6 @@ var slidebars = function () {
 			throw "Error trying to toggle Slidebar, there is no Slidebar with ID '" + id + "'.";
 		}
 		
-		// Minimized
-		/*if ( ! initialized || ! id || ! offCanvas.hasOwnProperty( id ) ) {
-			return false;
-		}*/
-		
 		// Check its state
 		if ( offCanvas[ id ].active ) {
 			// It's open, close it
@@ -388,7 +369,6 @@ var slidebars = function () {
 			// Check Slidebars has been initialized
 			if ( ! initialized ) {
 				throw 'You need to initialize Slidebars first.';
-				// return false;
 			}
 			
 			// Loop through Slidebars
@@ -410,7 +390,6 @@ var slidebars = function () {
 			// Check Slidebars has been initialized
 			if ( ! initialized ) {
 				throw 'You need to initialize Slidebars first.';
-				// return false;
 			}
 			
 			// Check to see if the Slidebar exists
@@ -447,17 +426,11 @@ var slidebars = function () {
 			throw 'You need to initialize Slidebars first.';
 		}
 		
-		// Minimized
-		/*if ( ! initialized ) {
-			return false;
-		}*/
-		
 		// Make sure a valid id, side and style are specified
 		if ( id && sides.indexOf( side ) !== -1 && styles.indexOf( style ) !== -1 ) {
 			// Check to see if the Slidebar exists
 			if ( offCanvas.hasOwnProperty( id ) ) {
 				throw "Error attempting to create Slidebar, a Slidebar with ID '" + id + "' already exists.";
-				// return false;
 			}
 			
 			// Create new element
@@ -501,11 +474,6 @@ var slidebars = function () {
 		if ( ! offCanvas.hasOwnProperty( id ) ) {
 			throw "Error trying to destroy Slidebar, there is no Slidebar with ID '" + id + "'.";
 		}
-		
-		// Minimized
-		/*if ( ! initialized || ! id || ! offCanvas.hasOwnProperty( id ) ) {
-			return false;
-		}*/
 		
 		// Destruction
 		var destroy = function () {
