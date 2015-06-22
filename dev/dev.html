@@ -5,7 +5,7 @@
 		<title>Slidebars Development</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="slidebars.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	</head>
 	
 	<body>
@@ -66,10 +66,10 @@
 				
 				// Create a few Slidebars
 				controller.create( 'off-canvas-5', 'top', 'reveal' );
-				controller.create( 'off-canvas-6', 'right', 'reveal', '<p>This is the content to be inserted.</p>' );
+				//controller.create( 'off-canvas-6', 'right', 'reveal', '<p>This is the content to be inserted.</p>' );
 				
 				var content = '<p>This is content stored in a variable.</p>';
-				controller.create( 'off-canvas-7', 'bottom', 'reveal', content );
+				//controller.create( 'off-canvas-7', 'bottom', 'reveal', content );
 				
 				// Destroy a Slidebar
 				$( '#destroy-top' ).on( 'click', function () {
