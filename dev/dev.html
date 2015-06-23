@@ -6,6 +6,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="slidebars.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<style>
+			.transition-100 {
+				-webkit-transition-duration: 100ms;
+				transition-duration: 100ms;
+			}
+			
+			.transition-500 {
+				-webkit-transition-duration: 500ms;
+				transition-duration: 500ms;
+			}
+			
+			.transition-1000 {
+				-webkit-transition-duration: 1000ms;
+				transition-duration: 1000ms;
+			}
+		</style>
 	</head>
 	
 	<body>
@@ -26,13 +42,13 @@
 		<div canvas>
 		</div>
 		
-		<div off-canvas="off-canvas-1 top reveal">
+		<div off-canvas="off-canvas-1 top reveal" class="transition-100">
 		</div>
 		
-		<div id="right-slidebar" off-canvas="off-canvas-2 right push">
+		<div id="right-slidebar" off-canvas="off-canvas-2 right push" class="transition-500">
 		</div>
 		
-		<div off-canvas="off-canvas-3 bottom overlay">
+		<div off-canvas="off-canvas-3 bottom overlay" class="transition-1000">
 		</div>
 		
 		<div off-canvas="off-canvas-4 left reveal">
@@ -80,7 +96,7 @@
 				
 				// Open Slidebars
 				$( '#open-top' ).on( 'click', function () {
-					controller.open( 'off-canvas-5' );
+					controller.open( 'off-canvas-1' );
 				} );
 				
 				$( '#open-right' ).on( 'click', function () {
