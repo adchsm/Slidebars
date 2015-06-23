@@ -49,6 +49,16 @@ body {
 	}
 }
 
+.custom-transition-duration-500 {
+	-webkit-transition-duration: 500ms;
+	        transition-duration: 500ms;
+}
+
+.custom-transition-duration-1000 {
+	-webkit-transition-duration: 1000ms;
+	        transition-duration: 1000ms;
+}
+
 /**
  * Bootstrap Hacks
  */

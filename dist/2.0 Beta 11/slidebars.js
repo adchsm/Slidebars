@@ -1,6 +1,6 @@
 /*!
  * Slidebars - A jQuery framework for off-canvas menus and sidebars.
- * Version: 2.0 Beta 10
+ * Version: 2.0 Beta 11
  * Url: http://plugins.adchsm.me/slidebars/
  * Author: Adam Charles Smith
  * Author url: http://www.adchsm.com/
@@ -42,7 +42,7 @@ var slidebars = function () {
 			'active': false
 		};
 	},
-	getAnimationProperties = function ( id ) {		
+	getAnimationProperties = function ( id ) {
 		// Set variables
 		var elements = $(),
 		amount = '0px, 0px',
@@ -225,7 +225,10 @@ var slidebars = function () {
 			var animationProperties = getAnimationProperties( id );
 			
 			// Apply css			
-			animationProperties.elements.css( 'transform', 'translate(' + animationProperties.amount + ')' );
+			animationProperties.elements.css( {
+				'transition-duration': animationProperties.duration + 'ms',
+				'transform': 'translate(' + animationProperties.amount + ')'
+			} );
 			
 			// Transition completed
 			setTimeout( function () {
@@ -291,10 +294,13 @@ var slidebars = function () {
 			var animationProperties = getAnimationProperties( id );
 			
 			// Apply css
-			animationProperties.elements.css( 'transform', 'translate(' + animationProperties.amount + ')' );
+			animationProperties.elements.css( 'transform', '' );
 			
 			// Transition completetion
 			setTimeout( function () {
+				// Remove transition duration
+				animationProperties.elements.css( 'transition-duration', '' );
+				
 				// Hide the Slidebar
 				offCanvas[ id ].element.css( 'display', 'none' );
 				
