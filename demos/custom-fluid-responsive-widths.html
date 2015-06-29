@@ -86,12 +86,15 @@
 					
 					// Close any
 					$( '.close-any' ).on( 'click', function ( event ) {
-						// Stop default behaviour and propagation
-						event.preventDefault();
-						event.stopPropagation();
-						
-						// Close any Slidebar
-						controller.close();
+						// Check if a Slidebar is open
+						if ( controller.active( 'slidebar' ) ) {
+							// Stop default behaviour and propagation
+							event.preventDefault();
+							event.stopPropagation();
+							
+							// Close any Slidebar
+							controller.close();
+						}
 					} );
 				} );
 			} ) ( jQuery );

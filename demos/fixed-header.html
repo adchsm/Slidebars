@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Slidebars Examples | Mobile Only</title>
+		<title>Slidebars Examples | Fixed Header</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<link rel="stylesheet" href="libs/bootstrap.min.css">
 		<link rel="stylesheet" href="libs/slidebars.css">
@@ -10,19 +10,27 @@
 	</head>
 	
 	<body>
-		<div canvas="container" class="close-any">
+		<div canvas="" class="fixed-header"></div>
+		
+		<div canvas="container" class="close-any fixed-header-offset">
 			<!-- Main content -->
 			
-			<h1>Slidebars Examples <small>Mobile Only</small></h1>
+			<h1>Slidebars Examples <small>Fixed Header</small></h1>
 			
-			<p>This example has one Slidebars on the left with pre-defined classes for complete control.</p>
+			<p>This example has two Slidebars on the left and right with pre-defined classes for complete control.</p>
 			
-			<p>The Slidebars framework will only be initiated on screens less than 600px wide.</p>
+			<p>A fixed-to-top header has been given the <code>canvas</code> attribute and placed outside of the main canvas container.</p>
 			
 			<div class="btn-group">
 				<div class="btn btn-default open-left">Open left</div>
 				<div class="btn btn-default toggle-left">Toggle left</div>
 				<div class="btn btn-default close-left">Close left</div>
+			</div>
+			
+			<div class="btn-group">
+				<div class="btn btn-default open-right">Open right</div>
+				<div class="btn btn-default toggle-right">Toggle right</div>
+				<div class="btn btn-default close-right">Close right</div>
 			</div>
 			
 			<div class="btn-group">
@@ -34,6 +42,10 @@
 			<!-- Left Slidebar content -->
 		</div>
 		
+		<div off-canvas="sb-2 right push">
+			<!-- Right Slidebar content -->
+		</div>
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script src="libs/slidebars.js"></script>
 		<script>
@@ -42,30 +54,8 @@
 					// Create a new instance of Slidebars
 					var controller = new slidebars();
 					
-					/**
-					 * Mobile Only Init
-					 */
-					
-					var mobileOnly = function () {
-						// Get the width of the window
-						var windowWidth = $( window ).width();
-						
-						// Check the window size, enable on screens under 600px wide
-						if ( windowWidth < 600) {
-							// If Slidebars is disabled, initialize
-							if ( ! controller.active( 'init' ) ) {
-								controller.init();
-							}
-						} else {
-							// If Slidebars is enabled, exit
-							if ( controller.active( 'init' ) ) {
-								controller.exit();
-							}
-						}
-					};
-					
-					mobileOnly();
-					$( window ).on( 'resize', mobileOnly );
+					// Initialize Slidebars
+					controller.init();
 					
 					/**
 					 * Control Classes
@@ -99,6 +89,36 @@
 						
 						// Close Slidebar
 						controller.close( 'sb-1' );
+					} );
+					
+					// Open right
+					$( '.open-right' ).on( 'click', function ( event ) {
+						// Stop default behaviour and propagation
+						event.preventDefault();
+						event.stopPropagation();
+						
+						// Open Slidebar
+						controller.open( 'sb-2' );
+					} );
+					
+					// Toggle right
+					$( '.toggle-right' ).on( 'click', function ( event ) {
+						// Stop default behaviour and propagation
+						event.preventDefault();
+						event.stopPropagation();
+						
+						// Toggle Slidebar
+						controller.toggle( 'sb-2' );
+					} );
+					
+					// Close right
+					$( '.close-right' ).on( 'click', function ( event ) {
+						// Stop default behaviour and propagation
+						event.preventDefault();
+						event.stopPropagation();
+						
+						// Close Slidebar
+						controller.close( 'sb-2' );
 					} );
 					
 					// Close any
