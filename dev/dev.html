@@ -11,19 +11,19 @@
 				-webkit-transition-duration: 100ms;
 				transition-duration: 100ms;
 			}
-			
+
 			.transition-500 {
 				-webkit-transition-duration: 500ms;
 				transition-duration: 500ms;
 			}
-			
+
 			.transition-1000 {
 				-webkit-transition-duration: 1000ms;
 				transition-duration: 1000ms;
 			}
 		</style>
 	</head>
-	
+
 	<body>
 		<div canvas="container">
 			<button id="open-top">Open top</button>
@@ -38,103 +38,103 @@
 			<button id="exit">Exit</button>
 			<button id="init">Init</button>
 		</div>
-		
+
 		<div canvas>
 		</div>
-		
+
 		<div off-canvas="off-canvas-1 top reveal" class="transition-100">
 		</div>
-		
+
 		<div id="right-slidebar" off-canvas="off-canvas-2 right push" class="transition-500">
 		</div>
-		
+
 		<div off-canvas="off-canvas-3 bottom overlay" class="transition-1000">
 		</div>
-		
+
 		<div off-canvas="off-canvas-4 left reveal">
 		</div>
-		
+
 		<script src="slidebars.js"></script>
 		<script>
 			( function ( $ ) {
 				// Create a new instance of Slidebars
 				var controller = new slidebars();
-				
+
 				// Test events
 				$( controller.events ).on( 'init', function () {
 					console.log( 'Slidebars initialized' );
 				} );
-				
+
 				$( controller.events ).on( 'opening', function ( event, id ) {
 					console.log( 'Opening a Slidebar' );
-					
+
 					if ( id ) {
 						console.log( id );
 					}
-					
+
 					if ( id === 'off-canvas-5' ) {
 						console.log( 'Opening top' );
 					}
 				} );
-				
+
 				// Initialize Slidebars
 				controller.init();
-				
+
 				// Create a few Slidebars
 				controller.create( 'off-canvas-5', 'top', 'reveal' );
 				//controller.create( 'off-canvas-6', 'right', 'reveal', '<p>This is the content to be inserted.</p>' );
-				
+
 				var content = '<p>This is content stored in a variable.</p>';
 				//controller.create( 'off-canvas-7', 'bottom', 'reveal', content );
-				
+
 				// Destroy a Slidebar
 				$( '#destroy-top' ).on( 'click', function () {
 					controller.destroy( 'off-canvas-1', function () {
 						alert( 'Boom!' );
 					} );
 				} );
-				
+
 				// Open Slidebars
 				$( '#open-top' ).on( 'click', function () {
 					controller.open( 'off-canvas-1' );
 				} );
-				
+
 				$( '#open-right' ).on( 'click', function () {
 					controller.open( 'off-canvas-2' );
 				} );
-				
+
 				$( '#open-bottom' ).on( 'click', function () {
 					controller.open( 'off-canvas-3' );
 				} );
-				
+
 				$( '#open-left' ).on( 'click', function () {
 					controller.open( 'off-canvas-4' );
 				} );
-				
+
 				$( '#close-top' ).on( 'click', function () {
 					controller.close( 'off-canvas-5', function () {
 						console.log( 'Callback function on close' );
 					} );
 				} );
-				
+
 				$( '#close-any' ).on( 'click', function () {
 					controller.close();
 				} );
-				
+
 				$( '#check-top' ).on( 'click', function () {
 					console.log ( controller.active( 'off-canvas-5' ) );
 				} );
-				
+
 				$( '#check-any' ).on( 'click', function () {
 					console.log( controller.active( 'slidebar' ) );
 				} );
-				
+
 				$( '#exit' ).on( 'click', function () {
 					controller.exit( function () {
 						alert( 'Bye' );
 					} );
 				} );
-				
+
 				$( '#init' ).on( 'click', function () {
 					controller.init();
 				} );

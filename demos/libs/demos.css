@@ -21,8 +21,6 @@ body {
 
 .custom-fluid-width {
 	width: 60%;
-	-webkit-transition-property: width, -webkit-transform;
-	        transition-property: width, transform;
 }
 
 @media ( min-width: 600px ) {
