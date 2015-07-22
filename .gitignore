@@ -2,5 +2,6 @@ site
 docs
 images
 revisions
+private
 
 .DS_Store

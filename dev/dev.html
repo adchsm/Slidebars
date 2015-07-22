@@ -7,11 +7,6 @@
 		<link rel="stylesheet" href="slidebars.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<style>
-			.transition-100 {
-				-webkit-transition-duration: 100ms;
-				transition-duration: 100ms;
-			}
-
 			.transition-500 {
 				-webkit-transition-duration: 500ms;
 				transition-duration: 500ms;
@@ -37,12 +32,13 @@
 			<button id="check-any">Check any</button>
 			<button id="exit">Exit</button>
 			<button id="init">Init</button>
+			<button id="get">Get</button>
 		</div>
 
 		<div canvas>
 		</div>
 
-		<div off-canvas="off-canvas-1 top reveal" class="transition-100">
+		<div off-canvas="off-canvas-1 top reveal">
 		</div>
 
 		<div id="right-slidebar" off-canvas="off-canvas-2 right push" class="transition-500">
@@ -54,7 +50,7 @@
 		<div off-canvas="off-canvas-4 left reveal">
 		</div>
 
-		<script src="slidebars.js"></script>
+		<script src="slidebars-extended.js"></script>
 		<script>
 			( function ( $ ) {
 				// Create a new instance of Slidebars
@@ -137,6 +133,12 @@
 
 				$( '#init' ).on( 'click', function () {
 					controller.init();
+				} );
+
+				$( '#get' ).on( 'click', function () {
+					var getWhat = prompt( 'Enter a Slidebar id or leave blank for array of Slidebar ids.', '' );
+
+					console.log( controller.get( getWhat) );
 				} );
 			} ) ( jQuery );
 		</script>

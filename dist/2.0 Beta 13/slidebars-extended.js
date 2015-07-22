@@ -1,6 +1,6 @@
 /*!
  * Slidebars - A jQuery framework for off-canvas menus and sidebars.
- * Version: 2.0 Development
+ * Version: 2.0 Extended Beta 13
  * Url: http://plugins.adchsm.me/slidebars/
  * Author: Adam Charles Smith
  * Author url: http://www.adchsm.com/
@@ -407,4 +407,161 @@ var slidebars = function () {
 	 */
 
 	window.onresize = this.css.bind( this );
+
+	/**
+	 * Slidebars Extended
+	 */
+
+	// Get Slidebars
+	this.get = function ( query ) {
+		// Check Slidebars has been initialized
+		if ( ! initialized ) {
+			throw "Slidebars has not been initialized.";
+		}
+
+		// Variable to return
+		var get = false;
+
+		// Get array of Slidebar id's
+		if ( ! query ) {
+			// Loop through Slidebars
+	 		for ( var id in offCanvas ) {
+				// Check Slidebar has the correct id
+				if ( offCanvas.hasOwnProperty( id ) ) {
+					// Make sure return variable is and array
+					if ( ! Array.isArray( get ) ) {
+						get = [];
+					}
+
+					// Add Slidebar id to array
+					get.push( offCanvas[ id ].id );
+				}
+			}
+		} else
+
+		// Get object of Slidebar attibutes
+		{
+			if ( ! offCanvas.hasOwnProperty( query ) ) {
+				throw "Error attempting to get Slidebar, there is no Slidebar with id '" + query + "'.";
+			}
+
+			// Add Slidebar attributes
+			get = offCanvas[ query ];
+		}
+
+		// Return
+		return get;
+	};
+
+	// Create Slidebar
+ 	this.create = function ( id, side, style, content, callback ) {
+ 		// Shift callback arguments
+ 		if ( typeof content === 'function' ) {
+ 			callback = content;
+ 			content = null;
+ 		}
+
+ 		// Check Slidebars has been initialized
+ 		if ( ! initialized ) {
+ 			throw "Slidebars has not been initialized.";
+ 		}
+
+ 		// Make sure a valid id, side and style are specified
+ 		if ( id && sides.indexOf( side ) !== -1 && styles.indexOf( style ) !== -1 ) {
+ 			// Check to see if the Slidebar exists
+ 			if ( offCanvas.hasOwnProperty( id ) ) {
+				throw "Error attempting to create Slidebar, there is already a Slidebar with id '" + id + "'.";
+ 			}
+
+ 			// Create new element
+ 			$( '<div id="' + id + '" off-canvas="' + id + ' ' + side + ' ' + style + '"></div>' ).appendTo( 'body' );
+
+ 			// Add content to the Slidebar
+ 			if ( content ) {
+ 				$( '#' + id ).html( content );
+ 			}
+
+ 			// Register the Slidebar
+ 			registerSlidebar( id, side, style, $( '#' + id ) );
+
+ 			// Reset CSS
+ 			this.css();
+
+ 			// Trigger event
+ 			$( events ).trigger( 'created', [ offCanvas[ id ].id ] );
+
+ 			// Run callback
+ 			if ( typeof callback === 'function' ) {
+ 				callback();
+ 			}
+ 		} else {
+ 			throw "Error attempting to create Slidebar, please specifiy a valid space separated 'id side style'.";
+ 		}
+ 	};
+
+	// Destroy Slidebar
+ 	this.destroy = function ( id, callback ) {
+ 		// Check Slidebars has been initialized
+ 		if ( ! initialized ) {
+ 			throw "Slidebars has not been initialized.";
+ 		}
+
+		// Throw error if no id was passed or doesn't exist
+		if ( ! id || ! offCanvas.hasOwnProperty( id ) ) {
+			throw "Error attempting to destroy Slidebar, there is no Slidebar with id '" + id + "'.";
+		}
+
+		// Destruction
+		var destroy = function () {
+			// Trigger event
+			$( events ).trigger( 'destroyed', [ offCanvas[ id ].id ] );
+
+			// Remove the element
+			offCanvas[ id ].element.remove();
+
+			// Remove Slidebar from instances
+			delete offCanvas[ id ];
+
+			// Run callback
+			if ( typeof callback === 'function' ) {
+				callback();
+			}
+		};
+
+		// Call destroy, close open Slidebar if active
+		if ( offCanvas[ id ].active ) {
+			this.close( id, destroy );
+		} else {
+			destroy();
+		}
+ 	};
+
+	// Update Slidebar
+	this.update = function ( id, side, style, callback ) {
+		// Check Slidebars has been initialized
+ 		if ( ! initialized ) {
+ 			throw "Slidebars has not been initialized.";
+ 		}
+
+		// Make sure Slidebar id exists, and side and style are specified
+ 		if ( offCanvas.hasOwnProperty( id ) && sides.indexOf( side ) !== -1 && styles.indexOf( style ) !== -1 ) {
+			// Update attributes
+			offCanvas[ id ].side = side;
+			offCanvas[ id ].style = style;
+			offCanvas[ id ].element.attr( 'off-canvas', id + ' ' + side + ' ' + style );
+
+			// Reset CSS
+			this.css();
+
+			// Trigger event
+			$( events ).trigger( 'updated', [ offCanvas[ id ].id ] );
+
+			// Run callback
+			if ( typeof callback === 'function' ) {
+				callback();
+			}
+		} else {
+			throw "Error attempting to update Slidebar, please specifiy a valid space separated 'id side style'.";
+		}
+	};
 };
