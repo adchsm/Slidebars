@@ -34,6 +34,7 @@ html, body, #sb-site, .sb-site-container, .sb-slidebar {
 html, body {
 	width: 100%;
 	overflow-x: hidden; /* Stops horizontal scrolling. */
+	z-index: -2;
 }
 
 html {
