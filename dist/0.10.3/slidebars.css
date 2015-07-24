@@ -34,6 +34,7 @@ html, body, #sb-site, .sb-site-container, .sb-slidebar {
 html, body {
 	width: 100%;
 	overflow-x: hidden; /* Stops horizontal scrolling. */
+	z-index: -2;
 }
 
 html {
@@ -60,7 +61,6 @@ html.sb-scroll-lock.sb-active:not(.sb-static) {
 	width: 100%;
 	min-height: 100vh;
 	position: relative;
-	z-index: 1; /* Site sits above Slidebars */
 	background-color: #ffffff; /* Default background colour, overwrite this with your own css. I suggest moving your html or body background styling here. Making this transparent will allow the Slidebars beneath to be visible. */
 }
 
@@ -83,7 +83,7 @@ html.sb-scroll-lock.sb-active:not(.sb-static) {
 	overflow-y: auto; /* Enable vertical scrolling on Slidebars when needed. */
 	position: fixed;
 	top: 0;
-	z-index: 0; /* Slidebars sit behind sb-site. */
+	z-index: -1; /* Slidebars sit behind sb-site. */
 	display: none; /* Initially hide the Slidebars. Changed from visibility to display to allow -webkit-overflow-scrolling. */
 	background-color: #222222; /* Default Slidebars background colour, overwrite this with your own css. */
 }
