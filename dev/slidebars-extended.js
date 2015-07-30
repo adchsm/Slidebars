@@ -30,7 +30,7 @@ var slidebars = function () {
 	registerSlidebar = function ( id, side, style, element ) {
 		// Check to see if the Slidebar already exists
 		if ( offCanvas.hasOwnProperty( id ) ) {
-			throw "Error attempting to register Slidebar, there is already a Slidebar with id '" + id + "'.";
+			throw "Error registering Slidebar, there is already a Slidebar with id '" + id + "'.";
 		}
 
 		// Register the Slidebar
@@ -91,12 +91,12 @@ var slidebars = function () {
 				var parameters = $( this ).attr( 'off-canvas' ).split( ' ', 3 );
 
 				// Make sure a valid id, side and style are specified
-				if ( parameters[ 0 ] && sides.indexOf( parameters[ 1 ] ) !== -1 && styles.indexOf( parameters[ 2 ] ) !== -1 ) {
-					// Register Slidebar
-					registerSlidebar( parameters[ 0 ], parameters[ 1 ], parameters[ 2 ], $( this ) );
-				} else {
-					throw "Error attempting to register Slidebar, please specifiy a valid space separated 'id side style'.";
+				if ( ! parameters[ 0 ] || sides.indexOf( parameters[ 1 ] ) === -1 || styles.indexOf( parameters[ 2 ] ) === -1 ) {
+					throw "Error registering Slidebar, please specifiy a valid id, side and style'.";
 				}
+
+				// Register Slidebar
+				registerSlidebar( parameters[ 0 ], parameters[ 1 ], parameters[ 2 ], $( this ) );
 			} );
 
 			// Set registered variable
@@ -202,7 +202,7 @@ var slidebars = function () {
 
 		// Throw error if no id was passed or doesn't exist
 		if ( ! id || ! offCanvas.hasOwnProperty( id ) ) {
-			throw "Error attempting to open Slidebar, there is no Slidebar with id '" + id + "'.";
+			throw "Error opening Slidebar, there is no Slidebar with id '" + id + "'.";
 		}
 
 		// Open
@@ -259,22 +259,12 @@ var slidebars = function () {
 
 		// Check to see if the Slidebar exists
 		if ( id && ! offCanvas.hasOwnProperty( id ) ) {
-			throw "Error attempting to close Slidebar, there is no Slidebar with id '" + id + "'.";
+			throw "Error closing Slidebar, there is no Slidebar with id '" + id + "'.";
 		}
 
-		// If no id was passed, check to see if any Slidebar is open
+		// If no id was passed, get the active Slidebar
 		if ( ! id ) {
-			// Loop through Slidebars to find active one
-			for ( var key in offCanvas ) {
-				// Check Slidebar has the correct id
-				if ( offCanvas.hasOwnProperty( key ) ) {
-					// If it's active, set id
-					if ( offCanvas[ key ].active ) {
-						id = key;
-						break;
-					}
-				}
-			}
+			id = this.active( 'slidebar' );
 		}
 
 		// Close a Slidebar
@@ -318,7 +308,7 @@ var slidebars = function () {
 
 		// Throw error if no id was passed or doesn't exist
 		if ( ! id || ! offCanvas.hasOwnProperty( id ) ) {
-			throw "Error attempting to toggle Slidebar, there is no Slidebar with id '" + id + "'.";
+			throw "Error toggling Slidebar, there is no Slidebar with id '" + id + "'.";
 		}
 
 		// Check Slidebar state
@@ -384,7 +374,7 @@ var slidebars = function () {
 
 			// Check to see if the Slidebar exists
 			if ( ! offCanvas.hasOwnProperty( query ) ) {
-				throw "Error retrieving state of Slidebar, there is no Slidebar with id '" + query + "'.";
+				throw "Error retrieving Slidebar, there is no Slidebar with id '" + query + "'.";
 			}
 
 			// Set the active state
@@ -442,7 +432,7 @@ var slidebars = function () {
 		// Get object of Slidebar attibutes
 		{
 			if ( ! offCanvas.hasOwnProperty( query ) ) {
-				throw "Error attempting to get Slidebar, there is no Slidebar with id '" + query + "'.";
+				throw "Error getting Slidebar, there is no Slidebar with id '" + query + "'.";
 			}
 
 			// Add Slidebar attributes
@@ -466,37 +456,37 @@ var slidebars = function () {
  			throw "Slidebars has not been initialized.";
  		}
 
- 		// Make sure a valid id, side and style are specified
- 		if ( id && sides.indexOf( side ) !== -1 && styles.indexOf( style ) !== -1 ) {
- 			// Check to see if the Slidebar exists
- 			if ( offCanvas.hasOwnProperty( id ) ) {
-				throw "Error attempting to create Slidebar, there is already a Slidebar with id '" + id + "'.";
- 			}
+		// Check to see if the Slidebar exists
+		if ( offCanvas.hasOwnProperty( id ) ) {
+			throw "Error creating Slidebar, there is already a Slidebar with id '" + id + "'.";
+		}
 
- 			// Create new element
- 			$( '<div id="' + id + '" off-canvas="' + id + ' ' + side + ' ' + style + '"></div>' ).appendTo( 'body' );
+		// Check id, side and style are valid
+		if ( ! id || sides.indexOf( side ) === -1 || styles.indexOf( style ) === -1 ) {
+			throw "Error creating Slidebar, please specifiy a valid id, side and style.";
+		}
 
- 			// Add content to the Slidebar
- 			if ( content ) {
- 				$( '#' + id ).html( content );
- 			}
+		// Create new element
+		$( '<div id="' + id + '" off-canvas="' + id + ' ' + side + ' ' + style + '"></div>' ).appendTo( 'body' );
 
- 			// Register the Slidebar
- 			registerSlidebar( id, side, style, $( '#' + id ) );
+		// Add content to the Slidebar
+		if ( content ) {
+			$( '#' + id ).html( content );
+		}
 
- 			// Reset CSS
- 			this.css();
+		// Register the Slidebar
+		registerSlidebar( id, side, style, $( '#' + id ) );
 
- 			// Trigger event
- 			$( events ).trigger( 'created', [ offCanvas[ id ].id ] );
+		// Reset CSS
+		this.css();
 
- 			// Run callback
- 			if ( typeof callback === 'function' ) {
- 				callback();
- 			}
- 		} else {
- 			throw "Error attempting to create Slidebar, please specifiy a valid space separated 'id side style'.";
- 		}
+		// Trigger event
+		$( events ).trigger( 'created', [ offCanvas[ id ].id ] );
+
+		// Run callback
+		if ( typeof callback === 'function' ) {
+			callback();
+		}
  	};
 
 	// Destroy Slidebar
@@ -508,7 +498,7 @@ var slidebars = function () {
 
 		// Throw error if no id was passed or doesn't exist
 		if ( ! id || ! offCanvas.hasOwnProperty( id ) ) {
-			throw "Error attempting to destroy Slidebar, there is no Slidebar with id '" + id + "'.";
+			throw "Error destroying Slidebar, there is no Slidebar with id '" + id + "'.";
 		}
 
 		// Destruction
@@ -543,25 +533,30 @@ var slidebars = function () {
  			throw "Slidebars has not been initialized.";
  		}
 
-		// Make sure Slidebar id exists, and side and style are specified
- 		if ( offCanvas.hasOwnProperty( id ) && sides.indexOf( side ) !== -1 && styles.indexOf( style ) !== -1 ) {
-			// Update attributes
-			offCanvas[ id ].side = side;
-			offCanvas[ id ].style = style;
-			offCanvas[ id ].element.attr( 'off-canvas', id + ' ' + side + ' ' + style );
+		// Throw error if no id was passed or doesn't exist
+		if ( ! id || ! offCanvas.hasOwnProperty( id ) ) {
+			throw "Error updating Slidebar, there is no Slidebar with id '" + id + "'.";
+		}
 
-			// Reset CSS
-			this.css();
+		// Check side and style are valid
+		if ( sides.indexOf( side ) === -1 || styles.indexOf( style ) === -1 ) {
+			throw "Error updating Slidebar, please specifiy a valid side and style.";
+		}
 
-			// Trigger event
-			$( events ).trigger( 'updated', [ offCanvas[ id ].id ] );
+		// Update attributes
+		offCanvas[ id ].side = side;
+		offCanvas[ id ].style = style;
+		offCanvas[ id ].element.attr( 'off-canvas', id + ' ' + side + ' ' + style );
 
-			// Run callback
-			if ( typeof callback === 'function' ) {
-				callback();
-			}
-		} else {
-			throw "Error attempting to update Slidebar, please specifiy a valid space separated 'id side style'.";
+		// Reset CSS
+		this.css();
+
+		// Trigger event
+		$( events ).trigger( 'updated', [ offCanvas[ id ].id ] );
+
+		// Run callback
+		if ( typeof callback === 'function' ) {
+			callback();
 		}
 	};
 };

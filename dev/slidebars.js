@@ -30,7 +30,7 @@ var slidebars = function () {
 	registerSlidebar = function ( id, side, style, element ) {
 		// Check to see if the Slidebar already exists
 		if ( offCanvas.hasOwnProperty( id ) ) {
-			throw "Error attempting to register Slidebar, there is already a Slidebar with id '" + id + "'.";
+			throw "Error registering Slidebar, there is already a Slidebar with id '" + id + "'.";
 		}
 
 		// Register the Slidebar
@@ -91,12 +91,12 @@ var slidebars = function () {
 				var parameters = $( this ).attr( 'off-canvas' ).split( ' ', 3 );
 
 				// Make sure a valid id, side and style are specified
-				if ( parameters[ 0 ] && sides.indexOf( parameters[ 1 ] ) !== -1 && styles.indexOf( parameters[ 2 ] ) !== -1 ) {
-					// Register Slidebar
-					registerSlidebar( parameters[ 0 ], parameters[ 1 ], parameters[ 2 ], $( this ) );
-				} else {
-					throw "Error attempting to register Slidebar, please specifiy a valid space separated 'id side style'.";
+				if ( ! parameters[ 0 ] || sides.indexOf( parameters[ 1 ] ) === -1 || styles.indexOf( parameters[ 2 ] ) === -1 ) {
+					throw "Error registering Slidebar, please specifiy a valid id, side and style'.";
 				}
+
+				// Register Slidebar
+				registerSlidebar( parameters[ 0 ], parameters[ 1 ], parameters[ 2 ], $( this ) );
 			} );
 
 			// Set registered variable
@@ -202,7 +202,7 @@ var slidebars = function () {
 
 		// Throw error if no id was passed or doesn't exist
 		if ( ! id || ! offCanvas.hasOwnProperty( id ) ) {
-			throw "Error attempting to open Slidebar, there is no Slidebar with id '" + id + "'.";
+			throw "Error opening Slidebar, there is no Slidebar with id '" + id + "'.";
 		}
 
 		// Open
@@ -259,22 +259,12 @@ var slidebars = function () {
 
 		// Check to see if the Slidebar exists
 		if ( id && ! offCanvas.hasOwnProperty( id ) ) {
-			throw "Error attempting to close Slidebar, there is no Slidebar with id '" + id + "'.";
+			throw "Error closing Slidebar, there is no Slidebar with id '" + id + "'.";
 		}
 
-		// If no id was passed, check to see if any Slidebar is open
+		// If no id was passed, get the active Slidebar
 		if ( ! id ) {
-			// Loop through Slidebars to find active one
-			for ( var key in offCanvas ) {
-				// Check Slidebar has the correct id
-				if ( offCanvas.hasOwnProperty( key ) ) {
-					// If it's active, set id
-					if ( offCanvas[ key ].active ) {
-						id = key;
-						break;
-					}
-				}
-			}
+			id = this.active( 'slidebar' );
 		}
 
 		// Close a Slidebar
@@ -318,7 +308,7 @@ var slidebars = function () {
 
 		// Throw error if no id was passed or doesn't exist
 		if ( ! id || ! offCanvas.hasOwnProperty( id ) ) {
-			throw "Error attempting to toggle Slidebar, there is no Slidebar with id '" + id + "'.";
+			throw "Error toggling Slidebar, there is no Slidebar with id '" + id + "'.";
 		}
 
 		// Check Slidebar state
@@ -384,7 +374,7 @@ var slidebars = function () {
 
 			// Check to see if the Slidebar exists
 			if ( ! offCanvas.hasOwnProperty( query ) ) {
-				throw "Error retrieving state of Slidebar, there is no Slidebar with id '" + query + "'.";
+				throw "Error retrieving Slidebar, there is no Slidebar with id '" + query + "'.";
 			}
 
 			// Set the active state
