@@ -527,6 +527,12 @@ var slidebars = function () {
  	};
 
 	// Update Slidebar
+	/**
+	 * Needs work
+	 * Close before updating if open
+	 * Re-open after updating if previously open
+	 * Remove any negative css margins set by previous push or overlay animation styles
+	 */
 	this.update = function ( id, side, style, callback ) {
 		// Check Slidebars has been initialized
  		if ( ! initialized ) {
