@@ -101,6 +101,10 @@ html, body {
 	z-index: 9999;
 }
 
+[off-canvas*=shift] {
+	z-index: 0;
+}
+
 /**
  * Animation
  */
@@ -111,7 +115,27 @@ html, body {
 	        transform: translate( 0px, 0px );
 	-webkit-transition: -webkit-transform 300ms;
 	        transition:         transform 300ms;
-	-webkit-backface-visibility: hidden; /* Prevents flickering but may be removed if your having problems with fixed background images in Chrome. */
+	-webkit-backface-visibility: hidden; /* Prevents flickering, may be removed if experiencing problems with fixed background images in Chrome. */
+}
+
+[off-canvas*=shift][off-canvas*=top] {
+	-webkit-transform: translate( 0px, 50% );
+	        transform: translate( 0px, 50% );
+}
+
+[off-canvas*=shift][off-canvas*=right] {
+	-webkit-transform: translate( -50%, 0px );
+	        transform: translate( -50%, 0px );
+}
+
+[off-canvas*=shift][off-canvas*=bottom] {
+	-webkit-transform: translate( 0px, -50% );
+	        transform: translate( 0px, -50% );
+}
+
+[off-canvas*=shift][off-canvas*=left] {
+	-webkit-transform: translate( 50%, 0px );
+	        transform: translate( 50%, 0px );
 }
 
 /**

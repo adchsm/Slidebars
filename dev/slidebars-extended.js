@@ -24,7 +24,7 @@ var slidebars = function () {
 	initialized = false,
 	registered = false,
 	sides = [ 'top', 'right', 'bottom', 'left' ],
-	styles = [ 'reveal', 'push', 'overlay' ],
+	styles = [ 'reveal', 'push', 'overlay', 'shift' ],
 
 	// Private functions
 	registerSlidebar = function ( id, side, style, element ) {
@@ -49,11 +49,11 @@ var slidebars = function () {
 		duration = parseFloat( offCanvas[ id ].element.css( 'transitionDuration' ), 10 ) * 1000;
 
 		// Elements to animate
-		if ( offCanvas[ id ].style === 'reveal' || offCanvas[ id ].style === 'push' ) {
+		if ( offCanvas[ id ].style === 'reveal' || offCanvas[ id ].style === 'push' || offCanvas[ id ].style === 'shift' ) {
 			elements = elements.add( canvas );
 		}
 
-		if ( offCanvas[ id ].style === 'push' || offCanvas[ id ].style === 'overlay' ) {
+		if ( offCanvas[ id ].style === 'push' || offCanvas[ id ].style === 'overlay' || offCanvas[ id ].style === 'shift' ) {
 			elements = elements.add( offCanvas[ id ].element );
 		}
 
@@ -170,7 +170,7 @@ var slidebars = function () {
 				}
 
 				// Push and overlay style
-				if ( offCanvas[ id ].style === 'push' || offCanvas[ id ].style === 'overlay' ) {
+				if ( offCanvas[ id ].style === 'push' || offCanvas[ id ].style === 'overlay' || offCanvas[ id ].style === 'shift' ) {
 					offCanvas[ id ].element.css( 'margin-' + offCanvas[ id ].side, '-' + offset );
 				}
 			}
@@ -406,7 +406,7 @@ var slidebars = function () {
 	 * Resizes
 	 */
 
-	window.onresize = this.css.bind( this );
+	$( window ).on( 'resize', this.css.bind( this ) );
 
 	/**
 	 * Slidebars Extended
