@@ -414,18 +414,21 @@ var slidebars = function () {
 
 		// Get array of Slidebar id's
 		if ( ! query ) {
+			// Set return to array
+			get = [];
+
 			// Loop through Slidebars
 	 		for ( var id in offCanvas ) {
 				// Check Slidebar has the correct id
 				if ( offCanvas.hasOwnProperty( id ) ) {
-					// Make sure return variable is and array
-					if ( ! Array.isArray( get ) ) {
-						get = [];
-					}
-
 					// Add Slidebar id to array
 					get.push( offCanvas[ id ].id );
 				}
+			}
+
+			// Set return to false if no items in array
+			if ( get.length === 0 ) {
+				get = false;
 			}
 		} else
 
@@ -526,14 +529,14 @@ var slidebars = function () {
 		}
  	};
 
-	// Update Slidebar
+	// Modify Slidebar
 	/**
 	 * Needs work
-	 * Close before updating if open
-	 * Re-open after updating if previously open
+	 * Close before modifying if open
+	 * Re-open after modifying if previously open
 	 * Remove any negative css margins set by previous push or overlay animation styles
 	 */
-	this.update = function ( id, side, style, callback ) {
+	this.modify = function ( id, side, style, callback ) {
 		// Check Slidebars has been initialized
  		if ( ! initialized ) {
  			throw "Slidebars has not been initialized.";
@@ -558,7 +561,7 @@ var slidebars = function () {
 		this.css();
 
 		// Trigger event
-		$( events ).trigger( 'updated', [ offCanvas[ id ].id ] );
+		$( events ).trigger( 'modified', [ offCanvas[ id ].id ] );
 
 		// Run callback
 		if ( typeof callback === 'function' ) {
