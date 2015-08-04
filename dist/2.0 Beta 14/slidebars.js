@@ -1,6 +1,6 @@
 /*!
  * Slidebars - A jQuery framework for off-canvas menus and sidebars.
- * Version: 2.0 Extended Beta 14
+ * Version: 2.0 Beta 14
  * Url: http://plugins.adchsm.me/slidebars/
  * Author: Adam Charles Smith
  * Author url: http://www.adchsm.com/
@@ -30,7 +30,7 @@ var slidebars = function () {
 	registerSlidebar = function ( id, side, style, element ) {
 		// Check to see if the Slidebar already exists
 		if ( offCanvas.hasOwnProperty( id ) ) {
-            return false;
+			throw "Error registering Slidebar, there is already a Slidebar with id '" + id + "'.";
 		}
 
 		// Register the Slidebar
@@ -81,7 +81,7 @@ var slidebars = function () {
 	this.init = function ( callback ) {
 		// Check Slidebars hasn't been initialized
 		if ( initialized ) {
-			return false;
+			throw "Slidebars is already initialized.";
 		}
 
 		// Loop through and register Slidebars
@@ -92,7 +92,7 @@ var slidebars = function () {
 
 				// Make sure a valid id, side and style are specified
 				if ( ! parameters[ 0 ] || sides.indexOf( parameters[ 1 ] ) === -1 || styles.indexOf( parameters[ 2 ] ) === -1 ) {
-					return false;
+					throw "Error registering Slidebar, please specifiy a valid id, side and style'.";
 				}
 
 				// Register Slidebar
@@ -121,7 +121,7 @@ var slidebars = function () {
 	this.exit = function ( callback ) {
 		// Check Slidebars has been initialized
 		if ( ! initialized ) {
-			return false;
+			throw "Slidebars has not been initialized.";
 		}
 
 		// Exit
@@ -153,7 +153,7 @@ var slidebars = function () {
 	this.css = function ( callback ) {
 		// Check Slidebars has been initialized
 		if ( ! initialized ) {
-			return false;
+			throw "Slidebars has not been initialized.";
 		}
 
 		// Loop through Slidebars to set negative margins
@@ -196,8 +196,13 @@ var slidebars = function () {
 
 	this.open = function ( id, callback ) {
 		// Check Slidebars has been initialized
-		if ( ! initialized || ! id || ! offCanvas.hasOwnProperty( id ) ) {
-			return false;
+		if ( ! initialized ) {
+			throw "Slidebars has not been initialized.";
+		}
+
+		// Throw error if no id was passed or doesn't exist
+		if ( ! id || ! offCanvas.hasOwnProperty( id ) ) {
+			throw "Error opening Slidebar, there is no Slidebar with id '" + id + "'.";
 		}
 
 		// Open
@@ -248,8 +253,18 @@ var slidebars = function () {
 		}
 
 		// Check Slidebars has been initialized
-		if ( ! initialized || id && ! offCanvas.hasOwnProperty( id ) || ! id ) {
-			return false;
+		if ( ! initialized ) {
+			throw "Slidebars has not been initialized.";
+		}
+
+		// Check to see if the Slidebar exists
+		if ( id && ! offCanvas.hasOwnProperty( id ) ) {
+			throw "Error closing Slidebar, there is no Slidebar with id '" + id + "'.";
+		}
+
+		// If no id was passed, get the active Slidebar
+		if ( ! id ) {
+			id = this.active( 'slidebar' );
 		}
 
 		// Close a Slidebar
@@ -287,8 +302,13 @@ var slidebars = function () {
 
 	this.toggle = function ( id, callback ) {
 		// Check Slidebars has been initialized
-		if ( ! initialized || ! id || ! offCanvas.hasOwnProperty( id ) ) {
-			return false;
+		if ( ! initialized ) {
+			throw "Slidebars has not been initialized.";
+		}
+
+		// Throw error if no id was passed or doesn't exist
+		if ( ! id || ! offCanvas.hasOwnProperty( id ) ) {
+			throw "Error toggling Slidebar, there is no Slidebar with id '" + id + "'.";
 		}
 
 		// Check Slidebar state
@@ -328,7 +348,7 @@ var slidebars = function () {
 		if ( query === 'slidebar' ) {
 			// Check Slidebars has been initialized
 			if ( ! initialized ) {
-				return false;
+				throw "Slidebars has not been initialized.";
 			}
 
 			// Loop through Slidebars
@@ -348,8 +368,13 @@ var slidebars = function () {
 		// Check specific id
 		{
 			// Check Slidebars has been initialized
-			if ( ! initialized || ! offCanvas.hasOwnProperty( query ) ) {
-				return false;
+			if ( ! initialized ) {
+				throw "Slidebars has not been initialized.";
+			}
+
+			// Check to see if the Slidebar exists
+			if ( ! offCanvas.hasOwnProperty( query ) ) {
+				throw "Error retrieving Slidebar, there is no Slidebar with id '" + query + "'.";
 			}
 
 			// Set the active state
