@@ -33,6 +33,8 @@
 			<button id="exit">Exit</button>
 			<button id="init">Init</button>
 			<button id="get">Get</button>
+			<button id="modify-bottom">Modify to bottom</button>
+			<button id="modify-top">Modify to top</button>
 		</div>
 
 		<div canvas>
@@ -140,6 +142,16 @@
 					var getWhat = prompt( 'Enter a Slidebar id or leave blank for array of Slidebar ids.', '' );
 
 					console.log( controller.get( getWhat) );
+				} );
+
+				$( '#modify-bottom' ).on( 'click', function () {
+					controller.modify( 'off-canvas-5', 'bottom', 'overlay' );
+				} );
+
+				$( '#modify-top' ).on( 'click', function () {
+					controller.modify( 'off-canvas-5', 'top', 'reveal', function () {
+						controller.open('off-canvas-5');
+					} );
 				} );
 			} ) ( jQuery );
 		</script>

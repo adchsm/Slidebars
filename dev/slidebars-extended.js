@@ -530,12 +530,6 @@ var slidebars = function () {
  	};
 
 	// Modify Slidebar
-	/**
-	 * Needs work
-	 * Close before modifying if open
-	 * Re-open after modifying if previously open
-	 * Remove any negative css margins set by previous push or overlay animation styles
-	 */
 	this.modify = function ( id, side, style, callback ) {
 		// Check Slidebars has been initialized
  		if ( ! initialized ) {
@@ -544,28 +538,41 @@ var slidebars = function () {
 
 		// Throw error if no id was passed or doesn't exist
 		if ( ! id || ! offCanvas.hasOwnProperty( id ) ) {
-			throw "Error updating Slidebar, there is no Slidebar with id '" + id + "'.";
+			throw "Error modifying Slidebar, there is no Slidebar with id '" + id + "'.";
 		}
 
 		// Check side and style are valid
 		if ( sides.indexOf( side ) === -1 || styles.indexOf( style ) === -1 ) {
-			throw "Error updating Slidebar, please specifiy a valid side and style.";
+			throw "Error modifying Slidebar, please specifiy a valid side and style.";
 		}
 
-		// Update attributes
-		offCanvas[ id ].side = side;
-		offCanvas[ id ].style = style;
-		offCanvas[ id ].element.attr( 'off-canvas', id + ' ' + side + ' ' + style );
+		var self = this,
+		modify = function () {
+			// Remove any negative CSS margins
+			offCanvas[ id ].element.css( 'margin-' + offCanvas[ id ].side, '' );
 
-		// Reset CSS
-		this.css();
+			// Update attributes
+			offCanvas[ id ].side = side;
+			offCanvas[ id ].style = style;
+			offCanvas[ id ].element.attr( 'off-canvas', id + ' ' + side + ' ' + style );
 
-		// Trigger event
-		$( events ).trigger( 'modified', [ offCanvas[ id ].id ] );
+			// Reset CSS
+			self.css();
 
-		// Run callback
-		if ( typeof callback === 'function' ) {
-			callback();
+			// Trigger event
+			$( events ).trigger( 'modified', [ offCanvas[ id ].id ] );
+
+			// Run callback
+			if ( typeof callback === 'function' ) {
+				callback();
+			}
+		};
+
+		// Call modify, close open Slidebar if active
+		if ( offCanvas[ id ].active ) {
+			this.close( id, modify );
+		} else {
+			modify();
 		}
 	};
 };
