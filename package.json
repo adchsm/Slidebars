@@ -1,0 +1,9 @@
+{
+	"name": "slidebars",
+	"version": "0.10.3",
+	"dependencies": {
+		"jquery": ">=1.8"
+	},
+	"main": "dist/0.10.3/slidebars.js"
+}
+
