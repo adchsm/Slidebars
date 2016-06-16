@@ -1,0 +1,88 @@
+<!doctype html>
+<!--
+// Slidebars
+// 0.4
+//
+// Written by Adam Smith
+// http://www.adchsm.me/
+-->
+<html>
+	<head>
+		<!-- Meta -->
+		<meta charset="utf-8">
+		<title>Slidebars</title>
+		<meta name="description" content="Slidebars is a framework for web apps and mobile sites.">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		
+		<!-- Stylesheets -->
+		<link rel="stylesheet" href="scripts/slidebars/0.4/core.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	
+	<body>
+		<div id="viewport">
+		
+			<!-- Site -->
+			<div id="site">
+				<div class="wrapper">
+					
+					<!-- Your site design and content here. -->
+					
+				</div><!-- /#wrapper -->
+			</div><!-- /#site -->
+			
+			<!-- Menu Bar -->
+			<div id="bar">
+				<div class="wrapper">
+					<div class="slidebar-left-control">
+						<div class="navicon"></div>
+					</div><!-- /.slidebar-left-control -->
+					
+					<!-- Your menu bar content here. -->
+					
+					<div class="slidebar-right-control">
+						<div class="navicon"></div>
+					</div><!-- /.slidebar-right-control -->
+				</div><!-- /.wrapper -->
+			</div><!-- /#bar -->
+			
+			<!-- Slidebar Left -->
+			<div id="slidebar-left" class="slidebar">
+			
+				<!-- Your left Slidebar content here. -->
+				
+			</div><!-- /#slidebar-left .slidebar -->
+			
+			<!-- Slidebar Right -->
+			<div id="slidebar-right" class="slidebar">
+			
+				<!-- Your right Slidebar content goes here. -->
+				
+			</div><!-- /#slidebar-right .slidebar -->
+		
+		</div><!-- #viewport -->
+		
+		<!-- jQuery -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		
+		<!-- Slidebars -->
+		<script src="scripts/slidebars/0.4/slidebars.js"></script>
+		
+		<!-- Initiate Slidebars -->
+		<script>
+			(function($) {
+				$(document).ready(function() {
+					slidebars.launch({
+						style: 'static', // 'static' or 'fixed'
+						slidebarLeft: true, // true or false
+						slidebarRight: true, // true or false
+						ajax: true, // true or false
+						ajaxContentID: '#main', // Enter the id of your main content container to use for ajax loading.
+						dontAjax: '#, .pdf, .zip, .rar' // A string of comma separated url patterns not load via ajax.
+					});
+				});
+			}) (jQuery);
+		</script>
+	</body>
+</html>

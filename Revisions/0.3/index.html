@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js">
+	<head>
+		<!-- Meta -->
+		<meta charset="utf-8">
+		<title>Slidebars</title>
+		<meta name="description" content="">
+		
+		<!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="reset.css">
+		<link rel="stylesheet" type="text/css" href="scripts/slidebars/0.3.1/slidebars-core.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+	
+		<!-- Include jQuery -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		
+		<!-- Include Modernizr
+			When building your site with Slidebars you may replace this build of Modernizr with your own. However to ensure Slidebars stays functional, you should include:
+			
+			Extras:
+				html5shiv,
+				Add CSS Classes,
+				
+			Non-core detects:
+				css-calc.
+		-->
+		<script src="scripts/modernizr/2.6.2/modernizr.custom.js"></script>
+		
+		<!-- Include Transit -->
+		<script src="scripts/transit/0.9.9/jquery.transit.min.js"></script>
+	
+		<!-- Include Slidebars.js -->
+		<script src="scripts/slidebars/0.3.1/slidebars.js"></script>
+		
+		<!-- Start Slidebars -->
+		<script type="text/javascript">
+			(function($) {
+				$(document).ready(function() {
+					slidebars({
+						style: 'static', // 'static' or 'fixed'
+						slidebarLeft: true, // true or false
+						slidebarRight: true, // true or false
+					});
+				});
+			}) (jQuery);
+		</script>
+		
+		<!-- Web App -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	</head>
+	
+	<body>
+		<div id="viewport">
+		
+			<!-- Site -->
+			<div id="site">
+				<div class="wrapper">
+					<!-- Your site design and content goes here. -->
+				</div><!-- /#wrapper -->
+			</div><!-- /#site -->
+		
+			<!-- Slidebar Left -->
+			<div id="slidebar-left">
+				<!-- Your left Slidebar content goes here. -->
+			</div>
+			
+			<!-- Slidebar Right -->
+			<div id="slidebar-right">
+				<!-- Your right Slidebar content goes here. -->
+			</div>
+		
+			<!-- Bar -->
+			<div id="bar">
+				<div class="wrapper">
+					<div class="cell-left">
+							<div class="slidebar-left-control">
+								<div class="navicon-line-long"></div>
+								<div class="navicon-line-long"></div>
+								<div class="navicon-line-long"></div>
+							</div><!-- /.slidebar-left-control -->
+					</div><!-- /.cell-left -->
+					<div class="cell-center">
+						<!-- Your logo here. -->	
+					</div><!-- /.cell-center-->
+					<div class="cell-right">
+							<div class="slidebar-right-control">
+								<div class="navicon-line-dot"></div>
+								<div class="navicon-line-short"></div>
+								<div class="navicon-line-dot"></div>
+								<div class="navicon-line-short"></div>
+								<div class="navicon-line-dot"></div>
+								<div class="navicon-line-short"></div>
+								<div class="clearfix"></div>
+							</div><!-- /.slidebar-right-control -->
+					</div><!-- /.cell-right -->
+				</div><!-- /.wrapper -->
+			</div><!-- /#bar -->
+			
+		</div><!-- /#viewport -->
+		
+		<!-- Message to users with JavaScript disabled. -->
+		<noscript>
+			<h1>Uh Oh!</h1>
+			<p>This site uses JavaScript to enhance your experience, and it looks like you've got it turned off! Please enable JavaScript and refresh this page.</p>
+		</noscript>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+/* ---------
+ * Slidebars
+ * 0.1
+ *
+ * Written by Adam Smith
+ * http://www.adchsm.me/
+ */
+
+html{width:100%;height:100%}body{width:100%;height:100%}#viewport{position:absolute;width:100%;overflow:hidden}html.no-js{width:auto;height:auto}html.no-js body #viewport *{display:none}#site{width:auto;width:-webkit-calc(100% - 30px);width:-moz-calc(100% - 30px);width:calc(100% - 30px);padding:65px 15px 15px 15px;min-height:100%;height:100%;position:relative;z-index:3}html.no-csscalc #site{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:100%}.wrapper{width:100%;margin:0 auto}.clearfix{clear:both}#slidebar-left,#slidebar-right{top:0;width:25%;min-height:100%}#slidebar-left{left:0}#slidebar-right{right:0}#bar{display:table;z-index:1000;width:auto;width:-webkit-calc(100%);width:-moz-calc(100% - 30px);width:calc(100% - 30px);height:50px;top:0;padding:0 15px}html.no-csscalc #bar{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:100%}#bar .wrapper{display:table;height:50px}.cell-left,.cell-center,.cell-right{display:table-cell;vertical-align:middle}.cell-left{width:26px;text-align:left;padding-right:15px}.cell-center{width:auto;text-align:center}.cell-right{width:26px;text-align:right;padding-left:15px}#bar .slidebar-left-control,#bar .slidebar-right-control{cursor:pointer;width:26px;height:18px}#bar .slidebar-right-control{float:right}.navicon-line-long{height:4px;width:26px;margin:0 0 3px 0;border-radius:1px}.navicon-line-dot{float:left;clear:left;height:4px;width:4px;margin:0 3px 3px 0;border-radius:1px}.navicon-line-short{float:left;height:4px;width:19px;margin:0 0 3px 0;border-radius:1px}@media screen and (max-width:768px){#slidebar-left,#slidebar-right{width:50%}}@media screen and (max-width:481px){#slidebar-left,#slidebar-right{width:70%}}

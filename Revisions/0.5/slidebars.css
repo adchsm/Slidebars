@@ -1,0 +1,100 @@
+/* Slidebars 0.5 - http://plugins.adchsm.me/slidebars/ written by Adam Smith - http://www.adchsm.me/
+ *
+ * -------------------
+ * Slidebars CSS Index
+ *
+ * 001 - Html, Body & Site
+ * 002 - Slidebars
+ * 003 - Media Queries
+ * 004 - Animation
+ *
+ * -----------------------
+ * 001 - Html, Body & Site
+ */
+
+html, body {
+	height: 100%;
+	overflow-x: hidden; /* Stops horizontal page scrolling. */
+}
+
+html, body, .sb-site {
+	/* Set full screen size and remove margins and paddings. */
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.sb-site {
+	min-height: 100%;
+	position: relative;
+	z-index: 1; /* Site sits above the slidebars. */
+	background-color: #fff; /* Default background colour, overwrite this with your own css. */
+	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0); /* Fixes some translation issues. */
+}
+
+html, body, .sb-site, .sb-slidebar {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+
+/* ---------------
+ * 002 - Slidebars
+ */
+
+.sb-slidebar {
+	width: 70%; /* Slidebar width on extra small screens (< 480). */
+	height: 100%;
+	overflow-y: scroll; /* Enable vertical scrolling on Slidebars. */
+	position: fixed;
+	top: 0;
+	z-index: 0; /* Slidebars sit behind sb-site. */
+	visibility: hidden; /* Initially hide the Slidebars. */
+	background-color: #191919; /* Default Slidebars background colour, overwrite this with your own css. */
+}
+
+.sb-left {
+	left: 0;
+}
+
+.sb-right {
+	right: 0;
+}
+
+.sb-toggle-left, .sb-toggle-right, .sb-open-left, .sb-open-right, .sb-close {
+	cursor: pointer;
+}
+
+/* -------------------
+ * 003 - Media Queries
+ */
+
+@media (min-width: 481px) and (max-width: 991px) {
+	.sb-slidebar {
+		width: 50%; /* Slidebar width on small screens. */
+	}
+}
+
+@media (min-width: 992px) {
+	.sb-slidebar {
+		width: 35%; /* Slidebar width on medium screens. */
+	}
+}
+
+@media (min-width: 1200px) {
+	.sb-slidebar {
+		width: 20%; /* Slidebar width on large screens. */
+	}
+}
+
+/* ---------------
+ * 004 - Animation
+ */
+ 
+.sb-slide {
+	-webkit-transition: -webkit-transform 400ms ease; /* Webkit syntax */
+	   -moz-transition:    -moz-transform 400ms ease; /* Firefox syntax */
+	     -o-transition:      -o-transform 400ms ease; /* Opera syntax */
+	        transition:         transform 400ms ease; /* Final syntax */
+	-webkit-backface-visibility: hidden; /* Prevents flickering. */
+}

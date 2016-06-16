@@ -1,0 +1,124 @@
+<!doctype html>
+<html class="no-js">
+	<head>
+		<!-- Meta -->
+		<meta charset="utf-8">
+		<title>Slidebars</title>
+		<meta name="description" content="">
+		
+		<!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="reset.css">
+		<link rel="stylesheet" type="text/css" href="scripts/slidebars/0.1/slidebars-core.min.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+	
+		<!-- Include jQuery -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		
+		<!-- Include Modernizr
+			When building your site with Slidebars you may replace this build of Modernizr with your own. However to ensure Slidebars stays functional, you should include:
+			
+			Extras:
+				html5shiv,
+				Modernizr.load,
+				Media Queries,
+				Add CSS Classes,
+				
+			Non-core detects:
+				css-calc.
+		-->
+		<script src="scripts/modernizr/2.6.2/modernizr.custom.js"></script>
+		
+		<!-- Media queries polyfill -->
+		<script>
+			$(document).ready(function() {
+				Modernizr.load({
+					test: Modernizr.mq('only all'),
+					nope: 'scripts/respond.js/1.1.0/respond.min.js',
+				});
+			});
+		</script>
+	
+		<!-- Include Hammer.js -->
+		<script src="scripts/hammer.js/1.0.5/jquery.hammer.min.js"></script>
+		
+		<!-- Include Transit -->
+		<script src="scripts/transit/0.9.9/jquery.transit.min.js"></script>
+	
+		<!-- Include Slidebars.js -->
+		<script src="scripts/slidebars/0.1/slidebars.min.js"></script>
+		
+		<!-- Start Slidebars -->
+		<script type="text/javascript">
+			(function($) {
+				$(document).ready(function() {
+					slidebars({
+						position: 'fixed', // 'fixed' or 'absolute' 
+						slidebarLeft: true, // true or false depending on if you want to enable the left slidebar
+						slidebarRight: true, // true or false depending on if you want to enable the right slidebar
+					});
+				});
+			}) (jQuery);
+		</script>
+		
+		<!-- Web App -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	</head>
+	
+	<body>
+		<!-- Message to users with JavaScript disabled. -->
+		<noscript>
+			<h1>Uh Oh!</h1>
+			<p>This site uses JavaScript to enhance your experience, and it looks like you've got it turned off! Please enable JavaScript and refresh this page.</p>
+		</noscript>
+		
+		<div id="viewport">
+		
+			<!-- Site -->
+			<div id="site">
+				<div class="wrapper">
+					<!-- Your site design and content goes here. -->
+				</div><!-- /#wrapper -->
+			</div><!-- /#site -->
+		
+			<!-- Slidebar Left -->
+			<div id="slidebar-left" class="slidebars">
+				<!-- Your left Slidebar content goes here. -->
+			</div>
+			
+			<!-- Slidebar Right -->
+			<div id="slidebar-right" class="slidebars">
+				<!-- Your right Slidebar content goes here. -->
+			</div>
+		
+			<!-- Bar -->
+			<div id="bar">
+				<div class="wrapper">
+					<div class="cell-left">
+							<div class="slidebar-left-control">
+								<div class="navicon-line-long"></div>
+								<div class="navicon-line-long"></div>
+								<div class="navicon-line-long"></div>
+							</div><!-- /.slidebar-left-control -->
+					</div><!-- /.cell-left -->
+					<div class="cell-center">
+						<!-- Your logo here. -->	
+					</div><!-- /.cell-center-->
+					<div class="cell-right">
+							<div class="slidebar-right-control">
+								<div class="navicon-line-dot"></div>
+								<div class="navicon-line-short"></div>
+								<div class="navicon-line-dot"></div>
+								<div class="navicon-line-short"></div>
+								<div class="navicon-line-dot"></div>
+								<div class="navicon-line-short"></div>
+								<div class="clearfix"></div>
+							</div><!-- /.slidebar-right-control -->
+					</div><!-- /.cell-right -->
+				</div><!-- /.wrapper -->
+			</div><!-- /#bar -->
+			
+		</div><!-- /#viewport -->
+	</body>
+</html>

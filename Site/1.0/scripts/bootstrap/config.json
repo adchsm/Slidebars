@@ -1,0 +1,39 @@
+{
+  "vars": {
+    "@brand-primary": "#FF3971",
+    "@link-hover-color": "darken(@link-color, 10%)",
+    "@font-family-sans-serif": "'Open Sans', sans-serif",
+    "@headings-font-weight": "600",
+    "@headings-color": "#242424",
+    "@navbar-default-bg": "#FF3971",
+    "@navbar-default-link-color": "#fff",
+    "@navbar-default-link-hover-color": "darken(@navbar-default-link-color, 15%)",
+    "@navbar-default-link-active-color": "@navbar-default-link-color"
+  },
+  "css": [
+    "type.less",
+    "code.less",
+    "grid.less",
+    "tables.less",
+    "forms.less",
+    "buttons.less",
+    "button-groups.less",
+    "input-groups.less",
+    "navs.less",
+    "navbar.less",
+    "alerts.less",
+    "tooltip.less",
+    "popovers.less",
+    "modals.less",
+    "utilities.less",
+    "responsive-utilities.less",
+    "component-animations.less"
+  ],
+  "js": [
+    "button.js",
+    "modal.js",
+    "tooltip.js",
+    "popover.js",
+    "transition.js"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+	"name": "slidebars",
+	"version": "2.0",
+	"dependencies": {
+		"jquery": ">=1.8"
+	},
+	"main": [
+		"dist/2.0/slidebars.min.js",
+		"dist/2.0/slidebars.min.css"
+	]
+}

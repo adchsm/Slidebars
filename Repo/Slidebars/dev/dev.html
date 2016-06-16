@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Slidebars Dev Page</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="slidebars.css">
+		<link rel="stylesheet" href="style.css">
+	</head>
+
+	<body>
+		<div canvas="container">
+			<h1>Slidebars Dev Page</h1>
+
+			<p>You'd need to open the console to view the results of some of these tests.</p>
+
+			<h4>Left Slidebar Controls</h4>
+
+			<p>
+				<button class="js-open-left-slidebar">Open left Slidebar</button>
+				<button class="js-close-left-slidebar">Close left Slidebar</button>
+				<button class="js-toggle-left-slidebar">Toggle left Slidebar</button>
+			</p>
+
+			<h4>Right Slidebar Controls</h4>
+
+			<p>
+				<button class="js-open-right-slidebar">Open right Slidebar</button>
+				<button class="js-close-right-slidebar">Close right Slidebar</button>
+				<button class="js-toggle-right-slidebar">Toggle right Slidebar</button>
+			</p>
+
+			<h4>Top Slidebar Controls</h4>
+
+			<p>
+				<button class="js-open-top-slidebar">Open top Slidebar</button>
+				<button class="js-close-top-slidebar">Close top Slidebar</button>
+				<button class="js-toggle-top-slidebar">Toggle top Slidebar</button>
+			</p>
+
+			<h4>Bottom Slidebar Controls</h4>
+
+			<p>
+				<button class="js-open-bottom-slidebar">Open bottom Slidebar</button>
+				<button class="js-close-bottom-slidebar">Close bottom Slidebar</button>
+				<button class="js-toggle-bottom-slidebar">Toggle bottom Slidebar</button>
+			</p>
+
+			<h4>Other Controls</h4>
+
+			<p>
+				<button class="js-close-any-slidebar">Close any Slidebar</button>
+			</p>
+
+			<h4>Initialization, Exit and CSS Reset</h4>
+
+			<p>
+				<button class="js-initialize-slidebars">Initialize Slidebars</button>
+				<button class="js-exit-slidebars">Exit Slidebars</button>
+				<button class="js-reset-slidebars-css">Reset Slidebars CSS</button>
+			</p>
+
+			<h4>Is and Get</h4>
+
+			<p>
+				<button class="js-is-active">Is Slidebars active?</button>
+				<button class="js-is-active-slidebar">Is Slidebar with id active?</button>
+				<button class="js-get-active-slidebar">Get id of active Slidebar</button>
+				<button class="js-get-all-slidebars">Get all Slidebar id's</button>
+				<button class="js-get-slidebar">Get Slidebar by id</button>
+			</p>
+
+			<h4>Callbacks</h4>
+
+			<p>
+				<button class="js-init-callback">Init callback</button>
+				<button class="js-exit-callback">Exit callback</button>
+				<button class="js-css-callback">CSS callback</button>
+				<button class="js-open-callback">Open callback</button>
+				<button class="js-close-callback">Close callback</button>
+				<button class="js-toggle-callback">Toggle callback</button>
+			</p>
+		</div>
+
+		<div off-canvas="slidebar-1 left reveal">
+			<p>Slidebar with id 'slidebar-1' on the left side and reveal style.</p>
+		</div>
+
+		<div off-canvas="slidebar-2 right shift">
+			<p>Slidebar with id 'slidebar-2' on the right side and shift style.</p>
+		</div>
+
+		<div off-canvas="slidebar-3 top push">
+			<p>Slidebar with id 'slidebar-3' on the top and push style.</p>
+		</div>
+
+		<div off-canvas="slidebar-4 bottom overlay">
+			<p>Slidebar with id 'slidebar-4' on the bottom and overlay style.</p>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="slidebars.js"></script>
+		<script src="scripts.js"></script>
+	</body>
+</html>
