@@ -14,7 +14,7 @@ Previous versions of Slidebars are no longer supported.
 
 If you're having problems with Slidebars, please read through the usage documentation first. Make sure your running the latest version of Slidebars and jQuery 1.8 or higher.
 
-There are a few common issues and fixes which can be found on the [Slidebars website](http://www.adchsm.com/slidebars/issues/). Please check there and the closed issues list to see if your problem has previously been answered.
+There are a few common issues and fixes which can be found on the [Slidebars website](http://www.adchsm.com/slidebars/help/issues/). Please check there and the closed issues list to see if your problem has previously been answered.
 
 If the issue is being caused by your own markup, styling, scripts or a conflicting plugin, I won't be able to help. But if you've found an issue, that's great, I'd like to hear as I'm always looking to improve Slidebars.
 
