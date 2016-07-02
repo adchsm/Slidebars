@@ -1,6 +1,6 @@
 /*!
  * Slidebars - A jQuery Framework for Off-Canvas Menus and Sidebars
- * Version: 2.0 Development
+ * Version: 2 Development
  * Url: http://www.adchsm.com/slidebars/
  * Author: Adam Charles Smith
  * Author url: http://www.adchsm.com/
@@ -216,7 +216,7 @@ var slidebars = function () {
 		if ( ! init ) {
 			throw "Slidebars hasn't been initialized.";
 		}
-		
+
 		// Check if id wasn't passed
 		if ( ! id ) {
 			throw "You must pass a Slidebar id.";

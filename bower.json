@@ -1,6 +1,6 @@
 {
-	"name": "Slidebars",
-	"version": "2.0.1",
+	"name": "slidebars",
+	"version": "2.0.2",
 	"dependencies": {
 		"jquery": ">=1.8"
 	},
