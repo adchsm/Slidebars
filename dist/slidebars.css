@@ -21,9 +21,10 @@ html, body, [canvas=container], [off-canvas] {
 }
 
 html {
-	overflow-y: auto;
+	height: 100%;
 }
 body {
+	min-height: 100%;
 	overflow-y: hidden;
 }
 html, body {
